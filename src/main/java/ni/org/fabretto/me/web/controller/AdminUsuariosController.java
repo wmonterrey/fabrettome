@@ -22,8 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.google.gson.Gson;
 
 import ni.org.fabretto.me.domain.catalogs.Centro;
-import ni.org.fabretto.me.domain.relationships.UsuarioCentro;
-import ni.org.fabretto.me.domain.relationships.UsuarioCentroId;
 import ni.org.fabretto.me.service.AuditTrailService;
 import ni.org.fabretto.me.service.CentrosService;
 import ni.org.fabretto.me.service.UsuarioService;
@@ -31,6 +29,8 @@ import ni.org.fabretto.me.users.model.Rol;
 import ni.org.fabretto.me.users.model.RolUsuario;
 import ni.org.fabretto.me.users.model.RolUsuarioId;
 import ni.org.fabretto.me.users.model.Usuario;
+import ni.org.fabretto.me.users.model.UsuarioCentro;
+import ni.org.fabretto.me.users.model.UsuarioCentroId;
 
 
 /**

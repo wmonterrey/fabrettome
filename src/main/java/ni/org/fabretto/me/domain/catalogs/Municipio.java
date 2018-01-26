@@ -42,21 +42,21 @@ public class Municipio extends BaseMetaData implements Auditable{
 		super();
 	}
 
-	
-	@Id
-	@Column(name = "idUnico", nullable = false, length = 50)
+
 	/** Columna = "idUnico", nullable = false, length = 50.
 	 * @return idUnico Identificador único del registro en el sistema, generado automáticamente.*/
+	@Id
+	@Column(name = "idUnico", nullable = false, length = 50)
 	public String getIdUnico() {
 		return idUnico;
 	}
 	public void setIdUnico(String idUnico) {
 		this.idUnico = idUnico;
 	}
-	
-	@Column(name = "nombreMunicipio", nullable = false, length = 300)
+
 	/** Columna = "nombreMunicipio", nullable = false, length = 300.
 	 * @return nombreMunicipio Nombre del municipio.*/
+	@Column(name = "nombreMunicipio", nullable = false, length = 300)
 	public String getNombreMunicipio() {
 		return nombreMunicipio;
 	}
@@ -64,6 +64,8 @@ public class Municipio extends BaseMetaData implements Auditable{
 		this.nombreMunicipio = nombreMunicipio;
 	}
 
+	/** Columna = "idDepartamento", nullable = true, length = 50.
+	 * @return departamento Departamento donde se encuentra el municipio.*/
 	@ManyToOne(optional=false)
 	@JoinColumn(name="idDepartamento")
 	@ForeignKey(name = "fkDepartamentoMunicipio")

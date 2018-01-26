@@ -51,10 +51,10 @@ public class Colaborador extends BaseMetaData implements Auditable{
 		super();
 	}
 	
-	@Id
-	@Column(name = "idUnico", nullable = false, length = 50)
 	/** Columna = "idUnico", nullable = false, length = 50.
 	 * @return idUnico Identificador único del registro en el sistema, generado automáticamente.*/
+	@Id
+	@Column(name = "idUnico", nullable = false, length = 50)
 	public String getIdUnico() {
 		return idUnico;
 	}
@@ -62,11 +62,11 @@ public class Colaborador extends BaseMetaData implements Auditable{
 		this.idUnico = idUnico;
 	}
 
+	/** Columna = "idPersona", nullable = false, length = 50.
+	 * @return persona - Persona que es el colaborador*/
 	@OneToOne(optional=false)
 	@JoinColumn(name="idPersona")
 	@ForeignKey(name = "fkPersonaColaborador")
-	/** Columna = "idPersona", nullable = false, length = 50.
-	 * @return persona - Persona que es el colaborador*/
 	public Persona getPersona() {
 		return persona;
 	}
@@ -74,9 +74,9 @@ public class Colaborador extends BaseMetaData implements Auditable{
 		this.persona = persona;
 	}
 	
-	@Column(name = "cargo", nullable = false, length = 2)
 	/** Column(name = "cargo", nullable = false, length = 2)
 	 * @return cargo Cargo del colaborador*/
+	@Column(name = "cargo", nullable = false, length = 2)
 	public String getCargo() {
 		return cargo;
 	}
@@ -85,9 +85,9 @@ public class Colaborador extends BaseMetaData implements Auditable{
 		this.cargo = cargo;
 	}
 	
-	@Column(name = "estadoCivil", nullable = false, length = 2)
 	/** Column(name = "estadoCivil", nullable = false, length = 2)
 	 * @return estadoCivil Estado Civil del Colaborador */
+	@Column(name = "estadoCivil", nullable = false, length = 2)
 	public String getEstadoCivil() {
 		return estadoCivil;
 	}
@@ -96,9 +96,9 @@ public class Colaborador extends BaseMetaData implements Auditable{
 		this.estadoCivil = estadoCivil;
 	}
 
-	@Column(name = "numSeguro", nullable = true, length = 25)
 	/** Column(name = "numSeguro", nullable = false, length = 25)
 	 * @return numSeguro Numero de Seguro del Colaborador */
+	@Column(name = "numSeguro", nullable = true, length = 25)
 	public String getNumSeguro() {
 		return numSeguro;
 	}
@@ -107,9 +107,9 @@ public class Colaborador extends BaseMetaData implements Auditable{
 		this.numSeguro = numSeguro;
 	}
 
-	@Column(name = "fechaIngreso", nullable = false)
 	/** Column(name = "fechaIngreso", nullable = false).
 	 * @return fechaIngreso Fecha de ingreso*/
+	@Column(name = "fechaIngreso", nullable = false)
 	public Date getFechaIngreso() {
 		return fechaIngreso;
 	}
@@ -118,9 +118,9 @@ public class Colaborador extends BaseMetaData implements Auditable{
 		this.fechaIngreso = fechaIngreso;
 	}
 
-	@Column(name = "fechaEgreso", nullable = true)
 	/** Column(name = "fechaEgreso", nullable = true).
 	 * @return fechaEgreso Fecha de egreso*/
+	@Column(name = "fechaEgreso", nullable = true)
 	public Date getFechaEgreso() {
 		return fechaEgreso;
 	}
@@ -129,9 +129,9 @@ public class Colaborador extends BaseMetaData implements Auditable{
 		this.fechaEgreso = fechaEgreso;
 	}
 
-	@Column(name = "razonEgreso", nullable = true, length = 250)
 	/** Column(name = "razonEgreso", nullable = true, length = 250)
 	 * @return razonEgreso Razon por la que se retira*/
+	@Column(name = "razonEgreso", nullable = true, length = 250)
 	public String getRazonEgreso() {
 		return razonEgreso;
 	}
@@ -140,9 +140,9 @@ public class Colaborador extends BaseMetaData implements Auditable{
 		this.razonEgreso = razonEgreso;
 	}
 
-	@Column(name = "estado", nullable = false, length = 1)
 	/** Column(name = "estado", nullable = false, length = 1)
 	 * @return Estado actual del colaborador.*/
+	@Column(name = "estado", nullable = false, length = 1)
 	public String getEstado() {
 		return estado;
 	}

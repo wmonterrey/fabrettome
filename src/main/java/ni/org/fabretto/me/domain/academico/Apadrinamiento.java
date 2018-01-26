@@ -1,4 +1,4 @@
-package ni.org.fabretto.me.domain.socioeconomico;
+package ni.org.fabretto.me.domain.academico;
 
 import java.util.Date;
 
@@ -13,7 +13,6 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.ForeignKey;
 
 import ni.org.fabretto.me.domain.BaseMetaData;
-import ni.org.fabretto.me.domain.academico.Matricula;
 import ni.org.fabretto.me.domain.audit.Auditable;
 
 /**

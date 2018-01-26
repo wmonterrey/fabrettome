@@ -1,4 +1,4 @@
-package ni.org.fabretto.me.domain.relationships;
+package ni.org.fabretto.me.users.model;
 
 import java.util.Date;
 
@@ -13,7 +13,6 @@ import org.hibernate.annotations.ForeignKey;
 import ni.org.fabretto.me.domain.BaseMetaData;
 import ni.org.fabretto.me.domain.audit.Auditable;
 import ni.org.fabretto.me.domain.catalogs.Centro;
-import ni.org.fabretto.me.users.model.Usuario;
 
 /**
  * Simple objeto de dominio que representa la relación de los centros para un usuario

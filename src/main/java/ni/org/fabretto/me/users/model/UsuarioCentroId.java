@@ -1,4 +1,4 @@
-package ni.org.fabretto.me.domain.relationships;
+package ni.org.fabretto.me.users.model;
 
 import java.io.Serializable;
 

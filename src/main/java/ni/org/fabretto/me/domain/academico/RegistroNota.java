@@ -16,7 +16,7 @@ import ni.org.fabretto.me.domain.audit.Auditable;
 /**
  * RegistroNota es la clase que representa el registro de la nota de los estudiantes en un curso escolar en el sistema por semestre.<br><br>
  * Nombre de la tabla<br>
- * Table(name = "tblRegistroNota", catalog = "fabrettome", uniqueConstraints={@UniqueConstraint(columnNames = {"numEvaluacion","idMatricula"})})<br><br>
+ * Table(name = "tblRegistroNota", catalog = "fabrettome", uniqueConstraints={UniqueConstraint(columnNames = {"numEvaluacion","idMatricula"})})<br><br>
  * 
  * RegistroNota se relaciona con:
  * 

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ni.org.fabretto.me.domain.catalogs.Centro;
-import ni.org.fabretto.me.domain.relationships.UsuarioCentro;
+import ni.org.fabretto.me.users.model.UsuarioCentro;
 
 
 /**

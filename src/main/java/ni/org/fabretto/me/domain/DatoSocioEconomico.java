@@ -13,14 +13,14 @@ import org.hibernate.annotations.ForeignKey;
 import ni.org.fabretto.me.domain.audit.Auditable;
 
 /**
- * DatosSocioEconomicos es la clase que representa el información acerca de la situación socioeconómica y familiar del niño<br><br>
+ * DatoSocioEconomico es la clase que representa el información acerca de la situación socioeconómica y familiar del niño<br><br>
  * Nombre de la tabla<br>
- * Table(name = "tblDatosSocioEconomicos", catalog = "fabrettome", uniqueConstraints={UniqueConstraint(columnNames = {"idMatricula"})})<br><br>
+ * Table(name = "tblDatoSocioEconomico", catalog = "fabrettome", uniqueConstraints={UniqueConstraint(columnNames = {"idMatricula"})})<br><br>
  * 
- * Apadrinamiento se relaciona con:
+ * DatoSocioEconomico se relaciona con:
  * 
  * <ul>
- * <li>Matricula
+ * <li>Estudiante
  * </ul>
  * 
  *  
@@ -29,7 +29,7 @@ import ni.org.fabretto.me.domain.audit.Auditable;
  * @since       1.0
  */
 @Entity
-@Table(name = "tblDatosSocioEconomicos", catalog = "fabrettome", uniqueConstraints={@UniqueConstraint(columnNames = {"idEstudiante"})})
+@Table(name = "tblDatoSocioEconomico", catalog = "fabrettome", uniqueConstraints={@UniqueConstraint(columnNames = {"idEstudiante"})})
 public class DatoSocioEconomico extends BaseMetaData implements Auditable{
 	/**
 	 * 

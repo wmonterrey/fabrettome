@@ -14,11 +14,11 @@ import ni.org.fabretto.me.domain.BaseMetaData;
 import ni.org.fabretto.me.domain.audit.Auditable;
 
 /**
- * Asistencia es la clase que representa el registro de la asistencia de los estudiantes a reforzamiento en un curso escolar en el sistema por semestre.<br><br>
+ * AsistenciaReforzamientoEstudiante es la clase que representa el registro de la asistencia de los estudiantes a reforzamiento en un curso escolar en el sistema por semestre.<br><br>
  * Nombre de la tabla<br>
- * Table(name = "tblRegistroNota", catalog = "fabrettome", uniqueConstraints={@UniqueConstraint(columnNames = {"numEvaluacion","idMatricula"})})<br><br>
+ * Table(name = "tblAsistRefEstudiante", catalog = "fabrettome", uniqueConstraints={UniqueConstraint(columnNames = {"mes","idMatricula"})})<br><br>
  * 
- * Asistencia se relaciona con:
+ * AsistenciaReforzamientoEstudiante se relaciona con:
  * 
  * <ul>
  * <li>Matricula
@@ -30,8 +30,8 @@ import ni.org.fabretto.me.domain.audit.Auditable;
  * @since       1.0
  */
 @Entity
-@Table(name = "tblAsistencia", catalog = "fabrettome", uniqueConstraints={@UniqueConstraint(columnNames = {"numEvaluacion","idMatricula"})})
-public class Asistencia extends BaseMetaData implements Auditable{
+@Table(name = "tblAsistRefEstudiante", catalog = "fabrettome", uniqueConstraints={@UniqueConstraint(columnNames = {"mes","idMatricula"})})
+public class AsistenciaReforzamientoEstudiante extends BaseMetaData implements Auditable{
 	/**
 	 * 
 	 */
@@ -45,7 +45,7 @@ public class Asistencia extends BaseMetaData implements Auditable{
 	private Integer diasAsisteAlim;
 	
 	
-	public Asistencia() {
+	public AsistenciaReforzamientoEstudiante() {
 		super();
 	}
 	
@@ -61,10 +61,10 @@ public class Asistencia extends BaseMetaData implements Auditable{
 	}
 
 	/** Columna = "idMatricula", nullable = false, length = 50.
-	 * @return idMatricula Estudiante y curso escolar de esta nota*/
+	 * @return idMatricula Estudiante y curso escolar de esta asistencia*/
 	@ManyToOne(optional=false)
 	@JoinColumn(name="idMatricula")
-	@ForeignKey(name = "fkMatriculaRegistroNota")
+	@ForeignKey(name = "fkMatriculaAsistencia")
 	public Matricula getMatricula() {
 		return matricula;
 	}
@@ -144,10 +144,10 @@ public class Asistencia extends BaseMetaData implements Auditable{
 			return true;
 		if ((other == null))
 			return false;
-		if (!(other instanceof Asistencia))
+		if (!(other instanceof AsistenciaReforzamientoEstudiante))
 			return false;
 		
-		Asistencia castOther = (Asistencia) other;
+		AsistenciaReforzamientoEstudiante castOther = (AsistenciaReforzamientoEstudiante) other;
 
 		return (this.getIdUnico().equals(castOther.getIdUnico()));
 	}

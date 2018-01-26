@@ -43,31 +43,31 @@ public class Comunidad extends BaseMetaData implements Auditable{
 		super();
 	}
 
-	
-	@Id
-	@Column(name = "idUnico", nullable = false, length = 50)
+
 	/** Columna = "idUnico", nullable = false, length = 50.
 	 * @return idUnico Identificador único del registro en el sistema, generado automáticamente.*/
+	@Id
+	@Column(name = "idUnico", nullable = false, length = 50)
 	public String getIdUnico() {
 		return idUnico;
 	}
 	public void setIdUnico(String idUnico) {
 		this.idUnico = idUnico;
 	}
-	
-	@Column(name = "nombreComunidad", nullable = false, length = 300)
+
 	/** Columna = "nombreComunidad", nullable = false, length = 300.
 	 * @return nombreComunidad Nombre de la comunidad.*/
+	@Column(name = "nombreComunidad", nullable = false, length = 300)
 	public String getNombreComunidad() {
 		return nombreComunidad;
 	}
 	public void setNombreComunidad(String nombreComunidad) {
 		this.nombreComunidad = nombreComunidad;
 	}
-	
-	@Column(name = "descComunidad", nullable = true, length = 500)
+
 	/** Columna = "descComunidad", nullable = true, length = 500.
 	 * @return descComunidad Descripción de la comunidad.*/
+	@Column(name = "descComunidad", nullable = true, length = 500)
 	public String getDescComunidad() {
 		return descComunidad;
 	}
@@ -77,15 +77,16 @@ public class Comunidad extends BaseMetaData implements Auditable{
 		this.descComunidad = descComunidad;
 	}
 
-
+	/** Columna = "idMunicipio", nullable = true, length = 50.
+	 * @return municipio Municipio donde se encuentra la comunidad.*/
 	@ManyToOne(optional=false)
 	@JoinColumn(name="idMunicipio")
 	@ForeignKey(name = "fkMunicipioComunidad")
 	public Municipio getMunicipio() {
 		return municipio;
 	}
-	public void setMunicipio(Municipio departamento) {
-		this.municipio = departamento;
+	public void setMunicipio(Municipio municipio) {
+		this.municipio = municipio;
 	}
 
 	@Override

@@ -47,6 +47,8 @@ public class BaseMetaData implements Serializable
 		this.usuarioRegistro = usuarioRegistro;
 	}
 	
+	/** Columna = "fechaRegistro", nullable = false
+	 * @return fechaRegistro Fecha de ingreso del registro en el sistema, generado automáticamente.*/
 	@Temporal( TemporalType.TIMESTAMP)
 	@Column(name="fechaRegistro")
 	public Date getFechaRegistro() {
@@ -57,6 +59,8 @@ public class BaseMetaData implements Serializable
 		this.fechaRegistro = fechaRegistro;
 	}
 
+	/** Columna = "usuarioRegistro", nullable = false
+	 * @return usuarioRegistro Usuario que ingresa el registro en el sistema, capturado desde las credenciales.*/
 	@Column(name="usuarioRegistro", length = 50)
 	public String getUsuarioRegistro() {
 		return usuarioRegistro;
@@ -66,6 +70,8 @@ public class BaseMetaData implements Serializable
 		this.usuarioRegistro = usuarioRegistro;
 	}
 	
+	/** Columna = "pasivo", nullable = false
+	 * @return pasivo Indica si el registro esta pasivo en el sistema.*/
 	@Column(name="pasivo", nullable = false, length = 1)
 	public char getPasivo() {
 		return pasivo;
@@ -75,6 +81,8 @@ public class BaseMetaData implements Serializable
 		this.pasivo = pasivo;
 	}
 
+	/** Columna = "idEquipo", nullable = false
+	 * @return idEquipo Captura la direccion de red del usuario en el sistema desde su autenticacion.*/
 	@Column(name="idEquipo", length = 100)
 	public String getIdEquipo() {
 		return idEquipo;

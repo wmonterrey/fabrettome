@@ -48,11 +48,10 @@ public class Escuela extends BaseMetaData implements Auditable{
 		super();
 	}
 
-	
-	@Id
-	@Column(name = "idUnico", nullable = false, length = 50)
 	/** Columna = "idUnico", nullable = false, length = 50.
 	 * @return idUnico Identificador único del registro en el sistema, generado automáticamente.*/
+	@Id
+	@Column(name = "idUnico", nullable = false, length = 50)
 	public String getIdUnico() {
 		return idUnico;
 	}
@@ -60,9 +59,9 @@ public class Escuela extends BaseMetaData implements Auditable{
 		this.idUnico = idUnico;
 	}
 	
-	@Column(name = "nombreEscuela", nullable = false, length = 100)
 	/** Columna = "nombreEscuela", nullable = false, length = 100.
 	 * @return nombreEscuela Nombre de la escuela.*/
+	@Column(name = "nombreEscuela", nullable = false, length = 100)
 	public String getNombreEscuela() {
 		return nombreEscuela;
 	}
@@ -70,10 +69,9 @@ public class Escuela extends BaseMetaData implements Auditable{
 		this.nombreEscuela = nombreEscuela;
 	}
 	
-	
-	@Column(name = "tipoEscuela", nullable = false, length = 2)
 	/** Columna = "tipoEscuela", nullable = false, length = 2.
 	 * @return tipoEscuela Tipo de escuela. Publica o Privada*/
+	@Column(name = "tipoEscuela", nullable = false, length = 2)
 	public String getTipoEscuela() {
 		return tipoEscuela;
 	}
@@ -81,10 +79,9 @@ public class Escuela extends BaseMetaData implements Auditable{
 		this.tipoEscuela = tipoEscuela;
 	}
 	
-	
-	@Column(name = "catEscuela", nullable = false, length = 2)
 	/** Columna = "catEscuela", nullable = false, length = 2.
 	 * @return catEscuela Categoria de escuela. A B o C*/
+	@Column(name = "catEscuela", nullable = false, length = 2)
 	public String getCatEscuela() {
 		return catEscuela;
 	}
@@ -93,9 +90,9 @@ public class Escuela extends BaseMetaData implements Auditable{
 	}
 
 
-	@Column(name = "telefono", nullable = true, length = 15)
 	/** Columna = "telefono", nullable = true, length = 15.
 	 * @return telefono - Numero de telefono de la escuela.*/
+	@Column(name = "telefono", nullable = true, length = 15)
 	public String getTelefono() {
 		return telefono;
 	}
@@ -103,9 +100,9 @@ public class Escuela extends BaseMetaData implements Auditable{
 		this.telefono = telefono;
 	}
 	
-	@Column(name = "codigo", nullable = false, length = 100)
 	/** Columna = "codigo", nullable = false, length = 100.
 	 * @return codigo - Codigo de escuela .*/
+	@Column(name = "codigo", nullable = false, length = 100)
 	public String getCodigo() {
 		return codigo;
 	}
@@ -113,11 +110,11 @@ public class Escuela extends BaseMetaData implements Auditable{
 		this.codigo = codigo;
 	}
 	
+	/** Columna = "idComunidad", nullable = false, length = 50.
+	 * @return comunidad Comunidad donde esta ubicada la escuela.*/
 	@ManyToOne(optional=false)
 	@JoinColumn(name="idComunidad")
 	@ForeignKey(name = "fkComunidadEscuela")
-	/** Columna = "idComunidad", nullable = false, length = 50.
-	 * @return comunidad Comunidad donde esta ubicada la escuela.*/
 	public Comunidad getComunidad() {
 		return comunidad;
 	}
@@ -125,11 +122,11 @@ public class Escuela extends BaseMetaData implements Auditable{
 		this.comunidad = comunidad;
 	}
 	
+	/** Columna = "idCentro", nullable = false, length = 50.
+	 * @return centro Codigo del centro u Oratorio donde esta la escuela .*/
 	@ManyToOne(optional=false)
 	@JoinColumn(name="idCentro")
 	@ForeignKey(name = "fkCentroEscuela")
-	/** Columna = "idCentro", nullable = false, length = 50.
-	 * @return centro Codigo del centro u Oratorio donde esta la escuela .*/
 	public Centro getCentro() {
 		return centro;
 	}

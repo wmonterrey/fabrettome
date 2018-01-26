@@ -49,11 +49,10 @@ public class Centro extends BaseMetaData implements Auditable{
 		super();
 	}
 
-	
-	@Id
-	@Column(name = "idUnico", nullable = false, length = 50)
 	/** Columna = "idUnico", nullable = false, length = 50.
 	 * @return idUnico - Identificador único del registro en el sistema, generado automáticamente.*/
+	@Id
+	@Column(name = "idUnico", nullable = false, length = 50)
 	public String getIdUnico() {
 		return idUnico;
 	}
@@ -61,9 +60,9 @@ public class Centro extends BaseMetaData implements Auditable{
 		this.idUnico = idUnico;
 	}
 
-	@Column(name = "nombreCentro", nullable = false, length = 100)
 	/** Columna = "nombreCentro", nullable = false, length = 100.
 	 * @return nombreCentro - Nombre del Centro Oratorio.*/
+	@Column(name = "nombreCentro", nullable = false, length = 100)
 	public String getNombreCentro() {
 		return nombreCentro;
 	}
@@ -71,9 +70,9 @@ public class Centro extends BaseMetaData implements Auditable{
 		this.nombreCentro = nombreCentro;
 	}
 
-	@Column(name = "direccion", nullable = false, length = 500)
 	/** Columna = "direccion", nullable = false, length = 500.
 	 * @return direccion - Direccion Exacta donde esta ubicada el centro oratorio.*/
+	@Column(name = "direccion", nullable = false, length = 500)
 	public String getDireccion() {
 		return direccion;
 	}
@@ -81,9 +80,9 @@ public class Centro extends BaseMetaData implements Auditable{
 		this.direccion = direccion;
 	}
 
-	@Column(name = "telefono", nullable = true, length = 15)
 	/** Columna = "telefono", nullable = true, length = 15.
 	 * @return telefono - Numero de telefono del Oratorio.*/
+	@Column(name = "telefono", nullable = true, length = 15)
 	public String getTelefono() {
 		return telefono;
 	}
@@ -91,11 +90,11 @@ public class Centro extends BaseMetaData implements Auditable{
 		this.telefono = telefono;
 	}
 
+	/** Columna = "director", nullable = false, length = 50.
+	 * @return director - Director a cargo del Centro Oratorio.*/
 	@ManyToOne(optional=false)
 	@JoinColumn(name="director")
 	@ForeignKey(name = "fkColaboradorDirector")
-	/** Columna = "director", nullable = false, length = 50.
-	 * @return director - Director a cargo del Centro Oratorio.*/
 	public Colaborador getDirector() {
 		return director;
 	}
@@ -103,9 +102,9 @@ public class Centro extends BaseMetaData implements Auditable{
 		this.director = director;
 	}
 
-	@Column(name = "codigo", nullable = false, length = 100)
 	/** Columna = "codigo", nullable = false, length = 100.
 	 * @return codigo - Codigo de fabretto .*/
+	@Column(name = "codigo", nullable = false, length = 100)
 	public String getCodigo() {
 		return codigo;
 	}
@@ -113,11 +112,11 @@ public class Centro extends BaseMetaData implements Auditable{
 		this.codigo = codigo;
 	}
 	
+	/** Columna = "idComunidad", nullable = false, length = 50.
+	 * @return comunidad Comunidad donde se encuentra el centro*/
 	@ManyToOne(optional=false)
 	@JoinColumn(name="idComunidad")
 	@ForeignKey(name = "fkComunidadCentro")
-	/** Columna = "idComunidad", nullable = false, length = 50.
-	 * @return comunidad Comunidad donde se encuentra el centro*/
 	public Comunidad getComunidad() {
 		return comunidad;
 	}
