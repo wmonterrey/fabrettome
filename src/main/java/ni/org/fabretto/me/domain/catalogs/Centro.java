@@ -6,24 +6,32 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.ForeignKey;
 
 import ni.org.fabretto.me.domain.BaseMetaData;
+import ni.org.fabretto.me.domain.Colaborador;
 import ni.org.fabretto.me.domain.audit.Auditable;
 
 /**
  * Centro es la clase que representa a una centro u oratorio en el sistema.<br><br>
  * Nombre de la tabla<br>
  * Table(name = "catCentro", catalog = "fabrettome")<br><br>
+ *
+ * Centro se relaciona con:
  * 
+ * <ul>
+ * <li>Catálogo comunidades
+ * <li>Catálogo Colaboradores
+ * </ul>
  *  
  * @author      William Avilés
  * @version     1.0
  * @since       1.0
  */
 @Entity
-@Table(name = "catCentro", catalog = "fabrettome")
+@Table(name = "catCentro", catalog = "fabrettome", uniqueConstraints={@UniqueConstraint(columnNames = {"codigo","pasivo"})})
 public class Centro extends BaseMetaData implements Auditable{
 	/**
 	 * 
@@ -33,7 +41,7 @@ public class Centro extends BaseMetaData implements Auditable{
 	private String nombreCentro;
 	private String direccion;
 	private String telefono;
-	private String director;
+	private Colaborador director;
 	private String codigo;
 	private Comunidad comunidad;
 	
@@ -83,13 +91,15 @@ public class Centro extends BaseMetaData implements Auditable{
 		this.telefono = telefono;
 	}
 
-	@Column(name = "director", nullable = true, length = 100)
-	/** Columna = "director", nullable = true, length = 100.
+	@ManyToOne(optional=false)
+	@JoinColumn(name="director")
+	@ForeignKey(name = "fkColaboradorDirector")
+	/** Columna = "director", nullable = false, length = 50.
 	 * @return director - Director a cargo del Centro Oratorio.*/
-	public String getDirector() {
+	public Colaborador getDirector() {
 		return director;
 	}
-	public void setDirector(String director) {
+	public void setDirector(Colaborador director) {
 		this.director = director;
 	}
 
@@ -113,6 +123,12 @@ public class Centro extends BaseMetaData implements Auditable{
 	}
 	public void setComunidad(Comunidad comunidad) {
 		this.comunidad = comunidad;
+	}
+	
+	
+	@Override
+	public String toString(){
+		return this.nombreCentro;
 	}
 
 

@@ -45,15 +45,15 @@ see here: http://static.springsource.org/spring/docs/current/spring-framework-re
         <filter-name>httpMethodFilter</filter-name>
         <servlet-name>appServlet</servlet-name>
     </filter-mapping>
-    
-    <error-page>
+	
+   	<session-config> 
+	    <session-timeout>15</session-timeout> 
+	</session-config>
+	
+   	<error-page>
 		<error-code>404</error-code>
 		<location>/404</location>
 	</error-page>
-	
-   	<session-config> 
-	    <session-timeout>5</session-timeout> 
-	</session-config>
 	   
     <listener>
 	  <listener-class>

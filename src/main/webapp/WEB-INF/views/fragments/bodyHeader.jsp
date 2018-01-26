@@ -1,35 +1,42 @@
 <%@ page contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <header class="app-header navbar">
-    <button class="navbar-toggler mobile-sidebar-toggler hidden-lg-up" type="button">☰</button>
-    <a class="navbar-brand" href="#"></a>
-    <ul class="nav navbar-nav hidden-md-down float-left">
-        <li class="nav-item">
-            <a class="nav-link navbar-toggler sidebar-toggler" href="#">☰</a>
-        </li>
-    </ul>
-    <ul class="nav navbar-nav ml-auto">
-        <!-- BEGIN USER LOGIN DROPDOWN -->
-        <li class="nav-item dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                <i class="fa fa-user"></i>
-                    <span class="username">
-                         <sec:authentication property="principal.username" />
-                    </span>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-right">
-                <li class="dropdown-item">
-                    <a href="<spring:url value="/users/profile" htmlEscape="true" />"><i class="fa fa-user"></i> <spring:message code="profile" /></a>
-                </li>
-                <li class="dropdown-item">
-                    <a href="<spring:url value="/users/chgpass" htmlEscape="true" />"><i class="fa fa-key"></i> <spring:message code="changepass" /></a>
-                </li>
-                <li class="dropdown-item">
-                    <a href="<spring:url value="/logout" htmlEscape="true" />"><i class="fa fa-sign-out"></i> <spring:message code="logout" /></a>
-                </li>
-            </ul>
-        </li>
-        <!-- END USER LOGIN DROPDOWN -->
-     </ul>
+  <button class="navbar-toggler mobile-sidebar-toggler d-lg-none mr-auto" type="button">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#"></a>
+  <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <ul class="nav navbar-nav ml-auto">
+  	<!-- BEGIN LANGUAGE DROPDOWN -->
+  	<li class="nav-item dropdown d-md-down-none pr-4">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-language"></i> <spring:message code="language" />
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <div class="dropdown-header text-center">
+            <strong><spring:message code="choose" /></strong>
+          </div>
+          <a class="dropdown-item" href="?lang=en">English</a>
+          <a class="dropdown-item" href="?lang=es">Español</a>
+        </div>
+    </li>
+    <!-- BEGIN USER LOGIN DROPDOWN -->
+    <li class="nav-item dropdown d-md-down-none pr-4">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user"></i><span class="username">  <sec:authentication property="principal.username" /></span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+        	<div class="dropdown-header text-center">
+            	<strong><spring:message code="actions" /></strong>
+          	</div>
+          	<a class="dropdown-item" href="<spring:url value="/users/profile" htmlEscape="true" />"><i class="fa fa-user"></i> <spring:message code="profile" /></a>
+          	<a class="dropdown-item" href="<spring:url value="/users/chgpass" htmlEscape="true" />""><i class="fa fa-key"></i> <spring:message code="changepass" /></a>
+        </div>
+    </li>
+    <!-- END USER LOGIN DROPDOWN -->
+  </ul>
 </header>

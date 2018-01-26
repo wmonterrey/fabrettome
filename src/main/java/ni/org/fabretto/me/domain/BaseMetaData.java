@@ -35,7 +35,6 @@ public class BaseMetaData implements Serializable
 	private Date fechaRegistro;
 	private String usuarioRegistro;
 	private char pasivo = '0';
-	private char estado='0';
 	private String idEquipo;
 	
 	public BaseMetaData() {
@@ -74,15 +73,6 @@ public class BaseMetaData implements Serializable
 
 	public void setPasivo(char pasivo) {
 		this.pasivo = pasivo;
-	}
-
-	@Column(name="estado", nullable = false, length = 1)
-	public char getEstado() {
-		return estado;
-	}
-
-	public void setEstado(char estado) {
-		this.estado = estado;
 	}
 
 	@Column(name="idEquipo", length = 100)

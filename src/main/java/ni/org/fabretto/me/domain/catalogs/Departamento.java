@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
 import ni.org.fabretto.me.domain.BaseMetaData;
 import ni.org.fabretto.me.domain.audit.Auditable;
 
@@ -18,7 +20,7 @@ import ni.org.fabretto.me.domain.audit.Auditable;
  * @since       1.0
  */
 @Entity
-@Table(name = "catDepartamento", catalog = "fabrettome")
+@Table(name = "catDepartamento", catalog = "fabrettome", uniqueConstraints={@UniqueConstraint(columnNames = {"nombreDepartamento"})})
 public class Departamento extends BaseMetaData implements Auditable{
 	/**
 	 * 
@@ -31,11 +33,10 @@ public class Departamento extends BaseMetaData implements Auditable{
 		super();
 	}
 
-	
-	@Id
-	@Column(name = "idUnico", nullable = false, length = 50)
 	/** Columna = "idUnico", nullable = false, length = 50.
 	 * @return idUnico Identificador único del registro en el sistema, generado automáticamente.*/
+	@Id
+	@Column(name = "idUnico", nullable = false, length = 50)
 	public String getIdUnico() {
 		return idUnico;
 	}
@@ -43,15 +44,19 @@ public class Departamento extends BaseMetaData implements Auditable{
 		this.idUnico = idUnico;
 	}
 
-	
-	@Column(name = "nombreDepartamento", nullable = false, length = 100)
 	/** Columna = "nombreDepartamento", nullable = false, length = 100.
-	 * @return nombreDepartamento Nombre del departamento del país.*/
+	 *@return nombreDepartamento Nombre del departamento del país.*/
+	@Column(name = "nombreDepartamento", nullable = false, length = 100)
 	public String getNombreDepartamento() {
 		return nombreDepartamento;
 	}
 	public void setNombreDepartamento(String nombreDepartamento) {
 		this.nombreDepartamento = nombreDepartamento;
+	}
+	
+	@Override
+	public String toString(){
+		return this.nombreDepartamento;
 	}
 
 

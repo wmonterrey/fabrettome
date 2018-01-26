@@ -16,7 +16,12 @@ import ni.org.fabretto.me.domain.audit.Auditable;
  * Comunidad es la clase que representa a una Comunidad en el sistema.<br><br>
  * Nombre de la tabla<br>
  * Table(name = "catComunidad", catalog = "fabrettome")<br><br>
+ *
+ * Comunidad se relaciona con:
  * 
+ * <ul>
+ * <li>Catálogo municipios
+ * </ul>
  *  
  * @author      William Avilés
  * @version     1.0
@@ -31,7 +36,8 @@ public class Comunidad extends BaseMetaData implements Auditable{
 	private static final long serialVersionUID = 1L;
 	private String idUnico;
 	private String nombreComunidad;
-	private Departamento departamento;
+	private String descComunidad;
+	private Municipio municipio;
 	
 	public Comunidad() {
 		super();
@@ -58,18 +64,34 @@ public class Comunidad extends BaseMetaData implements Auditable{
 	public void setNombreComunidad(String nombreComunidad) {
 		this.nombreComunidad = nombreComunidad;
 	}
+	
+	@Column(name = "descComunidad", nullable = true, length = 500)
+	/** Columna = "descComunidad", nullable = true, length = 500.
+	 * @return descComunidad Descripción de la comunidad.*/
+	public String getDescComunidad() {
+		return descComunidad;
+	}
+
+
+	public void setDescComunidad(String descComunidad) {
+		this.descComunidad = descComunidad;
+	}
 
 
 	@ManyToOne(optional=false)
-	@JoinColumn(name="idDepartamento")
-	@ForeignKey(name = "fkDepartamentoComunidad")
-	public Departamento getDepartamento() {
-		return departamento;
+	@JoinColumn(name="idMunicipio")
+	@ForeignKey(name = "fkMunicipioComunidad")
+	public Municipio getMunicipio() {
+		return municipio;
 	}
-	public void setDepartamento(Departamento departamento) {
-		this.departamento = departamento;
+	public void setMunicipio(Municipio departamento) {
+		this.municipio = departamento;
 	}
 
+	@Override
+	public String toString(){
+		return this.nombreComunidad;
+	}
 
 	@Override
 	public boolean equals(Object other) {

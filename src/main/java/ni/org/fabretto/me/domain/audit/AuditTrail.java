@@ -10,6 +10,16 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+/**
+ * AuditTrail es la clase que representa un registro de cambio en la bitacora del sistema.<br><br>
+ * Nombre de la tabla<br>
+ * Table(name = "tblAuditoria", catalog = "fabrettome")<br><br>
+ * 
+ * 
+ * @author      William Avilés
+ * @version     1.0
+ * @since       1.0
+ */
 @Entity
 @Table(name = "tblAuditoria", catalog = "fabrettome")
 public class AuditTrail {

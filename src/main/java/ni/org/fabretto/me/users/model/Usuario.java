@@ -24,7 +24,7 @@ import ni.org.fabretto.me.domain.audit.Auditable;
  **/
 
 @Entity
-@Table(name = "tblUsuario", catalog = "fabrettome")
+@Table(name = "catUsuario", catalog = "fabrettome")
 public class Usuario implements Auditable {
 	private String nombreUsuario;
 	private Date fechaCreacion;

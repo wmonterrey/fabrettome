@@ -10,7 +10,16 @@ import javax.persistence.UniqueConstraint;
 
 import ni.org.fabretto.me.domain.audit.Auditable;
 
-
+/**
+ * MessageResource es la clase utilizada para internacionalizacion en el sistema.<br><br>
+ * Nombre de la tabla<br>
+ * Table(name = "catMensaje", catalog = "fabrettome")<br><br>
+ * 
+ *  
+ * @author      William Avilés
+ * @version     1.0
+ * @since       1.0
+ */
 @Entity
 @Table(name = "catMensaje", catalog = "fabrettome", uniqueConstraints={@UniqueConstraint(columnNames = {"catRoot" , "catKey"})})
 public class MessageResource implements Serializable, Auditable{

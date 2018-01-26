@@ -9,22 +9,16 @@
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
 
 <!-- Icons -->
-<spring:url value="/resources/css/font-awesome.min.css" var="fontawesome" />
+<spring:url value="/resources/vendors/css/font-awesome.min.css" var="fontawesome" />
 <link href="${fontawesome}" rel="stylesheet" type="text/css"/>
-<spring:url value="/resources/css/simple-line-icons.css" var="simplelineicons" />
+<spring:url value="/resources/vendors/css/simple-line-icons.min.css" var="simplelineicons" />
 <link href="${simplelineicons}" rel="stylesheet" type="text/css"/>
-
-<!-- Premium Icons -->
-<spring:url value="/resources/css/glyphicons.css" var="glyphicons" />
-<link href="${glyphicons}" rel="stylesheet" type="text/css"/>
-<spring:url value="/resources/css/glyphicons-filetypes.css" var="glyphiconsft" />
-<link href="${glyphiconsft}" rel="stylesheet" type="text/css"/>
-<spring:url value="/resources/css/glyphicons-social.css" var="glyphiconscoc" />
-<link href="${glyphiconscoc}" rel="stylesheet" type="text/css"/>
 
 <!-- Main styles for this application -->
 <spring:url value="/resources/css/style.css" var="generalstyle" />
 <link href="${generalstyle}" rel="stylesheet" type="text/css"/>
+<spring:url value="/resources/vendors/css/toastr.min.css" var="toastcss" />
+<link href="${toastcss}" rel="stylesheet" type="text/css"/>
 <!-- END GLOBAL MANDATORY STYLES -->
 
 <spring:url value="/resources/img/favicon.ico" var="favicon" />

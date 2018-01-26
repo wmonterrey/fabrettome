@@ -90,7 +90,7 @@ public class AccesoUsuario {
 	public void setFechaSalida(Date fechaSalida) {
 		this.fechaSalida = fechaSalida;
 	}
-	@Column(name = "urlSalida", nullable = true, length =100)
+	@Column(name = "urlSalida", nullable = true, length =500)
 	public String getUrlSalida() {
 		return urlSalida;
 	}

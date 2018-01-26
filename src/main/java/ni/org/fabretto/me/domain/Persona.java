@@ -8,8 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.ForeignKey;
 
 import ni.org.fabretto.me.domain.audit.Auditable;
@@ -23,8 +25,6 @@ import ni.org.fabretto.me.domain.catalogs.Comunidad;
  * Persona se relaciona con:
  * 
  * <ul>
- * <li>Catálogo tipo de identificador
- * <li>Catálogo sexo de la persona
  * <li>Catálogo comunidades
  * </ul>
  * 
@@ -50,17 +50,18 @@ public class Persona extends BaseMetaData implements Auditable{
 	private Date fechaNacimiento;
 	private String sexo;
 	private String direccion;
+	private String ocupacion;
+	private String urlFoto;
 	private Comunidad comunidad;
 	
 	public Persona() {
 		super();
 	}
 
-	
-	@Id
-	@Column(name = "idUnico", nullable = false, length = 50)
 	/** Columna = "idUnico", nullable = false, length = 50.
 	 * @return idUnico Identificador único del registro en el sistema, generado automáticamente.*/
+	@Id
+	@Column(name = "idUnico", nullable = false, length = 50)
 	public String getIdUnico() {
 		return idUnico;
 	}
@@ -152,25 +153,63 @@ public class Persona extends BaseMetaData implements Auditable{
 
 	/** Columna = "direccion", nullable = false, length = 500.
 	 * @return direccion - Direccion de la persona.*/
-    @Column(name = "direccion", nullable = false, length = 500)	
+    @Column(name = "direccion", nullable = true, length = 500)	
 	public String getDireccion() {
 		return direccion;
 	}
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
+	
+	
+	/** Columna = "ocupacion", nullable = false, length = 3.
+	 * @return ocupacion - Ocupacion de la persona.*/
+    @Column(name = "ocupacion", nullable = false, length = 3)	
+	public String getOcupacion() {
+		return ocupacion;
+	}
 
+
+	public void setOcupacion(String ocupacion) {
+		this.ocupacion = ocupacion;
+	}
+	
+	
+
+	/** Columna = "urlFoto", nullable = true, length = 300.
+	 * @return urlFoto - Url de la ubicacion de la foto en el servidor.*/
+    @Column(name = "urlFoto", nullable = true, length = 300)
+	public String getUrlFoto() {
+		return urlFoto;
+	}
+
+
+	public void setUrlFoto(String urlFoto) {
+		this.urlFoto = urlFoto;
+	}
+
+	/** Columna = "comunidad", nullable = false, length = 50.
+	 * @return comunidad - Comunidad de residencia de la persona.*/
 	@ManyToOne(optional=false)
 	@JoinColumn(name="idComunidad")
 	@ForeignKey(name = "fkComunidadPersona")
-	/** Columna = "comunidad", nullable = false, length = 50.
-	 * @return comunidad - Comunidad de residencia de la persona.*/
 	public Comunidad getComunidad() {
 		return comunidad;
 	}
 	public void setComunidad(Comunidad comunidad) {
 		this.comunidad = comunidad;
 	}
+	
+    @Transient
+    @JsonIgnore
+    public String getNombreCompleto(){
+        String nombreCompleto = this.getPrimerNombre().toUpperCase();
+        if (this.getSegundoNombre()!=null) nombreCompleto = nombreCompleto + " "+  this.getSegundoNombre().toUpperCase();
+        nombreCompleto = nombreCompleto +" "+ this.getPrimerApellido().toUpperCase();
+        if (this.getSegundoApellido()!=null) nombreCompleto = nombreCompleto + " "+  this.getSegundoApellido().toUpperCase();
+
+        return nombreCompleto;
+    }
 
 
 	@Override

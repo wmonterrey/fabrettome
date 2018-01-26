@@ -16,7 +16,11 @@ import org.springframework.transaction.annotation.Transactional;
 import ni.org.fabretto.me.users.model.AccesoUsuario;
 import ni.org.fabretto.me.users.model.IntentoUsuario;
 import ni.org.fabretto.me.users.model.Usuario;
-
+/**
+ * Servicio que provee guardar las transacciones de usuarios en la base de datos
+ * 
+ * @author William Aviles
+ **/
 @Transactional
 public class UserDetailsDaoImpl implements UserDetailsDao {
 	

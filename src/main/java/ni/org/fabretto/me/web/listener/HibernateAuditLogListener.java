@@ -80,32 +80,41 @@ Initializable {
 	            // cycle through property names, extract corresponding property values and insert new entry in audit trail  
 	            for (String propertyName : event.getPersister().getPropertyNames()) {  
 	            	if (obj.isFieldAuditable(propertyName)){
-		                newPropValue = event.getPersister().getPropertyValue(event.getEntity(), propertyName, entityMode);  
-		                if (newPropValue != null) {  
-			                // collections will fire their own events  
-		                    if (!(newPropValue instanceof Collection)) {
-                                if (existingEntity!=null) {
-                                    oldPropValue = event.getPersister().getPropertyValue(existingEntity, propertyName, entityMode);
-                                    if (oldPropValue != null) {
-                                        if (oldPropValue instanceof Date) {
-                                            oldPropValue = formatter.format((Date) oldPropValue);
-                                        }
-                                        if (newPropValue instanceof Date) {
-                                            newPropValue = formatter.format((Date) newPropValue);
-                                        }
-                                        if (!newPropValue.equals(oldPropValue)) {
-                                            if (LOG.isDebugEnabled()) {
-                                                LOG.debug("{} for: {}, ID: {}, property: {}, old value: {}, new value: {}, actor: {}, date: {}", new Object[]{OPERATION_TYPE_UPDATE, entityName, entityId, propertyName, oldPropValue, newPropValue, actorId, transTime});
-                                            }
-                                            session.insert(new AuditTrail(entityId.toString(), entityClass, entityName, propertyName, oldPropValue != null ? oldPropValue.toString() : null, newPropValue != null ? newPropValue
-                                                    .toString() : null, OPERATION_TYPE_UPDATE, actorId, transTime));
-                                        }
-                                    }
+		                newPropValue = event.getPersister().getPropertyValue(event.getEntity(), propertyName, entityMode); 
+		                // collections will fire their own events  
+	                    if (!(newPropValue instanceof Collection)) {
+                            if (existingEntity!=null) {
+                                oldPropValue = event.getPersister().getPropertyValue(existingEntity, propertyName, entityMode);
+                                if (oldPropValue instanceof Date) {
+                                    oldPropValue = formatter.format((Date) oldPropValue);
                                 }
-		                	}
-		                }  
+                                if (newPropValue instanceof Date) {
+                                    newPropValue = formatter.format((Date) newPropValue);
+                                }
+                                if (newPropValue != null || oldPropValue != null) {
+	                                if (newPropValue != null && !newPropValue.equals("")) {
+	                                    if (!newPropValue.equals(oldPropValue)) {
+	                                        if (LOG.isDebugEnabled()) {
+	                                            LOG.debug("{} for: {}, ID: {}, property: {}, old value: {}, new value: {}, actor: {}, date: {}", new Object[]{OPERATION_TYPE_UPDATE, entityName, entityId, propertyName, oldPropValue, newPropValue, actorId, transTime});
+	                                        }
+	                                        session.insert(new AuditTrail(entityId.toString(), entityClass, entityName, propertyName, oldPropValue != null ? oldPropValue.toString() : null, newPropValue != null ? newPropValue
+	                                                .toString() : null, OPERATION_TYPE_UPDATE, actorId, transTime));
+	                                    }
+	                                }
+	                                else if (oldPropValue != null && !oldPropValue.equals("")) {
+	                                    if (!oldPropValue.equals(newPropValue)) {
+	                                        if (LOG.isDebugEnabled()) {
+	                                            LOG.debug("{} for: {}, ID: {}, property: {}, old value: {}, new value: {}, actor: {}, date: {}", new Object[]{OPERATION_TYPE_UPDATE, entityName, entityId, propertyName, oldPropValue, newPropValue, actorId, transTime});
+	                                        }
+	                                        session.insert(new AuditTrail(entityId.toString(), entityClass, entityName, propertyName, oldPropValue != null ? oldPropValue.toString() : null, newPropValue != null ? newPropValue
+	                                                .toString() : null, OPERATION_TYPE_UPDATE, actorId, transTime));
+	                                    }
+	                                }
+                                }
+                            }
+	                	}
 	            	}
-	            }  
+	            }    
 	  
 	            session.getTransaction().commit();  
 	            session.close(); 

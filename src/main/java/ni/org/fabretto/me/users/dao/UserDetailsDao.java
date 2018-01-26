@@ -4,7 +4,13 @@ import org.springframework.security.core.Authentication;
 
 import ni.org.fabretto.me.users.model.IntentoUsuario;
 
-
+/**
+ * Auditable es la interface para implementar los datos de usuario de spring.
+ *  
+ * @author      William Avilés
+ * @version     1.0
+ * @since       1.0
+ */
 public interface UserDetailsDao {
 
 	void updateFailAttempts(String username);

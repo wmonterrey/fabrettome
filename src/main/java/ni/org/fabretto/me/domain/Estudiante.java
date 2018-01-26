@@ -1,29 +1,28 @@
 package ni.org.fabretto.me.domain;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.ForeignKey;
 
 import ni.org.fabretto.me.domain.audit.Auditable;
-import ni.org.fabretto.me.domain.catalogs.Centro;
-import ni.org.fabretto.me.domain.catalogs.Escuela;
 
 /**
  * Estudiante es la clase que representa a un Estudiante en el sistema.<br><br>
  * Nombre de la tabla<br>
- * Table(name = "tblEstudiante", catalog = "fabrettome")<br><br>
+ * Table(name = "tblEstudiante", catalog = "fabrettome", uniqueConstraints={UniqueConstraint(columnNames = {"idEstudiante"})})<br><br>
  * 
  * Estudiante se relaciona con:
  * 
  * <ul>
  * <li>Persona
- * <li>Centro
- * <li>Escuela
  * </ul>
  * 
  *  
@@ -32,39 +31,52 @@ import ni.org.fabretto.me.domain.catalogs.Escuela;
  * @since       1.0
  */
 @Entity
-@Table(name = "tblEstudiante", catalog = "fabrettome")
+@Table(name = "tblEstudiante", catalog = "fabrettome", uniqueConstraints={@UniqueConstraint(columnNames = {"idEstudiante"})})
 public class Estudiante extends BaseMetaData implements Auditable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private String idUnico;
+	private String idEstudiante;
 	private Persona persona;
-	private Centro centro;
-	private Escuela escuela;
-
+	private Date fechaIngreso;
+	private Date fechaEgreso;
+	private String razonEgreso;
+	private String estado;
+	
 	
 	public Estudiante() {
 		super();
 	}
-
 	
+	/** Columna = "idUnico",  = false, length = 50.
+	 * @return idUnico Identificador único del registro en el sistema, generado automáticamente.*/
 	@Id
 	@Column(name = "idUnico", nullable = false, length = 50)
-	/** Columna = "idUnico", nullable = false, length = 50.
-	 * @return idUnico Identificador único del registro en el sistema, generado automáticamente.*/
 	public String getIdUnico() {
 		return idUnico;
 	}
 	public void setIdUnico(String idUnico) {
 		this.idUnico = idUnico;
 	}
+	
+	/** Columna = "idEstudiante",  = false, length = 50.
+	 * @return idEstudiante Identificador único del estudiante en el sistema.*/
+	@Column(name = "idEstudiante", nullable = false, length = 50)
+	public String getIdEstudiante() {
+		return idEstudiante;
+	}
 
+	public void setIdEstudiante(String idEstudiante) {
+		this.idEstudiante = idEstudiante;
+	}
+
+	/** Columna = "idPersona", nullable = false, length = 50.
+	 * @return persona - Persona que es el estudiante*/
 	@OneToOne(optional=false)
 	@JoinColumn(name="idPersona")
 	@ForeignKey(name = "fkPersonaEstudiante")
-	/** Columna = "idPersona", nullable = false, length = 50.
-	 * @return persona - Persona que es el estudiante*/
 	public Persona getPersona() {
 		return persona;
 	}
@@ -72,30 +84,49 @@ public class Estudiante extends BaseMetaData implements Auditable{
 		this.persona = persona;
 	}
 
-	@OneToOne(optional=false)
-	@JoinColumn(name="idCentro")
-	@ForeignKey(name = "fkCentroEstudiante")
-	/** Columna = "idCentro", nullable = false, length = 50.
-	 * @return centro - Codigo del centro u Oratorio donde pertece el estudiante*/
-	public Centro getCentro() {
-		return centro;
-	}
-	public void setCentro(Centro centro) {
-		this.centro = centro;
+	/** Column(name = "fechaIngreso", nullable = false).
+	 * @return fechaIngreso Fecha de inicio en los programas*/
+	@Column(name = "fechaIngreso", nullable = false)
+	public Date getFechaIngreso() {
+		return fechaIngreso;
 	}
 
-	@OneToOne(optional=false)
-	@JoinColumn(name="idEscuela")
-	@ForeignKey(name = "fkEscuelaEstudiante")
-	/** Columna = "idEscuela", nullable = false, length = 50.
-	 * @return escuela - Codigo de la escuela donde pertece el estudiante*/
-	public Escuela getEscuela() {
-		return escuela;
-	}
-	public void setEscuela(Escuela escuela) {
-		this.escuela = escuela;
+	public void setFechaIngreso(Date fechaIngreso) {
+		this.fechaIngreso = fechaIngreso;
 	}
 
+	/** Column(name = "fechaEgreso", nullable = true).
+	 * @return fechaEgreso Fecha de fin en los programas*/
+	@Column(name = "fechaEgreso", nullable = true)
+	public Date getFechaEgreso() {
+		return fechaEgreso;
+	}
+
+	public void setFechaEgreso(Date fechaEgreso) {
+		this.fechaEgreso = fechaEgreso;
+	}
+
+	/** Column(name = "razonEgreso", nullable = true, length = 250)
+	 * @return razonEgreso Razon por la que sale de los programas en Fabretto.*/
+	@Column(name = "razonEgreso", nullable = true, length = 250)
+	public String getRazonEgreso() {
+		return razonEgreso;
+	}
+
+	public void setRazonEgreso(String razonEgreso) {
+		this.razonEgreso = razonEgreso;
+	}
+
+	/** Column(name = "estado", nullable = false, length = 1)
+	 * @return Estado actual del estudiante.*/
+	@Column(name = "estado", nullable = false, length = 1)
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
 
 	@Override
 	public boolean isFieldAuditable(String fieldname) {
