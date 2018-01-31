@@ -1,57 +1,29 @@
-var ProcessUser = function () {
+var ProcessMunicipio = function () {
 	
 return {
   //main function to initiate the module
-  init: function (parametros) {	
-	
-  $('#roles, #centros').select2({
-    theme: "bootstrap"
-  });	
+  init: function (parametros) {
+	  
   $.validator.setDefaults( {
     submitHandler: function () {
-      processUser();
+    	processMunicipio();
     }
   } );
+  $('#departamento').select2({
+	    theme: "bootstrap"
+  });	
+  $('#nombreMunicipio').focus();
   jQuery.validator.addMethod("noSpace", function(value, element) { 
 		  return value.indexOf(" ") < 0 && value != ""; 
 	}, "Invalid");
-  $( '#add-user-form' ).validate( {
+  $( '#add-municipio-form' ).validate( {
     rules: {
-      nombreUsuario: {
-        required: true,
-        minlength: 5,
-        maxlength: 50,
-        noSpace:true,
-      },
-      contrasena: {
-    	  minlength: 5,
-          maxlength: 150,
-          noSpace:true,
-          required: true,
-      },
-      confirm_password: {
-    	  minlength: 5,
-          maxlength: 150,
-          required: true,
-          noSpace:true,
-          equalTo: "#contrasena"
-      },
-      completeName: {
-          minlength: 5,
-          maxlength: 250,
-          required: true
-      },
-      email: {
-          required: true,
-          minlength: 3,
+      nombreMunicipio: {
+    	  minlength: 1,
           maxlength: 100,
-          noSpace:true,
-          email: true
-      },
-      roles: {
           required: true
       },
-      centros: {
+      departamento: {
           required: true
       }
     },
@@ -75,14 +47,14 @@ return {
     }
   });
   
-  function processUser(){
+  function processMunicipio(){
 	  $.blockUI({ message: parametros.waitmessage });
-	    $.post( parametros.saveUserUrl
-	            , $( '#add-user-form' ).serialize()
+	    $.post( parametros.saveMunicipioUrl
+	            , $( '#add-municipio-form' ).serialize()
 	            , function( data )
 	            {
-	    			usuario = JSON.parse(data);
-	    			if (usuario.nombreUsuario === undefined) {
+	    			municipio = JSON.parse(data);
+	    			if (municipio.idUnico === undefined) {
 	    				toastr.error(data, parametros.errormessage, {
 	    					    closeButton: true,
 	    					    progressBar: true,
@@ -91,10 +63,10 @@ return {
 					}
 					else{
 						$.blockUI({ message: parametros.successmessage });
-						$('#nombreUsuario').val(usuario.nombreUsuario);
+						$('#idUnico').val(municipio.idUnico);
 						setTimeout(function() { 
 				            $.unblockUI({ 
-				                onUnblock: function(){ window.location.href = parametros.usuarioUrl; } 
+				                onUnblock: function(){ window.location.href = parametros.municipioUrl; } 
 				            }); 
 				        }, 1000); 
 					}
@@ -116,7 +88,8 @@ return {
   		        var $input = $('form input');
   		        if( $(this).is( $input.last() ) )
   		        {
-  		        	processUser();
+  		            //Time to submit the form!!!!
+  		            //alert( 'Hooray .....' );
   		        }
   		        else
   		        {

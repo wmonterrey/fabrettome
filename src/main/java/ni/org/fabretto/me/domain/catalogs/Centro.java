@@ -90,9 +90,9 @@ public class Centro extends BaseMetaData implements Auditable{
 		this.telefono = telefono;
 	}
 
-	/** Columna = "director", nullable = false, length = 50.
+	/** Columna = "director", nullable = true, length = 50.
 	 * @return director - Director a cargo del Centro Oratorio.*/
-	@ManyToOne(optional=false)
+	@ManyToOne(optional=true)
 	@JoinColumn(name="director")
 	@ForeignKey(name = "fkColaboradorDirector")
 	public Colaborador getDirector() {

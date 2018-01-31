@@ -49,7 +49,7 @@ public class Usuario implements Auditable {
 	public String getNombreUsuario() {
 		return nombreUsuario;
 	}
-	public void setnombreUsuario(String nombreUsuario) {
+	public void setNombreUsuario(String nombreUsuario) {
 		this.nombreUsuario = nombreUsuario;
 	}
 	@Temporal( TemporalType.TIMESTAMP)
@@ -62,10 +62,10 @@ public class Usuario implements Auditable {
 	}
 	@Temporal( TemporalType.TIMESTAMP)
 	@Column(name = "fechaUltimaModificacion", nullable = true)
-	public Date getModified() {
+	public Date getFechaUltimaModificacion() {
 		return fechaUltimaModificacion;
 	}
-	public void setModified(Date modified) {
+	public void setFechaUltimaModificacion(Date modified) {
 		this.fechaUltimaModificacion = modified;
 	}
 	@Temporal( TemporalType.TIMESTAMP)
@@ -152,6 +152,7 @@ public class Usuario implements Auditable {
 	public void setUsuarioModifica(String usuarioModifica) {
 		this.usuarioModifica = usuarioModifica;
 	}
+	
 	
 	@Override
 	public String toString(){

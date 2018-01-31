@@ -25,7 +25,10 @@
 	                    <a class="nav-link" href="<spring:url value="/admin/departamentos/" htmlEscape="true "/>"><i class="fa fa-map-o"></i><spring:message code="catalogs.dep" /></a>
 	                </li>
 	                <li class="nav-item">
-	                    <a class="nav-link" href="<spring:url value="/admin/comunidades/" htmlEscape="true "/>"><i class="fa fa-object-group"></i><spring:message code="catalogs.com" /></a>
+	                    <a class="nav-link" href="<spring:url value="/admin/municipios/" htmlEscape="true "/>"><i class="fa fa-map-marker"></i><spring:message code="catalogs.mun" /></a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" href="<spring:url value="/admin/comunidades/" htmlEscape="true "/>"><i class="fa fa-map-pin"></i><spring:message code="catalogs.com" /></a>
 	                </li>
 	                <li class="nav-item">
 	                    <a class="nav-link" href="<spring:url value="/admin/centros/" htmlEscape="true "/>"><i class="fa fa-building"></i><spring:message code="catalogs.cen" /></a>

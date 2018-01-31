@@ -48,8 +48,8 @@
       <!-- Breadcrumb -->
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<spring:url value="/" htmlEscape="true "/>"><spring:message code="home" /></a></li>
-        <li class="breadcrumb-item"><a href="<spring:url value="/admin/comunidades/" htmlEscape="true "/>"><spring:message code="comunidades" /></a></li>
-        <li class="breadcrumb-item active"><c:out value="${comunidad.idUnico}" /></li>
+        <li class="breadcrumb-item"><a href="<spring:url value="/admin/municipios/" htmlEscape="true "/>"><spring:message code="municipios" /></a></li>
+        <li class="breadcrumb-item active"><c:out value="${municipio.idUnico}" /></li>
         <!-- Breadcrumb Menu-->
         <li class="breadcrumb-menu d-md-down-none">
           <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -67,26 +67,20 @@
 	            <div class="col-md-12">
 	              <div class="card">
 	                <div class="card-header">
-	                  <img src="${logofab}" alt="<spring:message code="'title'" />" />&nbsp;<i class="fa fa-map-pin"></i>&nbsp;<strong><c:out value="${comunidad.nombreComunidad}" /></strong>
+	                  <img src="${logofab}" alt="<spring:message code="'title'" />" />&nbsp;<i class="fa fa-map-marker"></i>&nbsp;<strong><c:out value="${municipio.nombreMunicipio}" /></strong>
 	                </div>
 	                	<div class="card-body">
 		                	<form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
 		                		<div class="form-group row">
 			                      <label class="col-md-3 col-form-label"><spring:message code="idUnico" />:</label>
 			                      <div class="col-md-9">
-			                        <p class="form-control-static"><strong><c:out value="${comunidad.idUnico}" /></strong></p>
+			                        <p class="form-control-static"><strong><c:out value="${municipio.idUnico}" /></strong></p>
 			                      </div>
 			                    </div>
 			                    <div class="form-group row">
-			                      <label class="col-md-3 col-form-label"><spring:message code="catalogs.mun" />:</label>
+			                      <label class="col-md-3 col-form-label"><spring:message code="catalogs.dep" />:</label>
 			                      <div class="col-md-9">
-			                        <p class="form-control-static"><strong><c:out value="${comunidad.municipio.nombreMunicipio}" /></strong></p>
-			                      </div>
-			                    </div>
-			                    <div class="form-group row">
-			                      <label class="col-md-3 col-form-label"><spring:message code="descComunidad" />:</label>
-			                      <div class="col-md-9">
-			                        <p class="form-control-static"><strong><c:out value="${comunidad.descComunidad}" /></strong></p>
+			                        <p class="form-control-static"><strong><c:out value="${municipio.departamento.nombreDepartamento}" /></strong></p>
 			                      </div>
 			                    </div>
 			                    <div class="form-group row">
@@ -94,7 +88,7 @@
 			                      <div class="col-md-9">
 			                        <p class="form-control-static"><strong>
 			                        	<c:choose>
-											<c:when test="${comunidad.pasivo=='0'.charAt(0)}">
+											<c:when test="${municipio.pasivo=='0'.charAt(0)}">
 												<strong><spring:message code="CAT_SINO_SI" /></strong>
 											</c:when>
 											<c:otherwise>
@@ -107,13 +101,13 @@
 			                    <div class="form-group row">
 			                      <label class="col-md-3 col-form-label"><spring:message code="createdBy" />:</label>
 			                      <div class="col-md-9">
-			                        <p class="form-control-static"><strong><c:out value="${comunidad.usuarioRegistro}" /></strong></p>
+			                        <p class="form-control-static"><strong><c:out value="${municipio.usuarioRegistro}" /></strong></p>
 			                      </div>
 			                    </div>
 			                    <div class="form-group row">
 			                      <label class="col-md-3 col-form-label"><spring:message code="dateCreated" />:</label>
 			                      <div class="col-md-9">
-			                        <p class="form-control-static"><strong><c:out value="${comunidad.fechaRegistro}" /></strong></p>
+			                        <p class="form-control-static"><strong><c:out value="${municipio.fechaRegistro}" /></strong></p>
 			                      </div>
 			                    </div>
 		                	</form>

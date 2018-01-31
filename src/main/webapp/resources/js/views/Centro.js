@@ -32,7 +32,7 @@ return {
           required: true
       },
       director: {
-          required: true
+          required: false
       },
       direccion: {
     	  minlength: 1,

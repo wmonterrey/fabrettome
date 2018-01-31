@@ -45,13 +45,13 @@
   	<jsp:include page="../../fragments/sideBar.jsp" />
     <!-- Main content -->
     <main class="main">
-	  <spring:url value="/admin/usuarios/saveUser/" var="saveUserUrl"></spring:url>
-  	  <spring:url value="/admin/usuarios/" var="usuarioUrl"></spring:url>	
+	  <spring:url value="/admin/municipios/guardarMunicipio/" var="saveMunicipioUrl"></spring:url>
+  	  <spring:url value="/admin/municipios/" var="municipioUrl"/>	
       <!-- Breadcrumb -->
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<spring:url value="/" htmlEscape="true "/>"><spring:message code="home" /></a></li>
-        <li class="breadcrumb-item"><a href="<spring:url value="/admin/usuarios/" htmlEscape="true "/>"><spring:message code="users" /></a></li>
-        <li class="breadcrumb-item active"><spring:message code="add" /></li>
+        <li class="breadcrumb-item"><a href="<spring:url value="/admin/municipios/" htmlEscape="true "/>"><spring:message code="municipios" /></a></li>
+        <li class="breadcrumb-item active"><c:out value="${municipio.idUnico}" /></li>
         <!-- Breadcrumb Menu-->
         <li class="breadcrumb-menu d-md-down-none">
           <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -67,9 +67,10 @@
         <div class="animated fadeIn">
           <div class="row">
             <div class="col-md-12">
+              <spring:url value="/resources/img/fabrettoapple.png" var="logofab" />
               <div class="card">
                 <div class="card-header">
-                  <i class="icon-note"></i> <spring:message code="add" />
+                  <img src="${logofab}" alt="<spring:message code="'title'" />" />&nbsp;<i class="icon-note"></i> <spring:message code="edit" /> <spring:message code="catalogs.mun" />
                   <div class="card-actions">
                     
                   </div>
@@ -79,60 +80,53 @@
                   <div class="row">
 
                     <div class="col-md-8">
-                      <form action="#" autocomplete="off" id="add-user-form">                      
-						<div class="form-group">
-	                      <div class="input-group">
-	                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-	                        <input type="text" id="nombreUsuario" name="nombreUsuario" class="form-control" placeholder="<spring:message code="nombreUsuario" />">
-	                      </div>
-	                    </div>	
-	                    <div class="form-group">
-	                      <div class="input-group">
-	                        <span class="input-group-addon"><i class="fa fa-id-card"></i></span>
-	                        <input type="text" id="nombreCompleto" name="nombreCompleto" class="form-control" placeholder="<spring:message code="nombreCompleto" />">
-	                      </div>
-	                    </div>  
-                        <div class="form-group">
-	                      <div class="input-group">
-	                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-	                        <input type="text" id="correoElectronico" name="correoElectronico" class="form-control" placeholder="<spring:message code="correoElectronico" />">
+                      <form action="#" autocomplete="off" id="add-municipio-form">                      
+						<div class="form-group row">
+	                      <label class="col-md-3 col-form-label" for="idUnico"><strong><spring:message code="idUnico" /></strong></label>
+	                      <div class="col-md-9">
+	                      	<div class="input-group">
+	                      		<span class="input-group-addon"><i class="fa fa-key"></i></span>
+	                        	<input type="text" id="idUnico" readonly name="idUnico" value="${municipio.idUnico}" class="form-control" placeholder="<spring:message code="idUnico" />">
+	                        	<span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
+	                        </div>
+	                        <span class="help-block"></span>
 	                      </div>
 	                    </div>
-						<div class="form-group">
-	                      <div class="input-group">
-	                        <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-	                        <input type="password" id="contrasena" name="contrasena" class="form-control" placeholder="<spring:message code="contrasena" />">
-	                      </div>
-	                    </div> 
-	                    <div class="form-group">
-	                      <div class="input-group">
-	                        <span class="input-group-addon"><i class="fa fa-key"></i></span>
-	                        <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="<spring:message code="password.repeat" />">
+	                    <div class="form-group row">
+	                      <label class="col-md-3 col-form-label" for="nombreMunicipio"><strong><spring:message code="nombreMunicipio" /></strong></label>
+	                      <div class="col-md-9">
+	                      	<div class="input-group">
+	                      		<span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+	                        	<input type="text" id="nombreMunicipio" name="nombreMunicipio" value="${municipio.nombreMunicipio}" class="form-control" placeholder="<spring:message code="nombreMunicipio" />">
+	                        	<span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
+	                        </div>
+	                        <span class="help-block"></span>
 	                      </div>
 	                    </div>
-	                    <div class="form-group">
-	                    	<i class="fa fa-check"></i>
-	                        <label><spring:message code="usuarioRoles" /></label>
-		                    <select id="roles" name="roles" class="form-control" multiple="">
-		                      <c:forEach items="${roles}" var="rol">
-		                      	<option value="${rol.nombreRol}"><spring:message code="${rol.nombreRol}" /></option>
-		                      </c:forEach>
-		                    </select>
+	                    <div class="form-group row">
+	                      <label class="col-md-3 col-form-label" for="departamento"><strong><spring:message code="catalogs.dep" />&nbsp;</strong><i class="fa fa-hand-o-up"></i></label>
+	                      <div class="col-md-9">
+	                      	<fieldset class="form-group">
+	                        	<select name="departamento" id="departamento" class="form-control select2-single">
+			                    	<option value=""><spring:message code="blank"/></option>
+			                    	<c:forEach items="${departamentos}" var="departamento">
+										<c:choose> 
+											<c:when test="${departamento.idUnico eq municipio.departamento.idUnico}">
+												<option selected value="${departamento.idUnico}">${departamento.nombreDepartamento}</option>
+											</c:when>
+											<c:otherwise>
+												<option value="${departamento.idUnico}">${departamento.nombreDepartamento}</option>
+											</c:otherwise>
+										</c:choose> 
+									</c:forEach>
+			                    </select>
+	                        </fieldset>
+	                        <span class="help-block"></span>
+	                      </div>
 	                    </div>
-		                 
-		                 <fieldset class="form-group">
-		                 	<i class="fa fa-map-o"></i>
-		                    <label><spring:message code="usuarioCentros" /></label>
-		                    <select id="centros" name="centros" class="form-control select2-multiple" multiple="">
-		                      <c:forEach items="${centros}" var="centro">
-		                      	<option value="${centro.idUnico}">${centro.codigo}-${centro.nombreCentro}</option>
-		                      </c:forEach>
-		                    </select>
-		                 </fieldset>
-                        
                         <div class="form-group">
                           <button type="submit" class="btn btn-primary" id="guardar"><i class="fa fa-save"></i>&nbsp;<spring:message code="save" /></button>
-						  <a href="${fn:escapeXml(usuarioUrl)}" class="btn btn-danger"><i class="fa fa-undo"></i>&nbsp;<spring:message code="cancel" /></a>
+						  <a href="${fn:escapeXml(municipioUrl)}" class="btn btn-danger"><i class="fa fa-undo"></i>&nbsp;<spring:message code="cancel" /></a>
                         </div>
                       </form>
                     </div>
@@ -162,11 +156,11 @@
   
   <!-- Lenguaje -->
   <c:choose>
-	<c:when test="${cookie.eFabrettoLang.value == null}">
+	<c:when test="${cookie.eSivinLang.value == null}">
 		<c:set var="lenguaje" value="es"/>
 	</c:when>
 	<c:otherwise>
-		<c:set var="lenguaje" value="${cookie.eFabrettoLang.value}"/>
+		<c:set var="lenguaje" value="${cookie.eSivinLang.value}"/>
 	</c:otherwise>
   </c:choose>
   
@@ -179,11 +173,10 @@
   <script src="${jQValidationLoc}"></script>
   <spring:url value="/resources/vendors/js/select2.min.js" var="Select2" />
   <script src="${Select2}" type="text/javascript"></script>
-  
 
   <!-- Custom scripts required by this view -->
-  <spring:url value="/resources/js/views/User.js" var="processUser" />
-  <script src="${processUser}"></script>
+  <spring:url value="/resources/js/views/Municipio.js" var="processMunicipio" />
+  <script src="${processMunicipio}"></script>
   
 <c:set var="successmessage"><spring:message code="process.success" /></c:set>
 <c:set var="errormessage"><spring:message code="process.errors" /></c:set>
@@ -191,11 +184,11 @@
 
 <script>
 	jQuery(document).ready(function() {
-		var parametros = {saveUserUrl: "${saveUserUrl}", successmessage: "${successmessage}",
+		var parametros = {saveMunicipioUrl: "${saveMunicipioUrl}", successmessage: "${successmessage}",
 				errormessage: "${errormessage}",waitmessage: "${waitmessage}",
-				usuarioUrl: "${usuarioUrl}" 
+				municipioUrl: "${municipioUrl}" 
 		};
-		ProcessUser.init(parametros);
+		ProcessMunicipio.init(parametros);
 	});
 </script>
   

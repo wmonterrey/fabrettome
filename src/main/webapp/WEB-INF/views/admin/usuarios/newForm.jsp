@@ -45,15 +45,13 @@
   	<jsp:include page="../../fragments/sideBar.jsp" />
     <!-- Main content -->
     <main class="main">
-	  <spring:url value="/admin/users/chgPass/" var="saveUserUrl"></spring:url>
-  	  <spring:url value="/admin/users/{username}/" var="usuarioUrl">
-	  	<spring:param name="username" value="${user.username}" />
-	  </spring:url>		
+	  <spring:url value="/admin/usuarios/guardarUsuario/" var="saveUserUrl"></spring:url>
+  	  <spring:url value="/admin/usuarios/" var="usuarioUrl"></spring:url>	
       <!-- Breadcrumb -->
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<spring:url value="/" htmlEscape="true "/>"><spring:message code="home" /></a></li>
-        <li class="breadcrumb-item"><a href="<spring:url value="/admin/users/" htmlEscape="true "/>"><spring:message code="users" /></a></li>
-        <li class="breadcrumb-item active"><c:out value="${user.username}" /></li>
+        <li class="breadcrumb-item"><a href="<spring:url value="/admin/usuarios/" htmlEscape="true "/>"><spring:message code="users" /></a></li>
+        <li class="breadcrumb-item active"><spring:message code="add" /></li>
         <!-- Breadcrumb Menu-->
         <li class="breadcrumb-menu d-md-down-none">
           <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -71,7 +69,7 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header">
-                  <i class="icon-key"></i> <spring:message code="chgpass" />
+                  <i class="icon-note"></i> <spring:message code="add" />
                   <div class="card-actions">
                     
                   </div>
@@ -85,21 +83,52 @@
 						<div class="form-group">
 	                      <div class="input-group">
 	                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-	                        <input type="text" autocomplete="username" id="username" name="username" readonly value="${user.username}" class="form-control" placeholder="<spring:message code="username" />">
+	                        <input type="text" id="nombreUsuario" name="nombreUsuario" class="form-control" placeholder="<spring:message code="nombreUsuario" />">
 	                      </div>
 	                    </div>	
+	                    <div class="form-group">
+	                      <div class="input-group">
+	                        <span class="input-group-addon"><i class="fa fa-id-card"></i></span>
+	                        <input type="text" id="nombreCompleto" name="nombreCompleto" class="form-control" placeholder="<spring:message code="nombreCompleto" />">
+	                      </div>
+	                    </div>  
+                        <div class="form-group">
+	                      <div class="input-group">
+	                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+	                        <input type="text" id="correoElectronico" name="correoElectronico" class="form-control" placeholder="<spring:message code="correoElectronico" />">
+	                      </div>
+	                    </div>
 						<div class="form-group">
 	                      <div class="input-group">
 	                        <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-	                        <input type="password" autocomplete="new-password" id="password" name="password" class="form-control" placeholder="<spring:message code="login.password" />">
+	                        <input type="password" id="contrasena" name="contrasena" class="form-control" placeholder="<spring:message code="contrasena" />">
 	                      </div>
 	                    </div> 
 	                    <div class="form-group">
 	                      <div class="input-group">
 	                        <span class="input-group-addon"><i class="fa fa-key"></i></span>
-	                        <input type="password" autocomplete="new-password" id="confirm_password" name="confirm_password" class="form-control" placeholder="<spring:message code="password.repeat" />">
+	                        <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="<spring:message code="password.repeat" />">
 	                      </div>
 	                    </div>
+	                    <div class="form-group">
+	                    	<i class="fa fa-check"></i>
+	                        <label><spring:message code="usuarioRoles" /></label>
+		                    <select id="roles" name="roles" class="form-control" multiple="">
+		                      <c:forEach items="${roles}" var="rol">
+		                      	<option value="${rol.nombreRol}"><spring:message code="${rol.nombreRol}" /></option>
+		                      </c:forEach>
+		                    </select>
+	                    </div>
+		                 
+		                 <fieldset class="form-group">
+		                 	<i class="fa fa-map-o"></i>
+		                    <label><spring:message code="usuarioCentros" /></label>
+		                    <select id="centros" name="centros" class="form-control select2-multiple" multiple="">
+		                      <c:forEach items="${centros}" var="centro">
+		                      	<option value="${centro.idUnico}">${centro.codigo}-${centro.nombreCentro}</option>
+		                      </c:forEach>
+		                    </select>
+		                 </fieldset>
                         
                         <div class="form-group">
                           <button type="submit" class="btn btn-primary" id="guardar"><i class="fa fa-save"></i>&nbsp;<spring:message code="save" /></button>

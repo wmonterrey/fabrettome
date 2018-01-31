@@ -52,7 +52,7 @@ public class ColaboradoresService {
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		// Create a Hibernate query (HQL)
-		Query query = session.createQuery("FROM Colaborador per where per.pasivo ='0' order by per.ident");
+		Query query = session.createQuery("FROM Colaborador per where per.pasivo ='0' order by per.idUnico");
 		// Retrieve all
 		return  query.list();
 	}

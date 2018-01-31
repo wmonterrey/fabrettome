@@ -9,7 +9,7 @@ return {
     	processComunidad();
     }
   } );
-  $('#departamento').select2({
+  $('#municipio').select2({
 	    theme: "bootstrap"
   });	
   $('#nombreComunidad').focus();
@@ -23,7 +23,7 @@ return {
           maxlength: 100,
           required: true
       },
-      departamento: {
+      municipio: {
           required: true
       },
       descComunidad: {

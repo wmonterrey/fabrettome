@@ -35,6 +35,7 @@ INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'admin
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'users', 'Usuarios','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'catalogs', 'Catálogos','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'catalogs.dep', 'Departamentos','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'catalogs.mun', 'Municipios','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'catalogs.com', 'Comunidades','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'catalogs.cen', 'Centros','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'catalogs.esc', 'Escuelas','0','0',0);
@@ -74,6 +75,10 @@ INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'entit
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'ROLE_ADMIN', 'Administrador','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'ROLE_SUPER', 'Supervisor','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'ROLE_USER', 'Usuario','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'rolAll', 'Todos los roles ya están agregados!','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'rolEnabled', 'Rol esta activo!','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'rolDisabled', 'Rol esta inactivo!','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'rolAdded', 'Rol agregado!','0','0',0);
 
 /*Metadata*/
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'createdBy', 'Creado por','0','0',0);
@@ -141,9 +146,13 @@ INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'usuar
 
 /*Clases*/
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'class ni.org.fabretto.me.domain.catalogs.Departamento', 'Departamento','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'class ni.org.fabretto.me.domain.catalogs.Municipio', 'Municipio','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'class ni.org.fabretto.me.domain.catalogs.Comunidad', 'Comunidad','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'class ni.org.fabretto.me.domain.catalogs.Centro', 'Centro','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'class ni.org.fabretto.me.domain.catalogs.Escuela', 'Escuela','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'class ni.org.fabretto.me.users.model.Usuario', 'Usuario','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'class ni.org.fabretto.me.users.model.RolUsuario', 'Rol de Usuario','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'class ni.org.fabretto.me.users.model.UsuarioCentro', 'Centro del Usuario','0','0',0);
 
 /*Catalogos*/
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'blank', 'Sin dato','0','0',0);
@@ -153,6 +162,12 @@ INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'idUni
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'nombreDepartamento', 'Nombre del departamento','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'departamentoEnabled', 'Departamento esta activo!','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'departamentoDisabled', 'Departamento esta inactivo!','0','0',0);
+
+/*Municipios*/
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'municipios', 'Gestión de municipios','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'nombreMunicipio', 'Nombre del municipio','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'municipioEnabled', 'Municipio esta activo!','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'municipioDisabled', 'Municipio esta inactivo!','0','0',0);
 
 /*Comunidades*/
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'comunidades', 'Gestión de comunidades','0','0',0);
@@ -171,6 +186,8 @@ INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'direc
 
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'centroEnabled', 'Centro esta activo!','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'centroDisabled', 'Centro esta inactivo!','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'centroAll', 'Todos los centros ya están agregados!!','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'centroAdded', 'Centro fué agregado!!','0','0',0);
 
 
 /*Escuelas*/

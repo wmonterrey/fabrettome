@@ -50,7 +50,7 @@
       <!-- Breadcrumb -->
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<spring:url value="/" htmlEscape="true "/>"><spring:message code="home" /></a></li>
-        <li class="breadcrumb-item active"><spring:message code="comunidades" /></li>
+        <li class="breadcrumb-item active"><spring:message code="municipios" /></li>
         <!-- Breadcrumb Menu-->
         <li class="breadcrumb-menu d-md-down-none">
           <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -66,35 +66,35 @@
           <spring:url value="/resources/img/fabrettoapple.png" var="logofab" />
           <div class="card">
             <div class="card-header">
-              <img src="${logofab}" alt="<spring:message code="'title'" />" />&nbsp;<i class="fa fa-map-pin"></i> <spring:message code="comunidades" />
+              <img src="${logofab}" alt="<spring:message code="'title'" />" />&nbsp;<i class="fa fa-map-marker"></i> <spring:message code="municipios" />
               <div class="card-actions">
               </div>
             </div>
             <div class="card-body">
-              <spring:url value="/admin/comunidades/nuevoComunidad/"	var="newComunidad"/>	
-              <button id="lista_comunidades_new" onclick="location.href='${fn:escapeXml(newComunidad)}'" type="button" class="btn btn-outline-primary"><i class="fa fa-plus"></i>&nbsp; <spring:message code="add" /></button><br><br>	
-              <table id="lista_comunidades" class="table table-striped table-bordered datatable" width="100%">
+              <spring:url value="/admin/municipios/nuevoMunicipio/"	var="newMunicipio"/>	
+              <button id="lista_municipios_new" onclick="location.href='${fn:escapeXml(newMunicipio)}'" type="button" class="btn btn-outline-primary"><i class="fa fa-plus"></i>&nbsp; <spring:message code="add" /></button><br><br>	
+              <table id="lista_municipios" class="table table-striped table-bordered datatable" width="100%">
                 <thead>
                 	<tr>
 	                    <th><spring:message code="idUnico" /></th>
-	                    <th><spring:message code="nombreComunidad" /></th>
 	                    <th><spring:message code="nombreMunicipio" /></th>
+	                    <th><spring:message code="nombreDepartamento" /></th>
 	                    <th><spring:message code="enabled" /></th>
 	                    <th><spring:message code="actions" /></th>
                 	</tr>
                 </thead>
                 <tbody>
-                	<c:forEach items="${comunidades}" var="comunidad">
+                	<c:forEach items="${municipios}" var="municipio">
                 		<tr>
-                			<spring:url value="/admin/comunidades/verComunidad/{idUnico}/" var="comunidadUrl"><spring:param name="idUnico" value="${comunidad.idUnico}" /></spring:url>
-                            <spring:url value="/admin/comunidades/editComunidad/{idUnico}/" var="editComunidad"><spring:param name="idUnico" value="${comunidad.idUnico}" /></spring:url>
-                            <spring:url value="/admin/comunidades/desComunidad/{idUnico}/" var="disableUrl"><spring:param name="idUnico" value="${comunidad.idUnico}" /></spring:url>
-                            <spring:url value="/admin/comunidades/habComunidad/{idUnico}/" var="enableUrl"><spring:param name="idUnico" value="${comunidad.idUnico}" /></spring:url>
-                            <td><a href="${fn:escapeXml(comunidadUrl)}"><c:out value="${comunidad.idUnico}" /></a></td>
-                            <td><c:out value="${comunidad.nombreComunidad}" /></td>
-                            <td><c:out value="${comunidad.municipio.nombreMunicipio}" /></td>
+                			<spring:url value="/admin/municipios/verMunicipio/{idUnico}/" var="municipioUrl"><spring:param name="idUnico" value="${municipio.idUnico}" /></spring:url>
+                            <spring:url value="/admin/municipios/editMunicipio/{idUnico}/" var="editMunicipio"><spring:param name="idUnico" value="${municipio.idUnico}" /></spring:url>
+                            <spring:url value="/admin/municipios/desMunicipio/{idUnico}/" var="disableUrl"><spring:param name="idUnico" value="${municipio.idUnico}" /></spring:url>
+                            <spring:url value="/admin/municipios/habMunicipio/{idUnico}/" var="enableUrl"><spring:param name="idUnico" value="${municipio.idUnico}" /></spring:url>
+                            <td><a href="${fn:escapeXml(municipioUrl)}"><c:out value="${municipio.idUnico}" /></a></td>
+                            <td><c:out value="${municipio.nombreMunicipio}" /></td>
+                            <td><c:out value="${municipio.departamento.nombreDepartamento}" /></td>
                             <c:choose>
-                                <c:when test="${comunidad.pasivo=='0'.charAt(0)}">
+                                <c:when test="${municipio.pasivo=='0'.charAt(0)}">
                                     <td><span class="badge badge-success"><spring:message code="CAT_SINO_SI" /></span></td>
                                 </c:when>
                                 <c:otherwise>
@@ -102,10 +102,10 @@
                                 </c:otherwise>
                             </c:choose>
                             <td>
-                                <a href="${fn:escapeXml(comunidadUrl)}" class="btn btn-outline-primary btn-sm"><i class="fa fa-search"></i></a>
-                                <a href="${fn:escapeXml(editComunidad)}" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                <a href="${fn:escapeXml(municipioUrl)}" class="btn btn-outline-primary btn-sm"><i class="fa fa-search"></i></a>
+                                <a href="${fn:escapeXml(editMunicipio)}" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit"></i></a>
                                 <c:choose>
-									<c:when test="${comunidad.pasivo=='0'.charAt(0)}">
+									<c:when test="${municipio.pasivo=='0'.charAt(0)}">
 										<a class="btn btn-outline-primary btn-sm desact" data-toggle="modal" data-whatever="${fn:escapeXml(disableUrl)}"><i class="fa fa-trash-o"></i></a>
 									</c:when>
 									<c:otherwise>
@@ -175,8 +175,8 @@
   <spring:url value="/resources/vendors/js/dataTables.bootstrap4.min.js" var="dataTablesBsSc" />
   <script src="${dataTablesBsSc}" type="text/javascript"></script>
   
-  <c:set var="comunidadEnabledLabel"><spring:message code="comunidadEnabled" /></c:set>
-  <c:set var="comunidadDisabledLabel"><spring:message code="comunidadDisabled" /></c:set>
+  <c:set var="municipioEnabledLabel"><spring:message code="municipioEnabled" /></c:set>
+  <c:set var="municipioDisabledLabel"><spring:message code="municipioDisabled" /></c:set>
   <c:set var="habilitar"><spring:message code="enable" /></c:set>
   <c:set var="deshabilitar"><spring:message code="disable" /></c:set>
   <c:set var="confirmar"><spring:message code="confirm" /></c:set>
@@ -192,14 +192,14 @@
 	  $('.datatable').attr('style', 'border-collapse: collapse !important');
 	});
 
-  	if ("${comunidadHabilitado}"){
-		toastr.info("${comunidadEnabledLabel}", "${nombreComunidad}", {
+  	if ("${municipioHabilitado}"){
+		toastr.info("${municipioEnabledLabel}", "${nombreMunicipio}", {
 		    closeButton: true,
 		    progressBar: true,
 		  } );
 	}
-	if ("${comunidadDeshabilitado}"){
-		toastr.error("${comunidadDisabledLabel}", "${nombreComunidad}" , {
+	if ("${municipioDeshabilitado}"){
+		toastr.error("${municipioDisabledLabel}", "${nombreMunicipio}" , {
 		    closeButton: true,
 		    progressBar: true,
 		  });

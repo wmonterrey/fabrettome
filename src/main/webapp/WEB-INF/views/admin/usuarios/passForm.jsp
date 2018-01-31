@@ -45,15 +45,15 @@
   	<jsp:include page="../../fragments/sideBar.jsp" />
     <!-- Main content -->
     <main class="main">
-	  <spring:url value="/admin/users/saveEditedUser/" var="saveUserUrl"></spring:url>
-  	  <spring:url value="/admin/users/{username}/" var="usuarioUrl">
-	  	<spring:param name="username" value="${user.username}" />
-	  </spring:url>	
+	  <spring:url value="/admin/usuarios/chgPass/" var="saveUserUrl"></spring:url>
+  	  <spring:url value="/admin/usuarios/{username}/" var="usuarioUrl">
+	  	<spring:param name="username" value="${user.nombreUsuario}" />
+	  </spring:url>		
       <!-- Breadcrumb -->
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<spring:url value="/" htmlEscape="true "/>"><spring:message code="home" /></a></li>
         <li class="breadcrumb-item"><a href="<spring:url value="/admin/users/" htmlEscape="true "/>"><spring:message code="users" /></a></li>
-        <li class="breadcrumb-item active"><c:out value="${user.username}" /></li>
+        <li class="breadcrumb-item active"><c:out value="${user.nombreUsuario}" /></li>
         <!-- Breadcrumb Menu-->
         <li class="breadcrumb-menu d-md-down-none">
           <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -71,7 +71,7 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header">
-                  <i class="icon-note"></i> <spring:message code="edit" />
+                  <i class="icon-key"></i> <spring:message code="changepass" />
                   <div class="card-actions">
                     
                   </div>
@@ -85,21 +85,22 @@
 						<div class="form-group">
 	                      <div class="input-group">
 	                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-	                        <input type="text" autocomplete="username" id="username" name="username" readonly value="${user.username}" class="form-control" placeholder="<spring:message code="username" />">
+	                        <input type="text" id="nombreUsuario" name="nombreUsuario" readonly value="${user.nombreUsuario}" class="form-control" placeholder="<spring:message code="username" />">
 	                      </div>
 	                    </div>	
+						<div class="form-group">
+	                      <div class="input-group">
+	                        <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+	                        <input type="password" id="contrasena" name="contrasena" class="form-control" placeholder="<spring:message code="login.password" />">
+	                      </div>
+	                    </div> 
 	                    <div class="form-group">
 	                      <div class="input-group">
-	                        <span class="input-group-addon"><i class="fa fa-id-card"></i></span>
-	                        <input type="text" autocomplete="completeName" id="completeName" name="completeName" value="${user.completeName}" class="form-control" placeholder="<spring:message code="userdesc" />">
-	                      </div>
-	                    </div>  
-                        <div class="form-group">
-	                      <div class="input-group">
-	                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-	                        <input type="text" autocomplete="email" id="email" name="email" value="${user.email}" class="form-control" placeholder="<spring:message code="useremail" />">
+	                        <span class="input-group-addon"><i class="fa fa-key"></i></span>
+	                        <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="<spring:message code="password.repeat" />">
 	                      </div>
 	                    </div>
+                        
                         <div class="form-group">
                           <button type="submit" class="btn btn-primary" id="guardar"><i class="fa fa-save"></i>&nbsp;<spring:message code="save" /></button>
 						  <a href="${fn:escapeXml(usuarioUrl)}" class="btn btn-danger"><i class="fa fa-undo"></i>&nbsp;<spring:message code="cancel" /></a>

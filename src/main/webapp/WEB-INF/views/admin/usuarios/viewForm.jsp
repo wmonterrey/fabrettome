@@ -53,10 +53,10 @@
 		<c:set var="rolDisabledLabel"><spring:message code="rolDisabled" /></c:set>
 		<c:set var="rolAddedLabel"><spring:message code="rolAdded" /></c:set>
 		<c:set var="allRolesLabel"><spring:message code="rolAll" /></c:set>
-		<c:set var="segmentoEnabledLabel"><spring:message code="segmentoEnabled" /></c:set>
-		<c:set var="segmentoDisabledLabel"><spring:message code="segmentoDisabled" /></c:set>
-		<c:set var="segmentoAddedLabel"><spring:message code="segmentoAdded" /></c:set>
-		<c:set var="allSegmentosLabel"><spring:message code="segmentoAll" /></c:set>
+		<c:set var="centroEnabledLabel"><spring:message code="centroEnabled" /></c:set>
+		<c:set var="centroDisabledLabel"><spring:message code="centroDisabled" /></c:set>
+		<c:set var="centroAddedLabel"><spring:message code="centroAdded" /></c:set>
+		<c:set var="allCentrosLabel"><spring:message code="centroAll" /></c:set>
 		<c:set var="userLockedLabel"><spring:message code="login.accountLocked" /></c:set>
 		<c:set var="userUnlockedLabel"><spring:message code="login.accountNotLocked" /></c:set>
 		<c:set var="habilitar"><spring:message code="enable" /></c:set>
@@ -64,29 +64,29 @@
 		<c:set var="bloquear"><spring:message code="lock" /></c:set>
 		<c:set var="desbloquear"><spring:message code="unlock" /></c:set>
 		<c:set var="confirmar"><spring:message code="confirm" /></c:set>
-		<spring:url value="/admin/users/editUser/{username}/" var="editUrl">
-			<spring:param name="username" value="${user.username}" />
+		<spring:url value="/admin/usuarios/editUsuario/{username}/" var="editUrl">
+			<spring:param name="username" value="${user.nombreUsuario}" />
 		</spring:url>
-		<spring:url value="/admin/users/chgpass/{username}/" var="chgpassUrl">
-			<spring:param name="username" value="${user.username}" />
+		<spring:url value="/admin/usuarios/chgpass/{username}/" var="chgpassUrl">
+			<spring:param name="username" value="${user.nombreUsuario}" />
 		</spring:url>
-		<spring:url value="/admin/users/habdes/disable2/{username}/" var="disableUrl">
-			<spring:param name="username" value="${user.username}" />
+		<spring:url value="/admin/usuarios/habdes/disable2/{username}/" var="disableUrl">
+			<spring:param name="username" value="${user.nombreUsuario}" />
 		</spring:url>
-		<spring:url value="/admin/users/habdes/enable2/{username}/" var="enableUrl">
-			<spring:param name="username" value="${user.username}" />
+		<spring:url value="/admin/usuarios/habdes/enable2/{username}/" var="enableUrl">
+			<spring:param name="username" value="${user.nombreUsuario}" />
 		</spring:url>
-		<spring:url value="/admin/users/lockunl/lock2/{username}/" var="lockUrl">
-			<spring:param name="username" value="${user.username}" />
+		<spring:url value="/admin/usuarios/lockunl/lock2/{username}/" var="lockUrl">
+			<spring:param name="username" value="${user.nombreUsuario}" />
 		</spring:url>
-		<spring:url value="/admin/users/lockunl/unlock2/{username}/" var="unlockUrl">
-			<spring:param name="username" value="${user.username}" />
+		<spring:url value="/admin/usuarios/lockunl/unlock2/{username}/" var="unlockUrl">
+			<spring:param name="username" value="${user.nombreUsuario}" />
 		</spring:url>	
       <!-- Breadcrumb -->
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<spring:url value="/" htmlEscape="true "/>"><spring:message code="home" /></a></li>
-        <li class="breadcrumb-item"><a href="<spring:url value="/admin/users/" htmlEscape="true "/>"><spring:message code="users" /></a></li>
-        <li class="breadcrumb-item active"><c:out value="${user.username}" /></li>
+        <li class="breadcrumb-item"><a href="<spring:url value="/admin/usuarios/" htmlEscape="true "/>"><spring:message code="users" /></a></li>
+        <li class="breadcrumb-item active"><c:out value="${user.nombreUsuario}" /></li>
         <!-- Breadcrumb Menu-->
         <li class="breadcrumb-menu d-md-down-none">
           <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -104,7 +104,7 @@
 	            <div class="col-md-12">
 	              <div class="card">
 	                <div class="card-header">
-	                  <i class="icon-user"></i>&nbsp;<strong><c:out value="${user.username}" /></strong>
+	                  <i class="icon-user"></i>&nbsp;<strong><c:out value="${user.nombreUsuario}" /></strong>
 	                  <ul class="nav nav-tabs float-right">
 						  <li class="nav-item dropdown">
 						    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="icon-settings">&nbsp;<spring:message code="actions" /></i></a>
@@ -112,7 +112,7 @@
 						    	<a class="dropdown-item" href="${fn:escapeXml(editUrl)}"><i class="fa fa-edit"></i> <spring:message code="edit" /></a>
 						    	<a class="dropdown-item" href="${fn:escapeXml(chgpassUrl)}"><i class="fa fa-key"></i> <spring:message code="changepass" /></a>
 						    	<c:choose>
-									<c:when test="${user.enabled}">
+									<c:when test="${user.habilitado}">
 										<a class="dropdown-item desact" data-toggle="modal" data-whatever="${fn:escapeXml(disableUrl)}"><i class="fa fa-trash-o"></i> <spring:message code="disable" /></a>
 									</c:when>
 									<c:otherwise>
@@ -120,7 +120,7 @@
 									</c:otherwise>
 								</c:choose>
 								<c:choose>
-									<c:when test="${user.accountNonLocked}">
+									<c:when test="${user.cuentaSinBloquear}">
 										<a class="dropdown-item lock" data-toggle="modal" data-whatever="${fn:escapeXml(lockUrl)}"><i class="fa fa-lock"></i> <spring:message code="lock" /></a>
 									</c:when>
 									<c:otherwise>
@@ -138,7 +138,7 @@
 									<label class="control-label"><spring:message code="userdesc" />:</label>
 									<div>
 										<p class="form-control-static">
-											 <strong><c:out value="${user.completeName}" /></strong>
+											 <strong><c:out value="${user.nombreCompleto}" /></strong>
 										</p>
 									</div>
 								</div>
@@ -149,7 +149,7 @@
 									<label class="control-label"><spring:message code="useremail" />:</label>
 									<div>
 										<p class="form-control-static">
-											 <strong><c:out value="${user.email}" /></strong>
+											 <strong><c:out value="${user.correoElectronico}" /></strong>
 										</p>
 									</div>
 								</div>
@@ -160,7 +160,7 @@
 									<div>
 										<p class="form-control-static">
 											<c:choose>
-												<c:when test="${user.enabled}">
+												<c:when test="${user.habilitado}">
 													<strong><spring:message code="CAT_SINO_SI" /></strong>
 												</c:when>
 												<c:otherwise>
@@ -178,7 +178,7 @@
 									<div>
 										<p class="form-control-static">
 											<c:choose>
-												<c:when test="${user.accountNonLocked}">
+												<c:when test="${user.cuentaSinBloquear}">
 													<strong><spring:message code="CAT_SINO_NO" /></strong>
 												</c:when>
 												<c:otherwise>
@@ -200,7 +200,7 @@
 									<div>
 										<p class="form-control-static">
 											<c:choose>
-												<c:when test="${user.credentialsNonExpired}">
+												<c:when test="${user.credencialSinExpirar}">
 													<strong><spring:message code="CAT_SINO_NO" /></strong>
 												</c:when>
 												<c:otherwise>
@@ -218,7 +218,7 @@
 									<div>
 										<p class="form-control-static">
 											<c:choose>
-												<c:when test="${user.accountNonExpired}">
+												<c:when test="${user.cuentaSinExpirar}">
 													<strong><spring:message code="CAT_SINO_NO" /></strong>
 												</c:when>
 												<c:otherwise>
@@ -235,7 +235,7 @@
 									<label class="control-label"><spring:message code="createdBy" />:</label>
 									<div>
 										<p class="form-control-static">
-											 <strong><c:out value="${user.createdBy}" /></strong>
+											 <strong><c:out value="${user.usuarioRegistro}" /></strong>
 										</p>
 									</div>
 								</div>
@@ -246,7 +246,7 @@
 									<label class="control-label"><spring:message code="dateCreated" />:</label>
 									<div>
 										<p class="form-control-static">
-											<strong><c:out value="${user.created}" /></strong>
+											<strong><c:out value="${user.fechaCreacion}" /></strong>
 										</p>
 									</div>
 								</div>
@@ -260,7 +260,7 @@
 									<label class="control-label"><spring:message code="modifiedBy" />:</label>
 									<div>
 										<p class="form-control-static">
-											 <strong><c:out value="${user.modifiedBy}" /></strong>
+											 <strong><c:out value="${user.usuarioModifica}" /></strong>
 										</p>
 									</div>
 								</div>
@@ -271,7 +271,7 @@
 									<label class="control-label"><spring:message code="dateModified" />:</label>
 									<div>
 										<p class="form-control-static">
-											<strong><c:out value="${user.modified}" /></strong>
+											<strong><c:out value="${user.fechaUltimaModificacion}" /></strong>
 										</p>
 									</div>
 								</div>
@@ -282,7 +282,7 @@
 									<label class="control-label"><spring:message code="lastAccess" />:</label>
 									<div>
 										<p class="form-control-static">
-											 <strong><c:out value="${user.lastAccess}" /></strong>
+											 <strong><c:out value="${user.fechaUltimoAcceso}" /></strong>
 										</p>
 									</div>
 								</div>
@@ -293,7 +293,7 @@
 									<label class="control-label"><spring:message code="dateCredentials" />:</label>
 									<div>
 										<p class="form-control-static">
-											<strong><c:out value="${user.lastCredentialChange}" /></strong>
+											<strong><c:out value="${user.ultimoCambioCredencial}" /></strong>
 										</p>
 									</div>
 								</div>
@@ -330,27 +330,27 @@
 			                <tbody>
 			                	<c:forEach items="${rolesusuario}" var="rol">
 								<tr>
-									<spring:url value="/admin/users/disableRol/{username}/{rol}/" var="disableRolUrl">
-		                               <spring:param name="username" value="${rol.authId.username}" />
-		                               <spring:param name="rol" value="${rol.authId.authority}" />
+									<spring:url value="/admin/usuarios/disableRol/{username}/{rol}/" var="disableRolUrl">
+		                               <spring:param name="username" value="${rol.rolUsuarioId.nombreUsuario}" />
+		                               <spring:param name="rol" value="${rol.rolUsuarioId.nombreRol}" />
 		                            </spring:url>
-		                            <spring:url value="/admin/users/enableRol/{username}/{rol}/" var="enableRolUrl">
-		                               <spring:param name="username" value="${rol.authId.username}" />
-		                               <spring:param name="rol" value="${rol.authId.authority}" />
+		                            <spring:url value="/admin/usuarios/enableRol/{username}/{rol}/" var="enableRolUrl">
+		                               <spring:param name="username" value="${rol.rolUsuarioId.nombreUsuario}" />
+		                               <spring:param name="rol" value="${rol.rolUsuarioId.nombreRol}" />
 		                            </spring:url>
-									<td><spring:message code="${rol.rol.authority}" /></td>
+									<td><spring:message code="${rol.rol.nombreRol}" /></td>
 									<c:choose>
-										<c:when test="${rol.pasive=='0'.charAt(0)}">
+										<c:when test="${rol.pasivo=='0'.charAt(0)}">
 											<td><span class="label label-success"><spring:message code="CAT_SINO_SI" /></span></td>
 										</c:when>
 										<c:otherwise>
 											<td><span class="label label-danger"><spring:message code="CAT_SINO_NO" /></span></td>
 										</c:otherwise>
 									</c:choose>
-									<td><c:out value="${rol.recordUser}" /></td>
-									<td><c:out value="${rol.recordDate}" /></td>
+									<td><c:out value="${rol.usuarioRegistro}" /></td>
+									<td><c:out value="${rol.fechaRegistro}" /></td>
 									<c:choose>
-										<c:when test="${rol.pasive=='0'.charAt(0)}">
+										<c:when test="${rol.pasivo=='0'.charAt(0)}">
 											<td><a data-toggle="modal" data-whatever="${fn:escapeXml(disableRolUrl)}" class="btn btn-outline-primary btn-sm desact"><i class="fa fa-trash-o"></i></a></td>
 										</c:when>
 										<c:otherwise>
@@ -364,7 +364,7 @@
 	                </div>
 	                <div class="card-header">
 	                    <div class="row float-right mr-4" >
-			            	<spring:url value="/admin/users/addRol/{username}/" var="addRolUrl"><spring:param name="username" value="${user.username}" /></spring:url>
+			            	<spring:url value="/admin/usuarios/addRol/{username}/" var="addRolUrl"><spring:param name="username" value="${user.nombreUsuario}" /></spring:url>
 			            	<button type="button" class="btn btn-primary" id="addRol" data-toggle="modal" data-whatever="${fn:escapeXml(addRolUrl)}"><i class="fa fa-plus"></i>&nbsp;<spring:message code="add" /></button>
 			            </div>
 	                </div>
@@ -375,13 +375,13 @@
 	            <div class="col-md-12">
 	              <div class="card">
 	                <div class="card-header">
-	                  <i class="icon-check"></i>&nbsp;<strong><spring:message code="usersegments" /></strong>
+	                  <i class="fa fa-building"></i>&nbsp;<strong><spring:message code="catalogs.cen" /></strong>
 	                </div>
 	                <div class="card-body">
-	                	<table id="lista_segmentos" class="table table-striped table-bordered datatable" width="100%">
+	                	<table id="lista_centros" class="table table-striped table-bordered datatable" width="100%">
 			                <thead>
 			                	<tr>
-				                    <th><spring:message code="usersegments" /></th>
+				                    <th><spring:message code="catalogs.cen" /></th>
 									<th><spring:message code="enabled" /></th>
 									<th><spring:message code="addedBy" /></th>
 									<th><spring:message code="dateAdded" /></th>
@@ -389,33 +389,33 @@
 			                	</tr>
 			                </thead>
 			                <tbody>
-			                	<c:forEach items="${segmentosusuario}" var="segmentousuario">
+			                	<c:forEach items="${centrosusuario}" var="centrousuario">
 								<tr>
-									<spring:url value="/admin/users/disableSegmento/{username}/{segmento}/" var="disableSegmentoUrl">
-		                               <spring:param name="username" value="${segmentousuario.usuarioSegmentoId.usuario}" />
-		                               <spring:param name="segmento" value="${segmentousuario.usuarioSegmentoId.segmento}" />
+									<spring:url value="/admin/usuarios/disableCentro/{username}/{centro}/" var="disableCentroUrl">
+		                               <spring:param name="username" value="${centrousuario.usuarioCentroId.usuario}" />
+		                               <spring:param name="centro" value="${centrousuario.usuarioCentroId.centro}" />
 		                            </spring:url>
-		                            <spring:url value="/admin/users/enableSegmento/{username}/{segmento}/" var="enableSegmentoUrl">
-		                               <spring:param name="username" value="${segmentousuario.usuarioSegmentoId.usuario}" />
-		                               <spring:param name="segmento" value="${segmentousuario.usuarioSegmentoId.segmento}" />
+		                            <spring:url value="/admin/usuarios/enableCentro/{username}/{centro}/" var="enableCentroUrl">
+		                               <spring:param name="username" value="${centrousuario.usuarioCentroId.usuario}" />
+		                               <spring:param name="centro" value="${centrousuario.usuarioCentroId.centro}" />
 		                            </spring:url>
-									<td><c:out value="${segmentousuario.segment.comunidad}" /> - <c:out value="${segmentousuario.segment.codigo}" /></td>
+									<td><c:out value="${centrousuario.centro.nombreCentro}" /> - <c:out value="${centrousuario.centro.nombreCentro}" /></td>
 									<c:choose>
-										<c:when test="${segmentousuario.pasive=='0'.charAt(0)}">
+										<c:when test="${centrousuario.pasivo=='0'.charAt(0)}">
 											<td><span class="label label-success"><spring:message code="CAT_SINO_SI" /></span></td>
 										</c:when>
 										<c:otherwise>
 											<td><span class="label label-danger"><spring:message code="CAT_SINO_NO" /></span></td>
 										</c:otherwise>
 									</c:choose>
-									<td><c:out value="${segmentousuario.recordUser}" /></td>
-									<td><c:out value="${segmentousuario.recordDate}" /></td>
+									<td><c:out value="${centrousuario.usuarioRegistro}" /></td>
+									<td><c:out value="${centrousuario.fechaRegistro}" /></td>
 									<c:choose>
-										<c:when test="${segmentousuario.pasive=='0'.charAt(0)}">
-											<td><a data-toggle="modal" data-whatever="${fn:escapeXml(disableSegmentoUrl)}" class="btn btn-outline-primary btn-sm desact"><i class="fa fa-trash-o"></i></a></td>
+										<c:when test="${centrousuario.pasivo=='0'.charAt(0)}">
+											<td><a data-toggle="modal" data-whatever="${fn:escapeXml(disableCentroUrl)}" class="btn btn-outline-primary btn-sm desact"><i class="fa fa-trash-o"></i></a></td>
 										</c:when>
 										<c:otherwise>
-											<td><a data-toggle="modal" data-whatever="${fn:escapeXml(enableSegmentoUrl)}" class="btn btn-outline-primary btn-sm act"><i class="fa fa-check"></i></a></td>
+											<td><a data-toggle="modal" data-whatever="${fn:escapeXml(enableCentroUrl)}" class="btn btn-outline-primary btn-sm act"><i class="fa fa-check"></i></a></td>
 										</c:otherwise>
 									</c:choose>
 								</tr>
@@ -425,8 +425,8 @@
 	                </div>
 	                <div class="card-header">
 	                	<div class="row float-right mr-4" >
-			            	<spring:url value="/admin/users/addSegmento/{username}/" var="addSegmentoUrl"><spring:param name="username" value="${user.username}" /></spring:url>
-			            	<button type="button" class="btn btn-primary" id="addSegmento" data-toggle="modal" data-whatever="${fn:escapeXml(addSegmentoUrl)}"><i class="fa fa-plus"></i>&nbsp;<spring:message code="add" /></button>
+			            	<spring:url value="/admin/usuarios/addCentro/{username}/" var="addCentroUrl"><spring:param name="username" value="${user.nombreUsuario}" /></spring:url>
+			            	<button type="button" class="btn btn-primary" id="addCentro" data-toggle="modal" data-whatever="${fn:escapeXml(addCentroUrl)}"><i class="fa fa-plus"></i>&nbsp;<spring:message code="add" /></button>
 			            </div>
 	                </div>
 	              </div>
@@ -452,11 +452,11 @@
 			                <tbody>
 			                <c:forEach items="${accesses}" var="acceso">
 								<tr>
-									<td class="hidden-xs"><c:out value="${acceso.sessionId}" /></td>
-									<td class="hidden-xs"><c:out value="${acceso.remoteIpAddress}" /></td>
-									<td><c:out value="${acceso.loginDate}" /></td>
-									<td><c:out value="${acceso.logoutDate}" /></td>
-									<td class="hidden-xs"><c:out value="${acceso.logoutRefererUrl}" /></td>
+									<td class="hidden-xs"><c:out value="${acceso.idSesion}" /></td>
+									<td class="hidden-xs"><c:out value="${acceso.direccionRemota}" /></td>
+									<td><c:out value="${acceso.fechaIngreso}" /></td>
+									<td><c:out value="${acceso.fechaSalida}" /></td>
+									<td class="hidden-xs"><c:out value="${acceso.urlSalida}" /></td>
 								</tr>
 							</c:forEach>
 			                </tbody>
@@ -541,7 +541,7 @@
 		                    <label><spring:message code="userroles" /></label>
 		                    <select id="roles" name="roles" class="form-control select2-single">
 		                      <c:forEach items="${roles}" var="rol">
-		                      	<option value="${rol.authority}"><spring:message code="${rol.authority}" /></option>
+		                      	<option value="${rol.nombreRol}"><spring:message code="${rol.nombreRol}" /></option>
 		                      </c:forEach>
 		                    </select>
 		                 </fieldset>
@@ -557,27 +557,27 @@
 	  <!-- /.modal-dialog -->
   	  </div>
   	  <!-- Modal -->
-  	  <div class="modal fade" id="segmentosForm" tabindex="-1" data-role="segmentosForm" data-backdrop="static" data-aria-hidden="true">
+  	  <div class="modal fade" id="centrosForm" tabindex="-1" data-role="centrosForm" data-backdrop="static" data-aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h2 class="modal-title"><spring:message code="add" /> <spring:message code="usersegments" /></h2>
+					<h2 class="modal-title"><spring:message code="add" /> <spring:message code="catalogs.cen" /></h2>
 				</div>
 				<div class="modal-body">
-					<input type="hidden" id="inputAddSegmentoUrl"/>
+					<input type="hidden" id="inputAddCentroUrl"/>
 					<div id="cuerpo">
 		                 	<i class="fa fa-map-o"></i>
-		                    <label><spring:message code="usersegments" /></label>
-		                    <select id="segmentos" name="segmentos" class="form-control select2-single">
-		                      <c:forEach items="${segmentos}" var="segmento">
-		                      	<option value="${segmento.ident}">${segmento.codigo}-${segmento.comunidad}-${segmento.municipio}-${segmento.departamento}-${segmento.region}</option>
+		                    <label><spring:message code="catalogs.cen" /></label>
+		                    <select id="centros" name="centros" class="form-control select2-single">
+		                      <c:forEach items="${centros}" var="centro">
+		                      	<option value="${centro.idUnico}">${centro.codigo}-${centro.nombreCentro}</option>
 		                      </c:forEach>
 		                    </select>
 					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="cancel" /></button>
-					<button type="button" id="buttonAgregarSegmento" class="btn btn-info" onclick="ejecutarAgregarSegmento()"><spring:message code="ok" /></button>
+					<button type="button" id="buttonAgregarCentro" class="btn btn-info" onclick="ejecutarAgregarCentro()"><spring:message code="ok" /></button>
 				</div>
 			</div>
 			<!-- /.modal-content -->
@@ -683,20 +683,20 @@
 		  });
 	}
 
-	if ("${segmentoHabilitado}"){
-		toastr.info("${segmentoEnabledLabel}", "${nombreSegmento}", {
+	if ("${centroHabilitado}"){
+		toastr.info("${centroEnabledLabel}", "${nombreCentro}", {
 		    closeButton: true,
 		    progressBar: true,
 		  } );
 	}
-	if ("${segmentoDeshabilitado}"){
-		toastr.error("${segmentoDisabledLabel}", "${nombreSegmento}" , {
+	if ("${centroDeshabilitado}"){
+		toastr.error("${centroDisabledLabel}", "${nombreCentro}" , {
 		    closeButton: true,
 		    progressBar: true,
 		  });
 	}
-	if ("${segmentoAgregado}"){
-		toastr.info("${segmentoAddedLabel}", "${nombreSegmento}" , {
+	if ("${centroAgregado}"){
+		toastr.info("${centroAddedLabel}", "${nombreCentro}" , {
 		    closeButton: true,
 		    progressBar: true,
 		  });
@@ -763,28 +763,28 @@
 		window.location.href = $('#inputAddRolUrl').val()+$('#roles').val()+'/';		
 	}
 
-    $("#addSegmento").click(function(){ 
-		$('#inputAddSegmentoUrl').val($(this).data('whatever'));
-		if($('#segmentos').val()) {
-			$('#segmentosForm').modal('show');
+    $("#addCentro").click(function(){ 
+		$('#inputAddCentroUrl').val($(this).data('whatever'));
+		if($('#centros').val()) {
+			$('#centrosForm').modal('show');
 		}
 		else{
-			toastr.info("${allSegmentosLabel}", "" ,{
+			toastr.info("${allCentrosLabel}", "" ,{
 			    closeButton: true,
 			    progressBar: true,
 			  } );
 		}
     });
 
-    $('#segmentosForm').on('shown.bs.modal', function () {
-        $('#segmentos').select2({
-        	dropdownParent: $("#segmentosForm"),
+    $('#centrosForm').on('shown.bs.modal', function () {
+        $('#centros').select2({
+        	dropdownParent: $("#centrosForm"),
         	theme: "bootstrap"
     	});
     })
 
-    function ejecutarAgregarSegmento() {
-		window.location.href = $('#inputAddSegmentoUrl').val()+$('#segmentos').val()+'/';		
+    function ejecutarAgregarCentro() {
+		window.location.href = $('#inputAddCentroUrl').val()+$('#centros').val()+'/';		
 	}
 	
   </script>

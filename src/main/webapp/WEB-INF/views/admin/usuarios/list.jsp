@@ -87,31 +87,23 @@
                 <tbody>
                 	<c:forEach items="${usuarios}" var="usuario">
                 		<tr>
-                			<spring:url value="/admin/users/{username}/"
+                			<spring:url value="/admin/usuarios/{username}/"
                                         var="usuarioUrl">
                                 <spring:param name="username" value="${usuario.nombreUsuario}" />
                             </spring:url>
-                            <spring:url value="/admin/users/editUser/{username}/"
+                            <spring:url value="/admin/usuarios/editUsuario/{username}/"
                                         var="editUrl">
                                 <spring:param name="username" value="${usuario.nombreUsuario}" />
                             </spring:url>
-                            <spring:url value="/admin/users/habdes/disable1/{username}/"
+                            <spring:url value="/admin/usuarios/habdes/disable1/{username}/"
                                         var="disableUrl">
                                 <spring:param name="username" value="${usuario.nombreUsuario}" />
                             </spring:url>
-                            <spring:url value="/admin/users/habdes/enable1/{username}/"
+                            <spring:url value="/admin/usuarios/habdes/enable1/{username}/"
                                         var="enableUrl">
                                 <spring:param name="username" value="${usuario.nombreUsuario}" />
                             </spring:url>
-                            <spring:url value="/admin/users/lockunl/lock1/{username}/"
-                                        var="lockUrl">
-                                <spring:param name="username" value="${usuario.nombreUsuario}" />
-                            </spring:url>
-                            <spring:url value="/admin/users/lockunl/unlock1/{username}/"
-                                        var="unlockUrl">
-                                <spring:param name="username" value="${usuario.nombreUsuario}" />
-                            </spring:url>
-                            <spring:url value="/admin/users/chgpass/{username}/"
+                            <spring:url value="/admin/usuarios/chgpass/{username}/"
                                         var="chgpassUrl">
                                 <spring:param name="username" value="${usuario.nombreUsuario}" />
                             </spring:url>
@@ -146,6 +138,14 @@
                                 <a href="${fn:escapeXml(usuarioUrl)}" class="btn btn-outline-primary btn-sm"><i class="fa fa-search"></i></a>
                                 <a href="${fn:escapeXml(editUrl)}" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit"></i></a>
                                 <a href="${fn:escapeXml(chgpassUrl)}" class="btn btn-outline-primary btn-sm"><i class="fa fa-key"></i></a>
+                                <c:choose>
+									<c:when test="${usuario.habilitado}">
+										<a class="btn btn-outline-primary btn-sm desact" data-toggle="modal" data-whatever="${fn:escapeXml(disableUrl)}"><i class="fa fa-trash-o"></i></a>
+									</c:when>
+									<c:otherwise>
+										<a class="btn btn-outline-primary btn-sm act" data-toggle="modal" data-whatever="${fn:escapeXml(enableUrl)}"><i class="fa fa-check"></i></a>
+									</c:otherwise>
+								</c:choose>
                             </td>
                 		</tr>
                 	</c:forEach>
@@ -156,6 +156,27 @@
         </div>
         </div>
       <!-- /.container-fluid -->
+      <!-- Modal -->
+  	  <div class="modal fade" id="basic" tabindex="-1" data-role="basic" data-backdrop="static" data-aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<div id="titulo"></div>
+				</div>
+				<div class="modal-body">
+					<input type="hidden" id="accionUrl"/>
+					<div id="cuerpo">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="cancel" /></button>
+					<button type="button" class="btn btn-info" onclick="ejecutarAccion()"><spring:message code="ok" /></button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+	    </div>
+	  <!-- /.modal-dialog -->
+  	  </div>
     </main>
     
   </div>
@@ -187,7 +208,11 @@
   <script src="${dataTablesSc}" type="text/javascript"></script>
   <spring:url value="/resources/vendors/js/dataTables.bootstrap4.min.js" var="dataTablesBsSc" />
   <script src="${dataTablesBsSc}" type="text/javascript"></script>
-  
+  <c:set var="userEnabledLabel"><spring:message code="login.userEnabled" /></c:set>
+  <c:set var="userDisabledLabel"><spring:message code="login.userDisabled" /></c:set>
+  <c:set var="habilitar"><spring:message code="enable" /></c:set>
+  <c:set var="deshabilitar"><spring:message code="disable" /></c:set>
+  <c:set var="confirmar"><spring:message code="confirm" /></c:set>
   <!-- Custom scripts required by this view -->
   <script>
   	$(function(){
@@ -199,6 +224,39 @@
       });
 	  $('.datatable').attr('style', 'border-collapse: collapse !important');
 	});
+	
+	$(".act").click(function(){ 
+		var titHab = $(this).data('whatever').substr(0,$(this).data('whatever').length-1);
+		$('#accionUrl').val($(this).data('whatever'));
+    	$('#titulo').html('<h2 class="modal-title">'+"${confirmar}"+'</h2>');
+    	$('#cuerpo').html('<h3>'+"${habilitar}"+' '+ titHab.substr(titHab.lastIndexOf("/")+1) +'?</h3>');
+    	$('#basic').modal('show');
+    });
+    
+    $(".desact").click(function(){ 
+        var titDes = $(this).data('whatever').substr(0,$(this).data('whatever').length-1);
+    	$('#accionUrl').val($(this).data('whatever'));
+    	$('#titulo').html('<h2 class="modal-title">'+"${confirmar}"+'</h2>');
+    	$('#cuerpo').html('<h3>'+"${deshabilitar}"+ ' ' + titDes.substr(titDes.lastIndexOf("/")+1) +'?</h3>');
+    	$('#basic').modal('show');
+    });
+
+    function ejecutarAccion() {
+		window.location.href = $('#accionUrl').val();		
+	}
+    
+  	if ("${usuarioHabilitado}"){
+		toastr.info("${userEnabledLabel}", "${nombreUsuario}", {
+		    closeButton: true,
+		    progressBar: true,
+		  } );
+	}
+	if ("${usuarioDeshabilitado}"){
+		toastr.error("${userDisabledLabel}", "${nombreUsuario}" , {
+		    closeButton: true,
+		    progressBar: true,
+		  });
+	}
   </script>
 </body>
 </html>

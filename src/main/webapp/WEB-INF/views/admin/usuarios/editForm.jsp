@@ -45,13 +45,15 @@
   	<jsp:include page="../../fragments/sideBar.jsp" />
     <!-- Main content -->
     <main class="main">
-	  <spring:url value="/admin/comunidades/guardarComunidad/" var="saveComunidadUrl"></spring:url>
-  	  <spring:url value="/admin/comunidades/" var="comunidadUrl"/>	
+	  <spring:url value="/admin/usuarios/guardarUsuarioEditado/" var="saveUserUrl"></spring:url>
+  	  <spring:url value="/admin/usuarios/{username}/" var="usuarioUrl">
+	  	<spring:param name="username" value="${user.nombreUsuario}" />
+	  </spring:url>	
       <!-- Breadcrumb -->
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<spring:url value="/" htmlEscape="true "/>"><spring:message code="home" /></a></li>
-        <li class="breadcrumb-item"><a href="<spring:url value="/admin/comunidades/" htmlEscape="true "/>"><spring:message code="comunidades" /></a></li>
-        <li class="breadcrumb-item active"><c:out value="${comunidad.idUnico}" /></li>
+        <li class="breadcrumb-item"><a href="<spring:url value="/admin/usuarios/" htmlEscape="true "/>"><spring:message code="users" /></a></li>
+        <li class="breadcrumb-item active"><c:out value="${user.nombreUsuario}" /></li>
         <!-- Breadcrumb Menu-->
         <li class="breadcrumb-menu d-md-down-none">
           <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -67,10 +69,9 @@
         <div class="animated fadeIn">
           <div class="row">
             <div class="col-md-12">
-              <spring:url value="/resources/img/fabrettoapple.png" var="logofab" />
               <div class="card">
                 <div class="card-header">
-                  <img src="${logofab}" alt="<spring:message code="'title'" />" />&nbsp;<i class="icon-note"></i> <spring:message code="edit" /> <spring:message code="catalogs.com" />
+                  <i class="icon-note"></i> <spring:message code="edit" />
                   <div class="card-actions">
                     
                   </div>
@@ -80,64 +81,28 @@
                   <div class="row">
 
                     <div class="col-md-8">
-                      <form action="#" autocomplete="off" id="add-comunidad-form">                      
-						<div class="form-group row">
-	                      <label class="col-md-3 col-form-label" for="idUnico"><strong><spring:message code="idUnico" /></strong></label>
-	                      <div class="col-md-9">
-	                      	<div class="input-group">
-	                      		<span class="input-group-addon"><i class="fa fa-key"></i></span>
-	                        	<input type="text" id="idUnico" readonly name="idUnico" value="${comunidad.idUnico}" class="form-control" placeholder="<spring:message code="idUnico" />">
-	                        	<span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
-	                        </div>
-	                        <span class="help-block"></span>
+                      <form action="#" autocomplete="off" id="add-user-form">                      
+						<div class="form-group">
+	                      <div class="input-group">
+	                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+	                        <input type="text" name="nombreUsuario" readonly value="${user.nombreUsuario}" class="form-control" placeholder="<spring:message code="nombreUsuario" />">
 	                      </div>
-	                    </div>
-	                    <div class="form-group row">
-	                      <label class="col-md-3 col-form-label" for="nombreComunidad"><strong><spring:message code="nombreComunidad" /></strong></label>
-	                      <div class="col-md-9">
-	                      	<div class="input-group">
-	                      		<span class="input-group-addon"><i class="fa fa-map-pin"></i></span>
-	                        	<input type="text" id="nombreComunidad" name="nombreComunidad" value="${comunidad.nombreComunidad}" class="form-control" placeholder="<spring:message code="nombreComunidad" />">
-	                        	<span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
-	                        </div>
-	                        <span class="help-block"></span>
+	                    </div>	
+	                    <div class="form-group">
+	                      <div class="input-group">
+	                        <span class="input-group-addon"><i class="fa fa-id-card"></i></span>
+	                        <input type="text" name="nombreCompleto" value="${user.nombreCompleto}" class="form-control" placeholder="<spring:message code="nombreCompleto" />">
 	                      </div>
-	                    </div>
-	                    <div class="form-group row">
-	                      <label class="col-md-3 col-form-label" for="descComunidad"><strong><spring:message code="descComunidad" /></strong></label>
-	                      <div class="col-md-9">
-	                      	<div class="input-group">
-	                      		<span class="input-group-addon"><i class="fa fa-comments-o"></i></span>
-	                        	<input type="text" id="descComunidad" name="descComunidad" value="${comunidad.descComunidad}" class="form-control" placeholder="<spring:message code="descComunidad" />">
-	                        	<span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
-	                        </div>
-	                        <span class="help-block"></span>
-	                      </div>
-	                    </div>
-	                    <div class="form-group row">
-	                      <label class="col-md-3 col-form-label" for="municipio"><strong><spring:message code="catalogs.mun" />&nbsp;</strong><i class="fa fa-hand-o-up"></i></label>
-	                      <div class="col-md-9">
-	                      	<fieldset class="form-group">
-	                        	<select name="municipio" id="municipio" class="form-control select2-single">
-			                    	<option value=""><spring:message code="blank"/></option>
-			                    	<c:forEach items="${municipios}" var="municipio">
-										<c:choose> 
-											<c:when test="${municipio.idUnico eq comunidad.municipio.idUnico}">
-												<option selected value="${municipio.idUnico}">${municipio.nombreMunicipio}</option>
-											</c:when>
-											<c:otherwise>
-												<option value="${municipio.idUnico}">${municipio.nombreMunicipio}</option>
-											</c:otherwise>
-										</c:choose> 
-									</c:forEach>
-			                    </select>
-	                        </fieldset>
-	                        <span class="help-block"></span>
+	                    </div>  
+                        <div class="form-group">
+	                      <div class="input-group">
+	                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+	                        <input type="text" name="correoElectronico" value="${user.correoElectronico}" class="form-control" placeholder="<spring:message code="correoElectronico" />">
 	                      </div>
 	                    </div>
                         <div class="form-group">
                           <button type="submit" class="btn btn-primary" id="guardar"><i class="fa fa-save"></i>&nbsp;<spring:message code="save" /></button>
-						  <a href="${fn:escapeXml(comunidadUrl)}" class="btn btn-danger"><i class="fa fa-undo"></i>&nbsp;<spring:message code="cancel" /></a>
+						  <a href="${fn:escapeXml(usuarioUrl)}" class="btn btn-danger"><i class="fa fa-undo"></i>&nbsp;<spring:message code="cancel" /></a>
                         </div>
                       </form>
                     </div>
@@ -167,11 +132,11 @@
   
   <!-- Lenguaje -->
   <c:choose>
-	<c:when test="${cookie.eSivinLang.value == null}">
+	<c:when test="${cookie.eFabrettoLang.value == null}">
 		<c:set var="lenguaje" value="es"/>
 	</c:when>
 	<c:otherwise>
-		<c:set var="lenguaje" value="${cookie.eSivinLang.value}"/>
+		<c:set var="lenguaje" value="${cookie.eFabrettoLang.value}"/>
 	</c:otherwise>
   </c:choose>
   
@@ -184,10 +149,11 @@
   <script src="${jQValidationLoc}"></script>
   <spring:url value="/resources/vendors/js/select2.min.js" var="Select2" />
   <script src="${Select2}" type="text/javascript"></script>
+  
 
   <!-- Custom scripts required by this view -->
-  <spring:url value="/resources/js/views/Comunidad.js" var="processComunidad" />
-  <script src="${processComunidad}"></script>
+  <spring:url value="/resources/js/views/User.js" var="processUser" />
+  <script src="${processUser}"></script>
   
 <c:set var="successmessage"><spring:message code="process.success" /></c:set>
 <c:set var="errormessage"><spring:message code="process.errors" /></c:set>
@@ -195,11 +161,11 @@
 
 <script>
 	jQuery(document).ready(function() {
-		var parametros = {saveComunidadUrl: "${saveComunidadUrl}", successmessage: "${successmessage}",
+		var parametros = {saveUserUrl: "${saveUserUrl}", successmessage: "${successmessage}",
 				errormessage: "${errormessage}",waitmessage: "${waitmessage}",
-				comunidadUrl: "${comunidadUrl}" 
+				usuarioUrl: "${usuarioUrl}" 
 		};
-		ProcessComunidad.init(parametros);
+		ProcessUser.init(parametros);
 	});
 </script>
   
