@@ -48,7 +48,7 @@
       <!-- Breadcrumb -->
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<spring:url value="/" htmlEscape="true "/>"><spring:message code="home" /></a></li>
-        <li class="breadcrumb-item"><a href="<spring:url value="/admin/comunidades/" htmlEscape="true "/>"><spring:message code="comunidades" /></a></li>
+        <li class="breadcrumb-item"><a href="<spring:url value="/super/comunidades/" htmlEscape="true "/>"><spring:message code="comunidades" /></a></li>
         <li class="breadcrumb-item active"><c:out value="${comunidad.idUnico}" /></li>
         <!-- Breadcrumb Menu-->
         <li class="breadcrumb-menu d-md-down-none">

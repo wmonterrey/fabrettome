@@ -71,7 +71,7 @@
               </div>
             </div>
             <div class="card-body">
-              <spring:url value="/admin/comunidades/nuevoComunidad/"	var="newComunidad"/>	
+              <spring:url value="/super/comunidades/nuevoComunidad/"	var="newComunidad"/>	
               <button id="lista_comunidades_new" onclick="location.href='${fn:escapeXml(newComunidad)}'" type="button" class="btn btn-outline-primary"><i class="fa fa-plus"></i>&nbsp; <spring:message code="add" /></button><br><br>	
               <table id="lista_comunidades" class="table table-striped table-bordered datatable" width="100%">
                 <thead>
@@ -86,10 +86,10 @@
                 <tbody>
                 	<c:forEach items="${comunidades}" var="comunidad">
                 		<tr>
-                			<spring:url value="/admin/comunidades/verComunidad/{idUnico}/" var="comunidadUrl"><spring:param name="idUnico" value="${comunidad.idUnico}" /></spring:url>
-                            <spring:url value="/admin/comunidades/editComunidad/{idUnico}/" var="editComunidad"><spring:param name="idUnico" value="${comunidad.idUnico}" /></spring:url>
-                            <spring:url value="/admin/comunidades/desComunidad/{idUnico}/" var="disableUrl"><spring:param name="idUnico" value="${comunidad.idUnico}" /></spring:url>
-                            <spring:url value="/admin/comunidades/habComunidad/{idUnico}/" var="enableUrl"><spring:param name="idUnico" value="${comunidad.idUnico}" /></spring:url>
+                			<spring:url value="/super/comunidades/verComunidad/{idUnico}/" var="comunidadUrl"><spring:param name="idUnico" value="${comunidad.idUnico}" /></spring:url>
+                            <spring:url value="/super/comunidades/editComunidad/{idUnico}/" var="editComunidad"><spring:param name="idUnico" value="${comunidad.idUnico}" /></spring:url>
+                            <spring:url value="/super/comunidades/desComunidad/{idUnico}/" var="disableUrl"><spring:param name="idUnico" value="${comunidad.idUnico}" /></spring:url>
+                            <spring:url value="/super/comunidades/habComunidad/{idUnico}/" var="enableUrl"><spring:param name="idUnico" value="${comunidad.idUnico}" /></spring:url>
                             <td><a href="${fn:escapeXml(comunidadUrl)}"><c:out value="${comunidad.idUnico}" /></a></td>
                             <td><c:out value="${comunidad.nombreComunidad}" /></td>
                             <td><c:out value="${comunidad.municipio.nombreMunicipio}" /></td>

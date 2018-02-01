@@ -12,7 +12,8 @@
 		<intercept-url pattern="/resources/.*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/admin/.*" access="ROLE_ADMIN"/>
         <intercept-url pattern="/super/.*" access="ROLE_SUPER"/>
-        <intercept-url pattern="/.*" access="ROLE_ADMIN,ROLE_SUPER"/>
+        <intercept-url pattern="/personas/.*" access="ROLE_PERFIL"/>
+        <intercept-url pattern="/.*" access="ROLE_ADMIN,ROLE_SUPER,ROLE_PERFIL"/>
 		<form-login login-page="/login" default-target-url="/"
 			authentication-failure-url="/loginfailed" />
 		<logout logout-url="/logout" 

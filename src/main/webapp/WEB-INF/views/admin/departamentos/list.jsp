@@ -71,7 +71,7 @@
               </div>
             </div>
             <div class="card-body">
-              <spring:url value="/admin/departamentos/nuevoDepartamento/"	var="newDepartamento"/>	
+              <spring:url value="/super/departamentos/nuevoDepartamento/"	var="newDepartamento"/>	
               <button id="lista_departamentos_new" onclick="location.href='${fn:escapeXml(newDepartamento)}'" type="button" class="btn btn-outline-primary"><i class="fa fa-plus"></i>&nbsp; <spring:message code="add" /></button><br><br>	
               <table id="lista_departamentos" class="table table-striped table-bordered datatable" width="100%">
                 <thead>
@@ -85,10 +85,10 @@
                 <tbody>
                 	<c:forEach items="${departamentos}" var="departamento">
                 		<tr>
-                			<spring:url value="/admin/departamentos/verDepartamento/{idUnico}/" var="departamentoUrl"><spring:param name="idUnico" value="${departamento.idUnico}" /></spring:url>
-                            <spring:url value="/admin/departamentos/editDepartamento/{idUnico}/" var="editDepartamento"><spring:param name="idUnico" value="${departamento.idUnico}" /></spring:url>
-                            <spring:url value="/admin/departamentos/desDepartamento/{idUnico}/" var="disableUrl"><spring:param name="idUnico" value="${departamento.idUnico}" /></spring:url>
-                            <spring:url value="/admin/departamentos/habDepartamento/{idUnico}/" var="enableUrl"><spring:param name="idUnico" value="${departamento.idUnico}" /></spring:url>
+                			<spring:url value="/super/departamentos/verDepartamento/{idUnico}/" var="departamentoUrl"><spring:param name="idUnico" value="${departamento.idUnico}" /></spring:url>
+                            <spring:url value="/super/departamentos/editDepartamento/{idUnico}/" var="editDepartamento"><spring:param name="idUnico" value="${departamento.idUnico}" /></spring:url>
+                            <spring:url value="/super/departamentos/desDepartamento/{idUnico}/" var="disableUrl"><spring:param name="idUnico" value="${departamento.idUnico}" /></spring:url>
+                            <spring:url value="/super/departamentos/habDepartamento/{idUnico}/" var="enableUrl"><spring:param name="idUnico" value="${departamento.idUnico}" /></spring:url>
                             <td><a href="${fn:escapeXml(departamentoUrl)}"><c:out value="${departamento.idUnico}" /></a></td>
                             <td><c:out value="${departamento.nombreDepartamento}" /></td>
                             <c:choose>

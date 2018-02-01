@@ -45,12 +45,12 @@
   	<jsp:include page="../../fragments/sideBar.jsp" />
     <!-- Main content -->
     <main class="main">
-	  <spring:url value="/admin/escuelas/guardarEscuela/" var="saveEscuelaUrl"></spring:url>
-  	  <spring:url value="/admin/escuelas/" var="escuelaUrl"/>	
+	  <spring:url value="/super/escuelas/guardarEscuela/" var="saveEscuelaUrl"></spring:url>
+  	  <spring:url value="/super/escuelas/" var="escuelaUrl"/>	
       <!-- Breadcrumb -->
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<spring:url value="/" htmlEscape="true "/>"><spring:message code="home" /></a></li>
-        <li class="breadcrumb-item"><a href="<spring:url value="/admin/escuelas/" htmlEscape="true "/>"><spring:message code="escuelas" /></a></li>
+        <li class="breadcrumb-item"><a href="<spring:url value="/super/escuelas/" htmlEscape="true "/>"><spring:message code="escuelas" /></a></li>
         <li class="breadcrumb-item active"><c:out value="${escuela.idUnico}" /></li>
         <!-- Breadcrumb Menu-->
         <li class="breadcrumb-menu d-md-down-none">
@@ -107,7 +107,7 @@
 	                      <label class="col-md-3 col-form-label" for="nombreEscuela"><strong><spring:message code="nombreEscuela" /></strong></label>
 	                      <div class="col-md-9">
 	                      	<div class="input-group">
-	                      		<span class="input-group-addon"><i class="fa fa-building"></i></span>
+	                      		<span class="input-group-addon"><i class="fa fa-university"></i></span>
 	                        	<input type="text" id="nombreEscuela" name="nombreEscuela" value="${escuela.nombreEscuela}" class="form-control" placeholder="<spring:message code="nombreEscuela" />">
 	                        	<span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
 	                        </div>

@@ -48,7 +48,7 @@
       <!-- Breadcrumb -->
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<spring:url value="/" htmlEscape="true "/>"><spring:message code="home" /></a></li>
-        <li class="breadcrumb-item"><a href="<spring:url value="/admin/municipios/" htmlEscape="true "/>"><spring:message code="municipios" /></a></li>
+        <li class="breadcrumb-item"><a href="<spring:url value="/super/municipios/" htmlEscape="true "/>"><spring:message code="municipios" /></a></li>
         <li class="breadcrumb-item active"><c:out value="${municipio.idUnico}" /></li>
         <!-- Breadcrumb Menu-->
         <li class="breadcrumb-menu d-md-down-none">

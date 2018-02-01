@@ -39,7 +39,7 @@ import ni.org.fabretto.me.service.DepartamentosService;
  * @author William Aviles
  */
 @Controller
-@RequestMapping("/admin/municipios/*")
+@RequestMapping("/super/municipios/*")
 public class AdminMunicipiosController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminMunicipiosController.class);
 	@Resource(name="auditTrailService")
@@ -188,7 +188,7 @@ public class AdminMunicipiosController {
     		this.municipiosService.saveMunicipio(municipio);
     		redirectAttributes.addFlashAttribute("municipioDeshabilitado", true);
     		redirectAttributes.addFlashAttribute("nombreMunicipio", municipio.getNombreMunicipio());
-    		redirecTo = "redirect:/admin/municipios/";
+    		redirecTo = "redirect:/super/municipios/";
     	}
     	else{
     		redirecTo = "403";
@@ -214,7 +214,7 @@ public class AdminMunicipiosController {
     		this.municipiosService.saveMunicipio(municipio);
     		redirectAttributes.addFlashAttribute("municipioHabilitado", true);
     		redirectAttributes.addFlashAttribute("nombreMunicipio", municipio.getNombreMunicipio());
-    		redirecTo = "redirect:/admin/municipios/";
+    		redirecTo = "redirect:/super/municipios/";
     	}
     	else{
     		redirecTo = "403";

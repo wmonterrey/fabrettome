@@ -160,7 +160,7 @@ public class Usuario implements Auditable {
 	}
 	@Override
 	public boolean isFieldAuditable(String fieldname) {
-		if(fieldname.matches("created")||fieldname.matches("createdBy")||fieldname.matches("modified")||fieldname.matches("modifiedBy")||fieldname.matches("password")){
+		if(fieldname.matches("fechaCreacion")||fieldname.matches("usuarioRegistro")||fieldname.matches("fechaUltimaModificacion")||fieldname.matches("usuarioModifica")||fieldname.matches("contrasena")){
 			return false;
 		}
 		return true;

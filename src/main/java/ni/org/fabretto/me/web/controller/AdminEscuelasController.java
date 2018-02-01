@@ -43,7 +43,7 @@ import ni.org.fabretto.me.service.ComunidadesService;
  * @author William Aviles
  */
 @Controller
-@RequestMapping("/admin/escuelas/*")
+@RequestMapping("/super/escuelas/*")
 public class AdminEscuelasController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminEscuelasController.class);
 	@Resource(name="auditTrailService")
@@ -223,7 +223,7 @@ public class AdminEscuelasController {
     		this.escuelasService.saveEscuela(escuela);
     		redirectAttributes.addFlashAttribute("escuelaDeshabilitado", true);
     		redirectAttributes.addFlashAttribute("nombreEscuela", escuela.getNombreEscuela());
-    		redirecTo = "redirect:/admin/escuelas/";
+    		redirecTo = "redirect:/super/escuelas/";
     	}
     	else{
     		redirecTo = "403";
@@ -249,7 +249,7 @@ public class AdminEscuelasController {
     		this.escuelasService.saveEscuela(escuela);
     		redirectAttributes.addFlashAttribute("escuelaHabilitado", true);
     		redirectAttributes.addFlashAttribute("nombreEscuela", escuela.getNombreEscuela());
-    		redirecTo = "redirect:/admin/escuelas/";
+    		redirecTo = "redirect:/super/escuelas/";
     	}
     	else{
     		redirecTo = "403";

@@ -71,7 +71,7 @@
               </div>
             </div>
             <div class="card-body">
-              <spring:url value="/admin/escuelas/nuevoEscuela/"	var="newEscuela"/>	
+              <spring:url value="/super/escuelas/nuevoEscuela/"	var="newEscuela"/>	
               <button id="lista_escuelas_new" onclick="location.href='${fn:escapeXml(newEscuela)}'" type="button" class="btn btn-outline-primary"><i class="fa fa-plus"></i>&nbsp; <spring:message code="add" /></button><br><br>	
               <table id="lista_escuelas" class="table table-striped table-bordered datatable" width="100%">
                 <thead>
@@ -88,10 +88,10 @@
                 <tbody>
                 	<c:forEach items="${escuelas}" var="escuela">
                 		<tr>
-                			<spring:url value="/admin/escuelas/verEscuela/{idUnico}/" var="escuelaUrl"><spring:param name="idUnico" value="${escuela.idUnico}" /></spring:url>
-                            <spring:url value="/admin/escuelas/editEscuela/{idUnico}/" var="editEscuela"><spring:param name="idUnico" value="${escuela.idUnico}" /></spring:url>
-                            <spring:url value="/admin/escuelas/desEscuela/{idUnico}/" var="disableUrl"><spring:param name="idUnico" value="${escuela.idUnico}" /></spring:url>
-                            <spring:url value="/admin/escuelas/habEscuela/{idUnico}/" var="enableUrl"><spring:param name="idUnico" value="${escuela.idUnico}" /></spring:url>
+                			<spring:url value="/super/escuelas/verEscuela/{idUnico}/" var="escuelaUrl"><spring:param name="idUnico" value="${escuela.idUnico}" /></spring:url>
+                            <spring:url value="/super/escuelas/editEscuela/{idUnico}/" var="editEscuela"><spring:param name="idUnico" value="${escuela.idUnico}" /></spring:url>
+                            <spring:url value="/super/escuelas/desEscuela/{idUnico}/" var="disableUrl"><spring:param name="idUnico" value="${escuela.idUnico}" /></spring:url>
+                            <spring:url value="/super/escuelas/habEscuela/{idUnico}/" var="enableUrl"><spring:param name="idUnico" value="${escuela.idUnico}" /></spring:url>
                             <td><a href="${fn:escapeXml(escuelaUrl)}"><c:out value="${escuela.idUnico}" /></a></td>
                             <td><c:out value="${escuela.codigo}" /></td>
                             <td><c:out value="${escuela.nombreEscuela}" /></td>

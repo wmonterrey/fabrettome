@@ -39,7 +39,7 @@ import ni.org.fabretto.me.service.MunicipiosService;
  * @author William Aviles
  */
 @Controller
-@RequestMapping("/admin/comunidades/*")
+@RequestMapping("/super/comunidades/*")
 public class AdminComunidadesController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminComunidadesController.class);
 	@Resource(name="auditTrailService")
@@ -191,7 +191,7 @@ public class AdminComunidadesController {
     		this.comunidadesService.saveComunidad(comunidad);
     		redirectAttributes.addFlashAttribute("comunidadDeshabilitado", true);
     		redirectAttributes.addFlashAttribute("nombreComunidad", comunidad.getNombreComunidad());
-    		redirecTo = "redirect:/admin/comunidades/";
+    		redirecTo = "redirect:/super/comunidades/";
     	}
     	else{
     		redirecTo = "403";
@@ -217,7 +217,7 @@ public class AdminComunidadesController {
     		this.comunidadesService.saveComunidad(comunidad);
     		redirectAttributes.addFlashAttribute("comunidadHabilitado", true);
     		redirectAttributes.addFlashAttribute("nombreComunidad", comunidad.getNombreComunidad());
-    		redirecTo = "redirect:/admin/comunidades/";
+    		redirecTo = "redirect:/super/comunidades/";
     	}
     	else{
     		redirecTo = "403";

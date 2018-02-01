@@ -71,7 +71,7 @@
               </div>
             </div>
             <div class="card-body">
-              <spring:url value="/admin/centros/nuevoCentro/"	var="newCentro"/>	
+              <spring:url value="/super/centros/nuevoCentro/"	var="newCentro"/>	
               <button id="lista_centros_new" onclick="location.href='${fn:escapeXml(newCentro)}'" type="button" class="btn btn-outline-primary"><i class="fa fa-plus"></i>&nbsp; <spring:message code="add" /></button><br><br>	
               <table id="lista_centros" class="table table-striped table-bordered datatable" width="100%">
                 <thead>
@@ -87,10 +87,10 @@
                 <tbody>
                 	<c:forEach items="${centros}" var="centro">
                 		<tr>
-                			<spring:url value="/admin/centros/verCentro/{idUnico}/" var="centroUrl"><spring:param name="idUnico" value="${centro.idUnico}" /></spring:url>
-                            <spring:url value="/admin/centros/editCentro/{idUnico}/" var="editCentro"><spring:param name="idUnico" value="${centro.idUnico}" /></spring:url>
-                            <spring:url value="/admin/centros/desCentro/{idUnico}/" var="disableUrl"><spring:param name="idUnico" value="${centro.idUnico}" /></spring:url>
-                            <spring:url value="/admin/centros/habCentro/{idUnico}/" var="enableUrl"><spring:param name="idUnico" value="${centro.idUnico}" /></spring:url>
+                			<spring:url value="/super/centros/verCentro/{idUnico}/" var="centroUrl"><spring:param name="idUnico" value="${centro.idUnico}" /></spring:url>
+                            <spring:url value="/super/centros/editCentro/{idUnico}/" var="editCentro"><spring:param name="idUnico" value="${centro.idUnico}" /></spring:url>
+                            <spring:url value="/super/centros/desCentro/{idUnico}/" var="disableUrl"><spring:param name="idUnico" value="${centro.idUnico}" /></spring:url>
+                            <spring:url value="/super/centros/habCentro/{idUnico}/" var="enableUrl"><spring:param name="idUnico" value="${centro.idUnico}" /></spring:url>
                             <td><a href="${fn:escapeXml(centroUrl)}"><c:out value="${centro.idUnico}" /></a></td>
                             <td><c:out value="${centro.codigo}" /></td>
                             <td><c:out value="${centro.nombreCentro}" /></td>

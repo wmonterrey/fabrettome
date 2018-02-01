@@ -48,7 +48,7 @@
       <!-- Breadcrumb -->
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<spring:url value="/" htmlEscape="true "/>"><spring:message code="home" /></a></li>
-        <li class="breadcrumb-item"><a href="<spring:url value="/admin/escuelas/" htmlEscape="true "/>"><spring:message code="escuelas" /></a></li>
+        <li class="breadcrumb-item"><a href="<spring:url value="/super/escuelas/" htmlEscape="true "/>"><spring:message code="escuelas" /></a></li>
         <li class="breadcrumb-item active"><c:out value="${escuela.idUnico}" /></li>
         <!-- Breadcrumb Menu-->
         <li class="breadcrumb-menu d-md-down-none">
@@ -67,7 +67,7 @@
 	            <div class="col-md-12">
 	              <div class="card">
 	                <div class="card-header">
-	                  <img src="${logofab}" alt="<spring:message code="'title'" />" />&nbsp;<i class="fa fa-map-o"></i>&nbsp;<strong><c:out value="${escuela.nombreEscuela}" /></strong>
+	                  <img src="${logofab}" alt="<spring:message code="'title'" />" />&nbsp;<i class="fa fa-university"></i>&nbsp;<strong><c:out value="${escuela.nombreEscuela}" /></strong>
 	                </div>
 	                	<div class="card-body">
 		                	<form action="" method="post" enctype="multipart/form-data" class="form-horizontal">

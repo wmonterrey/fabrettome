@@ -41,7 +41,7 @@ import ni.org.fabretto.me.service.ColaboradoresService;
  * @author William Aviles
  */
 @Controller
-@RequestMapping("/admin/centros/*")
+@RequestMapping("/super/centros/*")
 public class AdminCentrosController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminCentrosController.class);
 	@Resource(name="auditTrailService")
@@ -208,7 +208,7 @@ public class AdminCentrosController {
     		this.centrosService.saveCentro(centro);
     		redirectAttributes.addFlashAttribute("centroDeshabilitado", true);
     		redirectAttributes.addFlashAttribute("nombreCentro", centro.getNombreCentro());
-    		redirecTo = "redirect:/admin/centros/";
+    		redirecTo = "redirect:/super/centros/";
     	}
     	else{
     		redirecTo = "403";
@@ -234,7 +234,7 @@ public class AdminCentrosController {
     		this.centrosService.saveCentro(centro);
     		redirectAttributes.addFlashAttribute("centroHabilitado", true);
     		redirectAttributes.addFlashAttribute("nombreCentro", centro.getNombreCentro());
-    		redirecTo = "redirect:/admin/centros/";
+    		redirecTo = "redirect:/super/centros/";
     	}
     	else{
     		redirecTo = "403";

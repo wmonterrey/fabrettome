@@ -33,8 +33,8 @@
         	<div class="dropdown-header text-center">
             	<strong><spring:message code="actions" /></strong>
           	</div>
-          	<a class="dropdown-item" href="<spring:url value="/users/profile" htmlEscape="true" />"><i class="fa fa-user"></i> <spring:message code="profile" /></a>
-          	<a class="dropdown-item" href="<spring:url value="/users/chgpass" htmlEscape="true" />""><i class="fa fa-key"></i> <spring:message code="changepass" /></a>
+          	<a class="dropdown-item" href="<spring:url value="/usuarios/perfil" htmlEscape="true" />"><i class="fa fa-user"></i> <spring:message code="profile" /></a>
+          	<a class="dropdown-item" href="<spring:url value="/usuarios/chgpass" htmlEscape="true" />""><i class="fa fa-key"></i> <spring:message code="changepass" /></a>
         </div>
     </li>
     <!-- END USER LOGIN DROPDOWN -->

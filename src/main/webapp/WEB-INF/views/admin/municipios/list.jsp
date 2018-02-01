@@ -71,7 +71,7 @@
               </div>
             </div>
             <div class="card-body">
-              <spring:url value="/admin/municipios/nuevoMunicipio/"	var="newMunicipio"/>	
+              <spring:url value="/super/municipios/nuevoMunicipio/"	var="newMunicipio"/>	
               <button id="lista_municipios_new" onclick="location.href='${fn:escapeXml(newMunicipio)}'" type="button" class="btn btn-outline-primary"><i class="fa fa-plus"></i>&nbsp; <spring:message code="add" /></button><br><br>	
               <table id="lista_municipios" class="table table-striped table-bordered datatable" width="100%">
                 <thead>
@@ -86,10 +86,10 @@
                 <tbody>
                 	<c:forEach items="${municipios}" var="municipio">
                 		<tr>
-                			<spring:url value="/admin/municipios/verMunicipio/{idUnico}/" var="municipioUrl"><spring:param name="idUnico" value="${municipio.idUnico}" /></spring:url>
-                            <spring:url value="/admin/municipios/editMunicipio/{idUnico}/" var="editMunicipio"><spring:param name="idUnico" value="${municipio.idUnico}" /></spring:url>
-                            <spring:url value="/admin/municipios/desMunicipio/{idUnico}/" var="disableUrl"><spring:param name="idUnico" value="${municipio.idUnico}" /></spring:url>
-                            <spring:url value="/admin/municipios/habMunicipio/{idUnico}/" var="enableUrl"><spring:param name="idUnico" value="${municipio.idUnico}" /></spring:url>
+                			<spring:url value="/super/municipios/verMunicipio/{idUnico}/" var="municipioUrl"><spring:param name="idUnico" value="${municipio.idUnico}" /></spring:url>
+                            <spring:url value="/super/municipios/editMunicipio/{idUnico}/" var="editMunicipio"><spring:param name="idUnico" value="${municipio.idUnico}" /></spring:url>
+                            <spring:url value="/super/municipios/desMunicipio/{idUnico}/" var="disableUrl"><spring:param name="idUnico" value="${municipio.idUnico}" /></spring:url>
+                            <spring:url value="/super/municipios/habMunicipio/{idUnico}/" var="enableUrl"><spring:param name="idUnico" value="${municipio.idUnico}" /></spring:url>
                             <td><a href="${fn:escapeXml(municipioUrl)}"><c:out value="${municipio.idUnico}" /></a></td>
                             <td><c:out value="${municipio.nombreMunicipio}" /></td>
                             <td><c:out value="${municipio.departamento.nombreDepartamento}" /></td>

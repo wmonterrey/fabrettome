@@ -37,7 +37,7 @@ import ni.org.fabretto.me.service.DepartamentosService;
  * @author William Aviles
  */
 @Controller
-@RequestMapping("/admin/departamentos/*")
+@RequestMapping("/super/departamentos/*")
 public class AdminDepartamentosController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminDepartamentosController.class);
 	@Resource(name="auditTrailService")
@@ -177,7 +177,7 @@ public class AdminDepartamentosController {
     		this.departamentosService.saveDepartamento(departamento);
     		redirectAttributes.addFlashAttribute("departamentoDeshabilitado", true);
     		redirectAttributes.addFlashAttribute("nombreDepartamento", departamento.getNombreDepartamento());
-    		redirecTo = "redirect:/admin/departamentos/";
+    		redirecTo = "redirect:/super/departamentos/";
     	}
     	else{
     		redirecTo = "403";
@@ -203,7 +203,7 @@ public class AdminDepartamentosController {
     		this.departamentosService.saveDepartamento(departamento);
     		redirectAttributes.addFlashAttribute("departamentoHabilitado", true);
     		redirectAttributes.addFlashAttribute("nombreDepartamento", departamento.getNombreDepartamento());
-    		redirecTo = "redirect:/admin/departamentos/";
+    		redirecTo = "redirect:/super/departamentos/";
     	}
     	else{
     		redirecTo = "403";

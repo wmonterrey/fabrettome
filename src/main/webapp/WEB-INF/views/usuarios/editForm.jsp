@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html>
 <head>
-<jsp:include page="../../fragments/headTag.jsp" />
+<jsp:include page="../fragments/headTag.jsp" />
 <!-- Styles required by this views -->
 <spring:url value="/resources/vendors/css/select2.min.css" var="select2css" />
 <link href="${select2css}" rel="stylesheet" type="text/css"/>
@@ -39,19 +39,18 @@
 -->
 <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
   <!-- Header -->
-  <jsp:include page="../../fragments/bodyHeader.jsp" />
+  <jsp:include page="../fragments/bodyHeader.jsp" />
   <div class="app-body">
   	<!-- Navigation -->
-  	<jsp:include page="../../fragments/sideBar.jsp" />
+  	<jsp:include page="../fragments/sideBar.jsp" />
     <!-- Main content -->
     <main class="main">
-	  <spring:url value="/super/municipios/guardarMunicipio/" var="saveMunicipioUrl"></spring:url>
-  	  <spring:url value="/super/municipios/" var="municipioUrl"/>	
+	  <spring:url value="/usuarios/guardarUsuarioEditado" var="saveUserUrl"></spring:url>
+  	  <spring:url value="/usuarios/perfil" var="usuarioUrl"/>
       <!-- Breadcrumb -->
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<spring:url value="/" htmlEscape="true "/>"><spring:message code="home" /></a></li>
-        <li class="breadcrumb-item"><a href="<spring:url value="/super/municipios/" htmlEscape="true "/>"><spring:message code="municipios" /></a></li>
-        <li class="breadcrumb-item active"><c:out value="${municipio.idUnico}" /></li>
+        <li class="breadcrumb-item active"><c:out value="${user.nombreUsuario}" /></li>
         <!-- Breadcrumb Menu-->
         <li class="breadcrumb-menu d-md-down-none">
           <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -67,10 +66,9 @@
         <div class="animated fadeIn">
           <div class="row">
             <div class="col-md-12">
-              <spring:url value="/resources/img/fabrettoapple.png" var="logofab" />
               <div class="card">
                 <div class="card-header">
-                  <img src="${logofab}" alt="<spring:message code="'title'" />" />&nbsp;<i class="icon-note"></i> <spring:message code="edit" /> <spring:message code="catalogs.mun" />
+                  <i class="icon-note"></i> <spring:message code="edit" />
                   <div class="card-actions">
                     
                   </div>
@@ -80,53 +78,28 @@
                   <div class="row">
 
                     <div class="col-md-8">
-                      <form action="#" autocomplete="off" id="add-municipio-form">                      
-						<div class="form-group row">
-	                      <label class="col-md-3 col-form-label" for="idUnico"><strong><spring:message code="idUnico" /></strong></label>
-	                      <div class="col-md-9">
-	                      	<div class="input-group">
-	                      		<span class="input-group-addon"><i class="fa fa-key"></i></span>
-	                        	<input type="text" id="idUnico" readonly name="idUnico" value="${municipio.idUnico}" class="form-control" placeholder="<spring:message code="idUnico" />">
-	                        	<span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
-	                        </div>
-	                        <span class="help-block"></span>
+                      <form action="#" autocomplete="off" id="add-user-form">                      
+						<div class="form-group">
+	                      <div class="input-group">
+	                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+	                        <input type="text" name="nombreUsuario" readonly value="${user.nombreUsuario}" class="form-control" placeholder="<spring:message code="nombreUsuario" />">
 	                      </div>
-	                    </div>
-	                    <div class="form-group row">
-	                      <label class="col-md-3 col-form-label" for="nombreMunicipio"><strong><spring:message code="nombreMunicipio" /></strong></label>
-	                      <div class="col-md-9">
-	                      	<div class="input-group">
-	                      		<span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-	                        	<input type="text" id="nombreMunicipio" name="nombreMunicipio" value="${municipio.nombreMunicipio}" class="form-control" placeholder="<spring:message code="nombreMunicipio" />">
-	                        	<span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
-	                        </div>
-	                        <span class="help-block"></span>
+	                    </div>	
+	                    <div class="form-group">
+	                      <div class="input-group">
+	                        <span class="input-group-addon"><i class="fa fa-id-card"></i></span>
+	                        <input type="text" name="nombreCompleto" value="${user.nombreCompleto}" class="form-control" placeholder="<spring:message code="nombreCompleto" />">
 	                      </div>
-	                    </div>
-	                    <div class="form-group row">
-	                      <label class="col-md-3 col-form-label" for="departamento"><strong><spring:message code="catalogs.dep" />&nbsp;</strong><i class="fa fa-hand-o-up"></i></label>
-	                      <div class="col-md-9">
-	                      	<fieldset class="form-group">
-	                        	<select name="departamento" id="departamento" class="form-control select2-single">
-			                    	<option value=""><spring:message code="blank"/></option>
-			                    	<c:forEach items="${departamentos}" var="departamento">
-										<c:choose> 
-											<c:when test="${departamento.idUnico eq municipio.departamento.idUnico}">
-												<option selected value="${departamento.idUnico}">${departamento.nombreDepartamento}</option>
-											</c:when>
-											<c:otherwise>
-												<option value="${departamento.idUnico}">${departamento.nombreDepartamento}</option>
-											</c:otherwise>
-										</c:choose> 
-									</c:forEach>
-			                    </select>
-	                        </fieldset>
-	                        <span class="help-block"></span>
+	                    </div>  
+                        <div class="form-group">
+	                      <div class="input-group">
+	                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+	                        <input type="text" name="correoElectronico" value="${user.correoElectronico}" class="form-control" placeholder="<spring:message code="correoElectronico" />">
 	                      </div>
 	                    </div>
                         <div class="form-group">
                           <button type="submit" class="btn btn-primary" id="guardar"><i class="fa fa-save"></i>&nbsp;<spring:message code="save" /></button>
-						  <a href="${fn:escapeXml(municipioUrl)}" class="btn btn-danger"><i class="fa fa-undo"></i>&nbsp;<spring:message code="cancel" /></a>
+						  <a href="${fn:escapeXml(usuarioUrl)}" class="btn btn-danger"><i class="fa fa-undo"></i>&nbsp;<spring:message code="cancel" /></a>
                         </div>
                       </form>
                     </div>
@@ -145,10 +118,10 @@
     
   </div>
   <!-- Pie de p�gina -->
-  <jsp:include page="../../fragments/bodyFooter.jsp" />
+  <jsp:include page="../fragments/bodyFooter.jsp" />
 
   <!-- Bootstrap and necessary plugins -->
-  <jsp:include page="../../fragments/corePlugins.jsp" />
+  <jsp:include page="../fragments/corePlugins.jsp" />
 
   <!-- GenesisUI main scripts -->
   <spring:url value="/resources/js/app.js" var="App" />
@@ -156,11 +129,11 @@
   
   <!-- Lenguaje -->
   <c:choose>
-	<c:when test="${cookie.eSivinLang.value == null}">
+	<c:when test="${cookie.eFabrettoLang.value == null}">
 		<c:set var="lenguaje" value="es"/>
 	</c:when>
 	<c:otherwise>
-		<c:set var="lenguaje" value="${cookie.eSivinLang.value}"/>
+		<c:set var="lenguaje" value="${cookie.eFabrettoLang.value}"/>
 	</c:otherwise>
   </c:choose>
   
@@ -173,10 +146,11 @@
   <script src="${jQValidationLoc}"></script>
   <spring:url value="/resources/vendors/js/select2.min.js" var="Select2" />
   <script src="${Select2}" type="text/javascript"></script>
+  
 
   <!-- Custom scripts required by this view -->
-  <spring:url value="/resources/js/views/Municipio.js" var="processMunicipio" />
-  <script src="${processMunicipio}"></script>
+  <spring:url value="/resources/js/views/User.js" var="processUser" />
+  <script src="${processUser}"></script>
   
 <c:set var="successmessage"><spring:message code="process.success" /></c:set>
 <c:set var="errormessage"><spring:message code="process.errors" /></c:set>
@@ -184,11 +158,11 @@
 
 <script>
 	jQuery(document).ready(function() {
-		var parametros = {saveMunicipioUrl: "${saveMunicipioUrl}", successmessage: "${successmessage}",
+		var parametros = {saveUserUrl: "${saveUserUrl}", successmessage: "${successmessage}",
 				errormessage: "${errormessage}",waitmessage: "${waitmessage}",
-				municipioUrl: "${municipioUrl}" 
+				usuarioUrl: "${usuarioUrl}" 
 		};
-		ProcessMunicipio.init(parametros);
+		ProcessUser.init(parametros);
 	});
 </script>
   

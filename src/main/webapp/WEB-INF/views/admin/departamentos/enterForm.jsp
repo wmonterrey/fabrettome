@@ -43,12 +43,12 @@
   	<jsp:include page="../../fragments/sideBar.jsp" />
     <!-- Main content -->
     <main class="main">
-	  <spring:url value="/admin/departamentos/guardarDepartamento/" var="saveDepartamentoUrl"></spring:url>
-  	  <spring:url value="/admin/departamentos/" var="departamentoUrl"/>	
+	  <spring:url value="/super/departamentos/guardarDepartamento/" var="saveDepartamentoUrl"></spring:url>
+  	  <spring:url value="/super/departamentos/" var="departamentoUrl"/>	
       <!-- Breadcrumb -->
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<spring:url value="/" htmlEscape="true "/>"><spring:message code="home" /></a></li>
-        <li class="breadcrumb-item"><a href="<spring:url value="/admin/departamentos/" htmlEscape="true "/>"><spring:message code="departamentos" /></a></li>
+        <li class="breadcrumb-item"><a href="<spring:url value="/super/departamentos/" htmlEscape="true "/>"><spring:message code="departamentos" /></a></li>
         <li class="breadcrumb-item active"><c:out value="${departamento.idUnico}" /></li>
         <!-- Breadcrumb Menu-->
         <li class="breadcrumb-menu d-md-down-none">

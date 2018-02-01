@@ -17,24 +17,24 @@
 	            </ul>
 	        </li>
 	        </sec:authorize>
-	        <sec:authorize url="/admin/">
+	        <sec:authorize url="/super/">
             <li class="nav-item nav-dropdown catalogos">
 	            <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-cogs"></i><spring:message code="catalogs" /></a>
 	            <ul class="nav-dropdown-items">
 	            	<li class="nav-item">
-	                    <a class="nav-link" href="<spring:url value="/admin/departamentos/" htmlEscape="true "/>"><i class="fa fa-map-o"></i><spring:message code="catalogs.dep" /></a>
+	                    <a class="nav-link" href="<spring:url value="/super/departamentos/" htmlEscape="true "/>"><i class="fa fa-map-o"></i><spring:message code="catalogs.dep" /></a>
 	                </li>
 	                <li class="nav-item">
-	                    <a class="nav-link" href="<spring:url value="/admin/municipios/" htmlEscape="true "/>"><i class="fa fa-map-marker"></i><spring:message code="catalogs.mun" /></a>
+	                    <a class="nav-link" href="<spring:url value="/super/municipios/" htmlEscape="true "/>"><i class="fa fa-map-marker"></i><spring:message code="catalogs.mun" /></a>
 	                </li>
 	                <li class="nav-item">
-	                    <a class="nav-link" href="<spring:url value="/admin/comunidades/" htmlEscape="true "/>"><i class="fa fa-map-pin"></i><spring:message code="catalogs.com" /></a>
+	                    <a class="nav-link" href="<spring:url value="/super/comunidades/" htmlEscape="true "/>"><i class="fa fa-map-pin"></i><spring:message code="catalogs.com" /></a>
 	                </li>
 	                <li class="nav-item">
-	                    <a class="nav-link" href="<spring:url value="/admin/centros/" htmlEscape="true "/>"><i class="fa fa-building"></i><spring:message code="catalogs.cen" /></a>
+	                    <a class="nav-link" href="<spring:url value="/super/centros/" htmlEscape="true "/>"><i class="fa fa-building"></i><spring:message code="catalogs.cen" /></a>
 	                </li>
 	                <li class="nav-item">
-	                    <a class="nav-link" href="<spring:url value="/admin/escuelas/" htmlEscape="true "/>"><i class="fa fa-university"></i><spring:message code="catalogs.esc" /></a>
+	                    <a class="nav-link" href="<spring:url value="/super/escuelas/" htmlEscape="true "/>"><i class="fa fa-university"></i><spring:message code="catalogs.esc" /></a>
 	                </li>
 	            </ul>
 	        </li>

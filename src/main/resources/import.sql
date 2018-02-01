@@ -1,10 +1,10 @@
-INSERT INTO catRol (nombreRol) VALUES ('ROLE_USER');
+INSERT INTO catRol (nombreRol) VALUES ('ROLE_PERFIL');
 INSERT INTO catRol (nombreRol) VALUES ('ROLE_SUPER');
 INSERT INTO catRol (nombreRol) VALUES ('ROLE_ADMIN');
 INSERT INTO catUsuario (nombreUsuario, cuentaSinExpirar, cuentaSinBloquear, nombreCompleto, fechaCreacion, usuarioRegistro, credencialSinExpirar, correoElectronico, habilitado, fechaUltimoAcceso, ultimoCambioCredencial, fechaUltimaModificacion, usuarioModifica, contrasena) VALUES ('admin', '', '', 'Administrador', '2017-12-14 08:31:00', 'admin', '', 'fabrettome@fabretto.org.ni', '', '2017-12-14 10:05:40', NULL, '2017-12-14 17:58:06', 'admin', '6c36dc262b0e44be5811c2296669fc65643aec9dcaa4a76501e0a9508b633fd01ee59a207f8c6d68');
 INSERT INTO tblusuariorol (nombreRol, nombreUsuario,  fechaRegistro, idEquipo, pasivo, usuarioRegistro) VALUES ('ROLE_ADMIN', 'admin', '2017-12-14 10:56:43', 'localhost', '0', 'admin');
 INSERT INTO tblusuariorol (nombreRol, nombreUsuario, fechaRegistro, idEquipo, pasivo, usuarioRegistro) VALUES ('ROLE_SUPER', 'admin', '2017-12-14 10:56:43', 'localhost', '0', 'admin');
-INSERT INTO tblusuariorol (nombreRol, nombreUsuario, fechaRegistro, idEquipo, pasivo, usuarioRegistro) VALUES ('ROLE_USER', 'admin', '2017-12-14 10:56:43', 'localhost', '0', 'admin');
+INSERT INTO tblusuariorol (nombreRol, nombreUsuario, fechaRegistro, idEquipo, pasivo, usuarioRegistro) VALUES ('ROLE_PERFIL', 'admin', '2017-12-14 10:56:43', 'localhost', '0', 'admin');
 
 
 /*Plantilla*/
@@ -74,7 +74,7 @@ INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'entit
 /*Roles*/
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'ROLE_ADMIN', 'Administrador','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'ROLE_SUPER', 'Supervisor','0','0',0);
-INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'ROLE_USER', 'Usuario','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'ROLE_PERFIL', 'Perfil de personas','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'rolAll', 'Todos los roles ya están agregados!','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'rolEnabled', 'Rol esta activo!','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'rolDisabled', 'Rol esta inactivo!','0','0',0);
