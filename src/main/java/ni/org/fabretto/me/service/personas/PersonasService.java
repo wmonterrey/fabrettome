@@ -10,7 +10,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import ni.org.fabretto.me.domain.Persona;
 
 
@@ -31,8 +30,17 @@ public class PersonasService {
 	
 	/**
 	 * Regresa las personas en base a los parametros
-	 * 
+	 * @param ident Identificador de la persona
+	 * @param primerNombre Primer Nombre de la persona
+	 * @param segundoNombre Segundo Nombre de la persona
+	 * @param primerApellido Primer Apellido de la persona
+	 * @param segundoApellido Segundo Apellido de la persona
+	 * @param incluirPasivos solo personas activas o tambien las activas
+	 * @param desde Buscar fechas de nacimiento desde...
+	 * @param hasta Buscar fechas de nacimiento hasta...
 	 * @return una lista de <code>Persona</code>(s)
+	 * @param sexo Sexo de la persona
+	 * @param comunidad Comunidad de la persona
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Persona> getPersonas(String ident, String primerNombre, 

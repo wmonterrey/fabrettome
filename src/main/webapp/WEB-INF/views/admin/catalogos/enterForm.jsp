@@ -46,7 +46,9 @@
     <!-- Main content -->
     <main class="main">
 	  <spring:url value="/admin/catalogos/saveCatalogo" var="saveCatalogoUrl"></spring:url>
-  	  <spring:url value="/admin/catalogos/" var="catalogoUrl"/>	
+  	  <spring:url value="/admin/catalogos/editCatalogo/{messageKey}/" var="catalogoUrl">
+         <spring:param name="messageKey" value="${catalogo.messageKey}" />
+      </spring:url>
       <!-- Breadcrumb -->
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<spring:url value="/" htmlEscape="true "/>"><spring:message code="home" /></a></li>
@@ -69,7 +71,7 @@
               <spring:url value="/resources/img/fabrettoapple.png" var="logofab" />
               <div class="card">
                 <div class="card-header">
-                  <img src="${logofab}" alt="<spring:message code="'title'" />" />&nbsp;<i class="icon-note"></i> <spring:message code="edit" /> <spring:message code="translation" />
+                  <img src="${logofab}" alt="<spring:message code="'title'" />" />&nbsp;<i class="fa fa-archive"></i> <spring:message code="edit" /> <spring:message code="seccatalogs" />
                   <div class="card-actions">
                     
                   </div>
@@ -85,7 +87,29 @@
 	                      <div class="col-md-9">
 	                      	<div class="input-group">
 	                      		<span class="input-group-addon"><i class="fa fa-key"></i></span>
-	                        	<input type="text" id="messageKey" readonly name="messageKey" value="${message.messageKey}" class="form-control" placeholder="<spring:message code="messageKey" />">
+	                        	<input type="text" id="messageKey" name="messageKey" value="${catalogo.messageKey}_XX" class="form-control" placeholder="<spring:message code="messageKey" />">
+	                        	<span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
+	                        </div>
+	                        <span class="help-block"></span>
+	                      </div>
+	                    </div>
+	                    <div class="form-group row">
+	                      <label class="col-md-3 col-form-label" for="catRoot"><strong><spring:message code="catRoot" /></strong></label>
+	                      <div class="col-md-9">
+	                      	<div class="input-group">
+	                      		<span class="input-group-addon"><i class="fa fa-archive"></i></span>
+	                        	<input type="text" id="catRoot" readonly name="catRoot" value="${catalogo.messageKey}" class="form-control" placeholder="<spring:message code="catRoot" />">
+	                        	<span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
+	                        </div>
+	                        <span class="help-block"></span>
+	                      </div>
+	                    </div>
+	                    <div class="form-group row">
+	                      <label class="col-md-3 col-form-label" for="catKey"><strong><spring:message code="catKey" /></strong></label>
+	                      <div class="col-md-9">
+	                      	<div class="input-group">
+	                      		<span class="input-group-addon"><i class="fa fa-info"></i></span>
+	                        	<input type="text" id="catKey" name="catKey"  class="form-control" placeholder="<spring:message code="catKey" />">
 	                        	<span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
 	                        </div>
 	                        <span class="help-block"></span>
@@ -96,7 +120,7 @@
 	                      <div class="col-md-9">
 	                      	<div class="input-group">
 	                      		<span class="input-group-addon"><i class="fa fa-flag"></i></span>
-	                        	<input type="text" id="spanish" name="spanish" value="${message.spanish}" class="form-control" placeholder="<spring:message code="spanish" />">
+	                        	<input type="text" id="spanish" name="spanish"  class="form-control" placeholder="<spring:message code="spanish" />">
 	                        	<span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
 	                        </div>
 	                        <span class="help-block"></span>
@@ -107,15 +131,28 @@
 	                      <div class="col-md-9">
 	                      	<div class="input-group">
 	                      		<span class="input-group-addon"><i class="fa fa-flag"></i></span>
-	                        	<input type="text" id="english" name="english" value="${message.english}" class="form-control" placeholder="<spring:message code="english" />">
+	                        	<input type="text" id="english" name="english"  class="form-control" placeholder="<spring:message code="english" />">
 	                        	<span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
 	                        </div>
 	                        <span class="help-block"></span>
 	                      </div>
 	                    </div>
+	                    <div class="form-group row">
+	                      <label class="col-md-3 col-form-label" for="order"><strong><spring:message code="order" /></strong></label>
+	                      <div class="col-md-9">
+	                      	<div class="input-group">
+	                      		<span class="input-group-addon"><i class="fa fa-sort-numeric-asc"></i></span>
+	                        	<input type="text" id="order" name="order"  class="form-control" placeholder="<spring:message code="order" />">
+	                        	<span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
+	                        </div>
+	                        <span class="help-block"></span>
+	                      </div>
+	                    </div>
+	                    <input type="text" hidden id="isCat" name="isCat" value="0">
+	                    <input type="text" hidden id="pasive" name="pasive" value="0">
                         <div class="form-group">
                           <button type="submit" class="btn btn-primary" id="guardar"><i class="fa fa-save"></i>&nbsp;<spring:message code="save" /></button>
-						  <a href="${fn:escapeXml(mensajesUrl)}" class="btn btn-danger"><i class="fa fa-undo"></i>&nbsp;<spring:message code="cancel" /></a>
+						  <a href="${fn:escapeXml(catalogoUrl)}" class="btn btn-danger"><i class="fa fa-undo"></i>&nbsp;<spring:message code="cancel" /></a>
                         </div>
                       </form>
                     </div>
@@ -173,9 +210,9 @@
 
 <script>
 	jQuery(document).ready(function() {
-		var parametros = {saveMensajeUrl: "${saveMensajeUrl}", successmessage: "${successmessage}",
+		var parametros = {saveMensajeUrl: "${saveCatalogoUrl}", successmessage: "${successmessage}",
 				errormessage: "${errormessage}",waitmessage: "${waitmessage}",
-				mensajesUrl: "${mensajesUrl}" 
+				mensajesUrl: "${catalogoUrl}" 
 		};
 		ProcessMensaje.init(parametros);
 	});

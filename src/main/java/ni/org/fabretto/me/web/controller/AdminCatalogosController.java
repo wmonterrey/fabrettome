@@ -128,6 +128,11 @@ public class AdminCatalogosController {
 	{
     	try{
 			MessageResource message = messageResourceService.getMensaje(messageKey);
+			if(message==null) {
+				message = new MessageResource();
+				message.setMessageKey(messageKey);
+				
+			}
 			//Actualiza la traduccion
 			message.setSpanish(spanish);
 			message.setEnglish(english);

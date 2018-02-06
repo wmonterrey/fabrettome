@@ -14,6 +14,11 @@ return {
 	}, "Invalid");
   $( '#edit-mensaje-form' ).validate( {
     rules: {
+      messageKey: {
+    	  minlength: 1,
+          maxlength: 100,
+          required: true
+      },
       spanish: {
     	  minlength: 1,
           maxlength: 255,
@@ -22,6 +27,16 @@ return {
       english: {
     	  minlength: 1,
           maxlength: 255,
+          required: true
+      },
+      catKey: {
+    	  minlength: 1,
+          maxlength: 50,
+          required: true
+      },
+      order: {
+    	  min: 1,
+          max: 99,
           required: true
       }
     },
@@ -86,8 +101,7 @@ return {
   		        var $input = $('form input');
   		        if( $(this).is( $input.last() ) )
   		        {
-  		            //Time to submit the form!!!!
-  		            //alert( 'Hooray .....' );
+  		        	processMensaje();
   		        }
   		        else
   		        {

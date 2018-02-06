@@ -167,7 +167,6 @@ public class AdminPersonasController {
      * @param tipoPersona tipo de persona
      * @param catPersona categoria de persona
      * @param comunidad comunidad de la persona
-     * @param centro centro de la persona
      * @return ResponseEntity con el persona guardado
      */
     @RequestMapping( value="/guardarPersona/", method=RequestMethod.POST)
