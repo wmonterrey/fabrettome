@@ -9,7 +9,7 @@ return {
     	processCentro();
     }
   } );
-  $('#comunidad').select2({
+  $('#comunidad, #director').select2({
 	    theme: "bootstrap"
   });	
   $('#codigo').focus();
@@ -29,7 +29,7 @@ return {
           required: true
       },
       comunidad: {
-          required: true
+          required: false
       },
       director: {
           required: false

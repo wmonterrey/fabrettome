@@ -79,6 +79,7 @@
 	                    <th><spring:message code="idUnico" /></th>
 	                    <th><spring:message code="nombreComunidad" /></th>
 	                    <th><spring:message code="nombreMunicipio" /></th>
+	                    <th><spring:message code="nombreCentro" /></th>
 	                    <th><spring:message code="enabled" /></th>
 	                    <th><spring:message code="actions" /></th>
                 	</tr>
@@ -93,6 +94,7 @@
                             <td><a href="${fn:escapeXml(comunidadUrl)}"><c:out value="${comunidad.idUnico}" /></a></td>
                             <td><c:out value="${comunidad.nombreComunidad}" /></td>
                             <td><c:out value="${comunidad.municipio.nombreMunicipio}" /></td>
+                            <td><c:out value="${comunidad.centro.nombreCentro}" /></td>
                             <c:choose>
                                 <c:when test="${comunidad.pasivo=='0'.charAt(0)}">
                                     <td><span class="badge badge-success"><spring:message code="CAT_SINO_SI" /></span></td>
@@ -158,11 +160,11 @@
 
   <!-- Lenguaje -->
   <c:choose>
-	<c:when test="${cookie.eSivinLang.value == null}">
+	<c:when test="${cookie.eFabrettoLang.value == null}">
 		<c:set var="lenguaje" value="es"/>
 	</c:when>
 	<c:otherwise>
-		<c:set var="lenguaje" value="${cookie.eSivinLang.value}"/>
+		<c:set var="lenguaje" value="${cookie.eFabrettoLang.value}"/>
 	</c:otherwise>
   </c:choose>
   <spring:url value="/resources/vendors/js/i18n/datatables/label_{language}.json" var="dataTablesLang">

@@ -7,6 +7,9 @@
 <head>
 <jsp:include page="../../fragments/headTag.jsp" />
 <!-- Styles required by this views -->
+<spring:url value="/resources/vendors/css/dataTables.bootstrap4.min.css" var="dataTablesCSS" />
+<link href="${dataTablesCSS}" rel="stylesheet" type="text/css"/>
+
 </head>
 <!-- BODY options, add following classes to body to change options
 
@@ -43,13 +46,11 @@
   	<jsp:include page="../../fragments/sideBar.jsp" />
     <!-- Main content -->
     <main class="main">
-	  <spring:url value="/super/departamentos/guardarDepartamento/" var="saveDepartamentoUrl"></spring:url>
-  	  <spring:url value="/super/departamentos/" var="departamentoUrl"/>	
+
       <!-- Breadcrumb -->
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<spring:url value="/" htmlEscape="true "/>"><spring:message code="home" /></a></li>
-        <li class="breadcrumb-item"><a href="<spring:url value="/super/departamentos/" htmlEscape="true "/>"><spring:message code="departamentos" /></a></li>
-        <li class="breadcrumb-item active"><c:out value="${departamento.idUnico}" /></li>
+        <li class="breadcrumb-item active"><spring:message code="translations" /></li>
         <!-- Breadcrumb Menu-->
         <li class="breadcrumb-menu d-md-down-none">
           <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -60,77 +61,63 @@
         </li>
       </ol>
 	  <!-- Container -->
-      <div class="container-fluid">
-
+	  <div class="container-fluid">
         <div class="animated fadeIn">
-          <div class="row">
-            <div class="col-md-12">
-              <spring:url value="/resources/img/fabrettoapple.png" var="logofab" />
-              <div class="card">
-                <div class="card-header">
-                  <img src="${logofab}" alt="<spring:message code="'title'" />" />&nbsp;<i class="icon-note"></i> <spring:message code="edit" /> <spring:message code="catalogs.dep" />
-                  <div class="card-actions">
-                    
-                  </div>
-                </div>
-                <div class="card-body">
-
-                  <div class="row">
-
+          <spring:url value="/resources/img/fabrettoapple.png" var="logofab" />
+          <div class="card">
+            <div class="card-header">
+              <img src="${logofab}" alt="<spring:message code="'title'" />" />&nbsp;<i class="fa fa-flag"></i> <spring:message code="translations" />
+              <div class="card-actions">
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
                     <div class="col-md-8">
-                      <form action="#" autocomplete="off" id="add-departamento-form">    
-                      	<div class="form-group row">
-	                      <label class="col-md-3 col-form-label" for="idUnico"><strong><spring:message code="idUnico" /></strong></label>
+                      <form action="#" autocomplete="off" id="search-message-form">                      
+						<div class="form-group row">
+	                      <label class="col-md-3 col-form-label" for="messageParameter"><strong><spring:message code="search" /></strong></label>
 	                      <div class="col-md-9">
 	                      	<div class="input-group">
 	                      		<span class="input-group-addon"><i class="fa fa-key"></i></span>
-	                        	<input type="text" id="idUnico" readonly name="idUnico" value="${departamento.idUnico}" class="form-control" placeholder="<spring:message code="idUnico" />">
+	                        	<input type="text" id="messageParameter" name="messageParameter" class="form-control" placeholder="<spring:message code="search" />">
 	                        	<span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
 	                        </div>
 	                        <span class="help-block"></span>
 	                      </div>
 	                    </div>
-	                    <div class="form-group row">
-	                      <label class="col-md-3 col-form-label" for="nombreDepartamento"><strong><spring:message code="nombreDepartamento" /></strong></label>
-	                      <div class="col-md-9">
-	                      	<div class="input-group">
-	                      		<span class="input-group-addon"><i class="fa fa-map-o"></i></span>
-	                        	<input type="text" id="nombreDepartamento" name="nombreDepartamento" value="${departamento.nombreDepartamento}" class="form-control" placeholder="<spring:message code="nombreDepartamento" />">
-	                        	<span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
-	                        </div>
-	                        <span class="help-block"></span>
-	                      </div>
-	                    </div>
-                        <div class="form-group">
-                          <button type="submit" class="btn btn-primary" id="guardar"><i class="fa fa-save"></i>&nbsp;<spring:message code="save" /></button>
-						  <a href="${fn:escapeXml(departamentoUrl)}" class="btn btn-danger"><i class="fa fa-undo"></i>&nbsp;<spring:message code="cancel" /></a>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
+	                    </form>
+	                 </div>
+              </div>
+              <div class="row">
+              <table id="lista_mensajes" class="table table-striped table-bordered datatable" width="100%">
+                <thead>
+                	<tr>
+						<th><spring:message code="messageKey" /></th>
+						<th><spring:message code="spanish" /></th>
+						<th><spring:message code="english" /></th>
+						<th></th>
+					</tr>
+                </thead>
+              </table>
               </div>
             </div>
-            <!-- /.col -->
           </div>
-          <!-- /.row -->
         </div>
-
       </div>
-      <!-- /.conainer-fluid -->
+      <!-- /.container-fluid -->
     </main>
     
   </div>
-  <!-- Pie de p�gina -->
+  <!-- Pie de página -->
   <jsp:include page="../../fragments/bodyFooter.jsp" />
 
   <!-- Bootstrap and necessary plugins -->
   <jsp:include page="../../fragments/corePlugins.jsp" />
-
+  
   <!-- GenesisUI main scripts -->
   <spring:url value="/resources/js/app.js" var="App" />
   <script src="${App}" type="text/javascript"></script>
-  
+
   <!-- Lenguaje -->
   <c:choose>
 	<c:when test="${cookie.eFabrettoLang.value == null}">
@@ -140,6 +127,9 @@
 		<c:set var="lenguaje" value="${cookie.eFabrettoLang.value}"/>
 	</c:otherwise>
   </c:choose>
+  <spring:url value="/resources/vendors/js/i18n/datatables/label_{language}.json" var="dataTablesLang">
+  	<spring:param name="language" value="${lenguaje}" />
+  </spring:url>
   
   <!-- Plugins and scripts required by this views -->
   <spring:url value="/resources/vendors/js/jquery.validate.min.js" var="JQueryValidate" />
@@ -148,25 +138,27 @@
       <spring:param name="language" value="${lenguaje}" />
   </spring:url>
   <script src="${jQValidationLoc}"></script>
+  <spring:url value="/resources/vendors/js/jquery.dataTables.min.js" var="dataTablesSc" />
+  <script src="${dataTablesSc}" type="text/javascript"></script>
+  <spring:url value="/resources/vendors/js/dataTables.bootstrap4.min.js" var="dataTablesBsSc" />
+  <script src="${dataTablesBsSc}" type="text/javascript"></script>
   
-
   <!-- Custom scripts required by this view -->
-  <spring:url value="/resources/js/views/Departamento.js" var="processDepartamento" />
-  <script src="${processDepartamento}"></script>
-  
-<c:set var="successmessage"><spring:message code="process.success" /></c:set>
-<c:set var="errormessage"><spring:message code="process.errors" /></c:set>
-<c:set var="waitmessage"><spring:message code="process.wait" /></c:set>
-
-<script>
-	jQuery(document).ready(function() {
-		var parametros = {saveDepartamentoUrl: "${saveDepartamentoUrl}", successmessage: "${successmessage}",
-				errormessage: "${errormessage}",waitmessage: "${waitmessage}",
-				departamentoUrl: "${departamentoUrl}" 
+  <spring:url value="/resources/js/views/Message.js" var="searchMessagesScript" />
+  <script src="${searchMessagesScript}"></script>
+  <spring:url value="/admin/traduccion/messages/" var="messagesUrl"/>
+  <spring:url value="/admin/traduccion/editMensaje/" var="editMessagesUrl"/>
+  <c:set var="successmessage"><spring:message code="process.success" /></c:set>
+  <c:set var="errormessage"><spring:message code="process.errors" /></c:set>
+  <c:set var="waitmessage"><spring:message code="process.wait" /></c:set>
+  <c:set var="noResults"><spring:message code="noResults" /></c:set>
+  <script>
+  		jQuery(document).ready(function() {
+		var parametros = {messagesUrl: "${messagesUrl}",editMessagesUrl: "${editMessagesUrl}",successmessage: "${successmessage}",
+				errormessage: "${errormessage}",waitmessage: "${waitmessage}" ,dataTablesLang: "${dataTablesLang}",noResults: "${noResults}"
 		};
-		ProcessDepartamento.init(parametros);
+		ProcessSearch.init(parametros);
 	});
-</script>
-  
+  </script>
 </body>
 </html>

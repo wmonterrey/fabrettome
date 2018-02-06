@@ -52,7 +52,7 @@ public class UsuariosController {
 	
 	/**
      * Controlador para validar si la credencial de usuario no esta vencida
-     *
+     * @param userName El nombre del usuario al que se le verifican las credenciales
      * @return verdadero o falso el estado de las credenciales
      */
 	@RequestMapping(value="checkcredential", method=RequestMethod.GET)
@@ -129,7 +129,7 @@ public class UsuariosController {
      * 
      * @param nombreCompleto nombre completo de usuario
      * @param correoElectronico Correo
-     * @return a ResponseEntity<String> con la entidad guardada
+     * @return a ResponseEntity con la entidad guardada
      */
     @RequestMapping( value="guardarUsuarioEditado", method=RequestMethod.POST)
 	public ResponseEntity<String> processEditUserForm( @RequestParam( value="nombreCompleto", required=true ) String nombreCompleto
@@ -181,7 +181,7 @@ public class UsuariosController {
      * Controlador para guardar la contraseña de usuario
      *
      * @param contrasena El nuevo password
-     * @return a ResponseEntity<String> con la entidad guardada
+     * @return a ResponseEntity con la entidad guardada
      */
     @RequestMapping( value="chgPass", method=RequestMethod.POST)
 	public ResponseEntity<String> processChangePassForm(@RequestParam( value="contrasena", required=true ) String contrasena

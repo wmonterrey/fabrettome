@@ -115,7 +115,7 @@
 	                      </div>
 	                    </div>
 	                    <div class="form-group row">
-	                      <label class="col-md-3 col-form-label" for="municipio"><strong><spring:message code="catalogs.mun" />&nbsp;</strong><i class="fa fa-hand-o-up"></i></label>
+	                      <label class="col-md-3 col-form-label" for="municipio"><strong><spring:message code="class ni.org.fabretto.me.domain.catalogs.Municipio" />&nbsp;</strong><i class="fa fa-hand-o-up"></i></label>
 	                      <div class="col-md-9">
 	                      	<fieldset class="form-group">
 	                        	<select name="municipio" id="municipio" class="form-control select2-single">
@@ -127,6 +127,27 @@
 											</c:when>
 											<c:otherwise>
 												<option value="${municipio.idUnico}">${municipio.nombreMunicipio}</option>
+											</c:otherwise>
+										</c:choose> 
+									</c:forEach>
+			                    </select>
+	                        </fieldset>
+	                        <span class="help-block"></span>
+	                      </div>
+	                    </div>
+	                    <div class="form-group row">
+	                      <label class="col-md-3 col-form-label" for="centro"><strong><spring:message code="centroEscuela" />&nbsp;</strong><i class="fa fa-hand-o-up"></i></label>
+	                      <div class="col-md-9">
+	                      	<fieldset class="form-group">
+	                        	<select name="centro" id="centro" class="form-control select2-single">
+			                    	<option value=""><spring:message code="blank"/></option>
+			                    	<c:forEach items="${centros}" var="centro">
+										<c:choose> 
+											<c:when test="${centro.idUnico eq escuela.centro.idUnico}">
+												<option selected value="${centro.idUnico}">${centro.nombreCentro}</option>
+											</c:when>
+											<c:otherwise>
+												<option value="${centro.idUnico}">${centro.nombreCentro}</option>
 											</c:otherwise>
 										</c:choose> 
 									</c:forEach>
@@ -167,11 +188,11 @@
   
   <!-- Lenguaje -->
   <c:choose>
-	<c:when test="${cookie.eSivinLang.value == null}">
+	<c:when test="${cookie.eFabrettoLang.value == null}">
 		<c:set var="lenguaje" value="es"/>
 	</c:when>
 	<c:otherwise>
-		<c:set var="lenguaje" value="${cookie.eSivinLang.value}"/>
+		<c:set var="lenguaje" value="${cookie.eFabrettoLang.value}"/>
 	</c:otherwise>
   </c:choose>
   

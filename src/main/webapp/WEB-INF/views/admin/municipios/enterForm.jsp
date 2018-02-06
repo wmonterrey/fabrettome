@@ -104,7 +104,7 @@
 	                      </div>
 	                    </div>
 	                    <div class="form-group row">
-	                      <label class="col-md-3 col-form-label" for="departamento"><strong><spring:message code="catalogs.dep" />&nbsp;</strong><i class="fa fa-hand-o-up"></i></label>
+	                      <label class="col-md-3 col-form-label" for="departamento"><strong><spring:message code="class ni.org.fabretto.me.domain.catalogs.Departamento" />&nbsp;</strong><i class="fa fa-hand-o-up"></i></label>
 	                      <div class="col-md-9">
 	                      	<fieldset class="form-group">
 	                        	<select name="departamento" id="departamento" class="form-control select2-single">
@@ -156,11 +156,11 @@
   
   <!-- Lenguaje -->
   <c:choose>
-	<c:when test="${cookie.eSivinLang.value == null}">
+	<c:when test="${cookie.eFabrettoLang.value == null}">
 		<c:set var="lenguaje" value="es"/>
 	</c:when>
 	<c:otherwise>
-		<c:set var="lenguaje" value="${cookie.eSivinLang.value}"/>
+		<c:set var="lenguaje" value="${cookie.eFabrettoLang.value}"/>
 	</c:otherwise>
   </c:choose>
   

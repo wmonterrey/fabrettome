@@ -7,6 +7,8 @@
 <head>
 <jsp:include page="../../fragments/headTag.jsp" />
 <!-- Styles required by this views -->
+<spring:url value="/resources/vendors/css/select2.min.css" var="select2css" />
+<link href="${select2css}" rel="stylesheet" type="text/css"/>
 </head>
 <!-- BODY options, add following classes to body to change options
 
@@ -43,13 +45,12 @@
   	<jsp:include page="../../fragments/sideBar.jsp" />
     <!-- Main content -->
     <main class="main">
-	  <spring:url value="/super/departamentos/guardarDepartamento/" var="saveDepartamentoUrl"></spring:url>
-  	  <spring:url value="/super/departamentos/" var="departamentoUrl"/>	
+	  <spring:url value="/admin/traduccion/saveTrans" var="saveMensajeUrl"></spring:url>
+  	  <spring:url value="/admin/traduccion/" var="mensajesUrl"/>	
       <!-- Breadcrumb -->
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<spring:url value="/" htmlEscape="true "/>"><spring:message code="home" /></a></li>
-        <li class="breadcrumb-item"><a href="<spring:url value="/super/departamentos/" htmlEscape="true "/>"><spring:message code="departamentos" /></a></li>
-        <li class="breadcrumb-item active"><c:out value="${departamento.idUnico}" /></li>
+        <li class="breadcrumb-item active"><spring:message code="translations" /></li>
         <!-- Breadcrumb Menu-->
         <li class="breadcrumb-menu d-md-down-none">
           <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -68,7 +69,7 @@
               <spring:url value="/resources/img/fabrettoapple.png" var="logofab" />
               <div class="card">
                 <div class="card-header">
-                  <img src="${logofab}" alt="<spring:message code="'title'" />" />&nbsp;<i class="icon-note"></i> <spring:message code="edit" /> <spring:message code="catalogs.dep" />
+                  <img src="${logofab}" alt="<spring:message code="'title'" />" />&nbsp;<i class="icon-note"></i> <spring:message code="edit" /> <spring:message code="translation" />
                   <div class="card-actions">
                     
                   </div>
@@ -78,24 +79,35 @@
                   <div class="row">
 
                     <div class="col-md-8">
-                      <form action="#" autocomplete="off" id="add-departamento-form">    
-                      	<div class="form-group row">
-	                      <label class="col-md-3 col-form-label" for="idUnico"><strong><spring:message code="idUnico" /></strong></label>
+                      <form action="#" autocomplete="off" id="edit-mensaje-form">                      
+						<div class="form-group row">
+	                      <label class="col-md-3 col-form-label" for="messageKey"><strong><spring:message code="messageKey" /></strong></label>
 	                      <div class="col-md-9">
 	                      	<div class="input-group">
 	                      		<span class="input-group-addon"><i class="fa fa-key"></i></span>
-	                        	<input type="text" id="idUnico" readonly name="idUnico" value="${departamento.idUnico}" class="form-control" placeholder="<spring:message code="idUnico" />">
+	                        	<input type="text" id="messageKey" readonly name="messageKey" value="${message.messageKey}" class="form-control" placeholder="<spring:message code="messageKey" />">
 	                        	<span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
 	                        </div>
 	                        <span class="help-block"></span>
 	                      </div>
 	                    </div>
 	                    <div class="form-group row">
-	                      <label class="col-md-3 col-form-label" for="nombreDepartamento"><strong><spring:message code="nombreDepartamento" /></strong></label>
+	                      <label class="col-md-3 col-form-label" for="spanish"><strong><spring:message code="spanish" /></strong></label>
 	                      <div class="col-md-9">
 	                      	<div class="input-group">
-	                      		<span class="input-group-addon"><i class="fa fa-map-o"></i></span>
-	                        	<input type="text" id="nombreDepartamento" name="nombreDepartamento" value="${departamento.nombreDepartamento}" class="form-control" placeholder="<spring:message code="nombreDepartamento" />">
+	                      		<span class="input-group-addon"><i class="fa fa-flag"></i></span>
+	                        	<input type="text" id="spanish" name="spanish" value="${message.spanish}" class="form-control" placeholder="<spring:message code="spanish" />">
+	                        	<span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
+	                        </div>
+	                        <span class="help-block"></span>
+	                      </div>
+	                    </div>
+	                    <div class="form-group row">
+	                      <label class="col-md-3 col-form-label" for="english"><strong><spring:message code="english" /></strong></label>
+	                      <div class="col-md-9">
+	                      	<div class="input-group">
+	                      		<span class="input-group-addon"><i class="fa fa-flag"></i></span>
+	                        	<input type="text" id="english" name="english" value="${message.english}" class="form-control" placeholder="<spring:message code="english" />">
 	                        	<span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
 	                        </div>
 	                        <span class="help-block"></span>
@@ -103,7 +115,7 @@
 	                    </div>
                         <div class="form-group">
                           <button type="submit" class="btn btn-primary" id="guardar"><i class="fa fa-save"></i>&nbsp;<spring:message code="save" /></button>
-						  <a href="${fn:escapeXml(departamentoUrl)}" class="btn btn-danger"><i class="fa fa-undo"></i>&nbsp;<spring:message code="cancel" /></a>
+						  <a href="${fn:escapeXml(mensajesUrl)}" class="btn btn-danger"><i class="fa fa-undo"></i>&nbsp;<spring:message code="cancel" /></a>
                         </div>
                       </form>
                     </div>
@@ -148,11 +160,12 @@
       <spring:param name="language" value="${lenguaje}" />
   </spring:url>
   <script src="${jQValidationLoc}"></script>
-  
+  <spring:url value="/resources/vendors/js/select2.min.js" var="Select2" />
+  <script src="${Select2}" type="text/javascript"></script>
 
   <!-- Custom scripts required by this view -->
-  <spring:url value="/resources/js/views/Departamento.js" var="processDepartamento" />
-  <script src="${processDepartamento}"></script>
+  <spring:url value="/resources/js/views/Mensaje.js" var="processMensaje" />
+  <script src="${processMensaje}"></script>
   
 <c:set var="successmessage"><spring:message code="process.success" /></c:set>
 <c:set var="errormessage"><spring:message code="process.errors" /></c:set>
@@ -160,11 +173,11 @@
 
 <script>
 	jQuery(document).ready(function() {
-		var parametros = {saveDepartamentoUrl: "${saveDepartamentoUrl}", successmessage: "${successmessage}",
+		var parametros = {saveMensajeUrl: "${saveMensajeUrl}", successmessage: "${successmessage}",
 				errormessage: "${errormessage}",waitmessage: "${waitmessage}",
-				departamentoUrl: "${departamentoUrl}" 
+				mensajesUrl: "${mensajesUrl}" 
 		};
-		ProcessDepartamento.init(parametros);
+		ProcessMensaje.init(parametros);
 	});
 </script>
   

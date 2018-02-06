@@ -112,9 +112,9 @@ public class Centro extends BaseMetaData implements Auditable{
 		this.codigo = codigo;
 	}
 	
-	/** Columna = "idComunidad", nullable = false, length = 50.
+	/** Columna = "idComunidad", nullable = true, length = 50.
 	 * @return comunidad Comunidad donde se encuentra el centro*/
-	@ManyToOne(optional=false)
+	@ManyToOne(optional=true)
 	@JoinColumn(name="idComunidad")
 	@ForeignKey(name = "fkComunidadCentro")
 	public Comunidad getComunidad() {

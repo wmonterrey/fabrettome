@@ -9,7 +9,7 @@ return {
     	processEscuela();
     }
   } );
-  $('#centro, #escuela').select2({
+  $('#comunidad, #tipoEscuela, #catEscuela').select2({
 	    theme: "bootstrap"
   });	
   $('#codigo').focus();
@@ -23,7 +23,16 @@ return {
           maxlength: 100,
           required: true
       },
-      departamento: {
+      comunidad: {
+          required: true
+      },
+      codigo: {
+          required: true
+      },
+      tipoEscuela: {
+          required: true
+      },
+      catEscuela: {
           required: true
       },
       descEscuela: {

@@ -280,10 +280,10 @@
 									<td><spring:message code="${rol.rol.authority}" /></td>
 									<c:choose>
 										<c:when test="${rol.pasive=='0'.charAt(0)}">
-											<td><span class="label label-success"><spring:message code="CAT_SINO_SI" /></span></td>
+											<td><span class="badge badge-success"><spring:message code="CAT_SINO_SI" /></span></td>
 										</c:when>
 										<c:otherwise>
-											<td><span class="label label-danger"><spring:message code="CAT_SINO_NO" /></span></td>
+											<td><span class="badge badge-danger"><spring:message code="CAT_SINO_NO" /></span></td>
 										</c:otherwise>
 									</c:choose>
 									<td><c:out value="${rol.recordUser}" /></td>
@@ -326,10 +326,10 @@
 									<td><c:out value="${segmentousuario.segment.comunidad}" /> - <c:out value="${segmentousuario.segment.codigo}" /></td>
 									<c:choose>
 										<c:when test="${segmentousuario.pasive=='0'.charAt(0)}">
-											<td><span class="label label-success"><spring:message code="CAT_SINO_SI" /></span></td>
+											<td><span class="badge badge-success"><spring:message code="CAT_SINO_SI" /></span></td>
 										</c:when>
 										<c:otherwise>
-											<td><span class="label label-danger"><spring:message code="CAT_SINO_NO" /></span></td>
+											<td><span class="badge badge-danger"><spring:message code="CAT_SINO_NO" /></span></td>
 										</c:otherwise>
 									</c:choose>
 									<td><c:out value="${segmentousuario.recordUser}" /></td>

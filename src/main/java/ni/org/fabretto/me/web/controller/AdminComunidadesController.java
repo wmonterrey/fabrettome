@@ -26,9 +26,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.gson.Gson;
 
 import ni.org.fabretto.me.domain.audit.AuditTrail;
+import ni.org.fabretto.me.domain.catalogs.Centro;
 import ni.org.fabretto.me.domain.catalogs.Comunidad;
 import ni.org.fabretto.me.domain.catalogs.Municipio;
 import ni.org.fabretto.me.service.AuditTrailService;
+import ni.org.fabretto.me.service.CentrosService;
 import ni.org.fabretto.me.service.ComunidadesService;
 import ni.org.fabretto.me.service.MunicipiosService;
 
@@ -48,6 +50,8 @@ public class AdminComunidadesController {
 	private ComunidadesService comunidadesService;
 	@Resource(name="municipiosService")
 	private MunicipiosService municipiosService;
+	@Resource(name="centrosService")
+	private CentrosService centrosService;
 	
 	/**
      * Controlador para presentar lista de comunidades.
@@ -72,6 +76,8 @@ public class AdminComunidadesController {
 	public String initAddComunidadForm(Model model) {
     	List<Municipio> municipios = this.municipiosService.getMunicipiosActivos();
     	model.addAttribute("municipios", municipios);
+    	List<Centro> centros = this.centrosService.getCentrosActivos();
+    	model.addAttribute("centros", centros);
 		return "admin/comunidades/enterForm";
 	}
     
@@ -111,6 +117,8 @@ public class AdminComunidadesController {
 			model.addAttribute("comunidad",comunidadEditar);
 			List<Municipio> municipios = this.municipiosService.getMunicipiosActivos();
 	    	model.addAttribute("municipios", municipios);
+	    	List<Centro> centros = this.centrosService.getCentrosActivos();
+	    	model.addAttribute("centros", centros);
 			return "admin/comunidades/enterForm";
 		}
 		else{
@@ -126,6 +134,7 @@ public class AdminComunidadesController {
      * @param nombreComunidad nombre de la comunidad
      * @param descComunidad descripcion de la comunidad
      * @param municipio municipio de la comunidad
+     * @param centro Centro que atiende a la comunidad
      * @return ResponseEntity con el comunidad guardado
      */
     @RequestMapping( value="/guardarComunidad/", method=RequestMethod.POST)
@@ -133,6 +142,7 @@ public class AdminComunidadesController {
 	        , @RequestParam( value="nombreComunidad", required=true ) String nombreComunidad
 	        , @RequestParam( value="descComunidad", required=true ) String descComunidad
 	        , @RequestParam( value="municipio", required=true ) String municipio
+	        , @RequestParam( value="centro", required=true ) String centro	        
 	        )
 	{
     	try{
@@ -155,6 +165,7 @@ public class AdminComunidadesController {
 			comunidad.setNombreComunidad(nombreComunidad);
 			comunidad.setDescComunidad(descComunidad);
 			comunidad.setMunicipio(this.municipiosService.getMunicipio(municipio));
+			comunidad.setCentro(this.centrosService.getCentro(centro));
 			//Actualiza el comunidad
 			this.comunidadesService.saveComunidad(comunidad);
 			return createJsonResponse(comunidad);

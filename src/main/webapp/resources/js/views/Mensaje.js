@@ -1,4 +1,4 @@
-var ProcessComunidad = function () {
+var ProcessMensaje = function () {
 	
 return {
   //main function to initiate the module
@@ -6,32 +6,22 @@ return {
 	  
   $.validator.setDefaults( {
     submitHandler: function () {
-    	processComunidad();
+    	processMensaje();
     }
-  } );
-  $('#municipio').select2({
-	    theme: "bootstrap"
-  });	
-  $('#nombreComunidad').focus();
+  } );	
   jQuery.validator.addMethod("noSpace", function(value, element) { 
 		  return value.indexOf(" ") < 0 && value != ""; 
 	}, "Invalid");
-  $( '#add-comunidad-form' ).validate( {
+  $( '#edit-mensaje-form' ).validate( {
     rules: {
-      nombreComunidad: {
+      spanish: {
     	  minlength: 1,
-          maxlength: 100,
+          maxlength: 255,
           required: true
       },
-      municipio: {
-          required: true
-      },
-      centro: {
-          required: true
-      },
-      descComunidad: {
+      english: {
     	  minlength: 1,
-          maxlength: 500,
+          maxlength: 255,
           required: true
       }
     },
@@ -55,14 +45,14 @@ return {
     }
   });
   
-  function processComunidad(){
+  function processMensaje(){
 	  $.blockUI({ message: parametros.waitmessage });
-	    $.post( parametros.saveComunidadUrl
-	            , $( '#add-comunidad-form' ).serialize()
+	    $.post( parametros.saveMensajeUrl
+	            , $( '#edit-mensaje-form' ).serialize()
 	            , function( data )
 	            {
-	    			comunidad = JSON.parse(data);
-	    			if (comunidad.idUnico === undefined) {
+	    			mensaje = JSON.parse(data);
+	    			if (mensaje.messageKey === undefined) {
 	    				toastr.error(data, parametros.errormessage, {
 	    					    closeButton: true,
 	    					    progressBar: true,
@@ -71,10 +61,10 @@ return {
 					}
 					else{
 						$.blockUI({ message: parametros.successmessage });
-						$('#idUnico').val(comunidad.idUnico);
+						$('#messageKey').val(mensaje.messageKey);
 						setTimeout(function() { 
 				            $.unblockUI({ 
-				                onUnblock: function(){ window.location.href = parametros.comunidadUrl; } 
+				                onUnblock: function(){ window.location.href = parametros.mensajesUrl; } 
 				            }); 
 				        }, 1000); 
 					}

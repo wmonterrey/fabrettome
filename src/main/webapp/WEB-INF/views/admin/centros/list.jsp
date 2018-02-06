@@ -160,11 +160,11 @@
 
   <!-- Lenguaje -->
   <c:choose>
-	<c:when test="${cookie.eSivinLang.value == null}">
+	<c:when test="${cookie.eFabrettoLang.value == null}">
 		<c:set var="lenguaje" value="es"/>
 	</c:when>
 	<c:otherwise>
-		<c:set var="lenguaje" value="${cookie.eSivinLang.value}"/>
+		<c:set var="lenguaje" value="${cookie.eFabrettoLang.value}"/>
 	</c:otherwise>
   </c:choose>
   <spring:url value="/resources/vendors/js/i18n/datatables/label_{language}.json" var="dataTablesLang">

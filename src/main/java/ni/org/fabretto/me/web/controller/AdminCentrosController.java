@@ -145,8 +145,8 @@ public class AdminCentrosController {
 	        , @RequestParam( value="nombreCentro", required=true ) String nombreCentro
 	        , @RequestParam( value="direccion", required=true ) String direccion
 	        , @RequestParam( value="telefono", required=false, defaultValue="" ) String telefono
-	        , @RequestParam( value="comunidad", required=true ) String comunidad
-	        , @RequestParam( value="director", required=true ) String director
+	        , @RequestParam( value="comunidad", required=false ) String comunidad
+	        , @RequestParam( value="director", required=false ) String director
 	        )
 	{
     	try{

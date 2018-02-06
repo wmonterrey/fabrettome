@@ -38,6 +38,7 @@ public class Comunidad extends BaseMetaData implements Auditable{
 	private String nombreComunidad;
 	private String descComunidad;
 	private Municipio municipio;
+	private Centro centro;
 	
 	public Comunidad() {
 		super();
@@ -87,6 +88,18 @@ public class Comunidad extends BaseMetaData implements Auditable{
 	}
 	public void setMunicipio(Municipio municipio) {
 		this.municipio = municipio;
+	}
+	
+	/** Columna = "idCentro", nullable = false, length = 50.
+	 * @return centro Codigo del centro u Oratorio que atiende esta comunidad.*/
+	@ManyToOne(optional=false)
+	@JoinColumn(name="idCentro")
+	@ForeignKey(name = "fkCentroComunidad")
+	public Centro getCentro() {
+		return centro;
+	}
+	public void setCentro(Centro centro) {
+		this.centro = centro;
 	}
 
 	@Override

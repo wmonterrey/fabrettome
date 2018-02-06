@@ -2,7 +2,7 @@
  * GenesisUI - Bootstrap 4 Admin Template
  * @version v1.8.9
  * @link https://genesisui.com
- * Copyright (c) 2017 creativeLabs Łukasz Holeczek
+ * Copyright (c) 2017 creativeLabs 
  * @license https://genesisui.com/license.html
  */
 
@@ -8157,9 +8157,15 @@ base-chart.chart {
       transition: transform .3s, -webkit-transform .3s; }
   .sidebar .nav-dropdown.open {
     background: #e1e4e5; }
+  .sidebar .nav-dropdown.perfiles.open {
+    background: #e1e4e5; }
+  .sidebar .nav-dropdown.academico.open {
+    background: #B5B8B9; }    
+  .sidebar .nav-dropdown.administracion.open {
+    background: #B5B8B9; }  
     .sidebar .nav-dropdown.open > .nav-dropdown-items {
       max-height: 1000px; }
-    .sidebar .nav-dropdown.open .nav-link, .sidebar .nav-dropdown.open .navbar .dropdown-toggle, .navbar .sidebar .nav-dropdown.open .dropdown-toggle {
+    .dropdown-toggle {
       color: #34383c;
       border-left: 0 !important; }
     .sidebar .nav-dropdown.open > .nav-link.nav-dropdown-toggle::before, .sidebar .navbar .nav-dropdown.open > .nav-dropdown-toggle.dropdown-toggle::before, .navbar .sidebar .nav-dropdown.open > .nav-dropdown-toggle.dropdown-toggle::before {

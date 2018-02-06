@@ -1,3 +1,4 @@
+/*Roles*/
 INSERT INTO catRol (nombreRol) VALUES ('ROLE_PERFIL');
 INSERT INTO catRol (nombreRol) VALUES ('ROLE_SUPER');
 INSERT INTO catRol (nombreRol) VALUES ('ROLE_ADMIN');
@@ -31,8 +32,18 @@ INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'login
 /*Menu*/
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'home', 'Inicio','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'dashboard', 'Panel de control','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'profiles', 'Personas','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'profiles.est', 'Estudiantes','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'profiles.doc', 'Docentes','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'profiles.col', 'Colaboradores','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'profiles.per', 'Otras personas','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'academics', 'Académico','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'academics.mat', 'Matrícula','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'academics.diag', 'Pruebas Diagnósticas','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'admin', 'Administración','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'users', 'Usuarios','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'translation', 'Traducción','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'seccatalogs', 'Respuestas','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'catalogs', 'Catálogos','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'catalogs.dep', 'Departamentos','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'catalogs.mun', 'Municipios','0','0',0);
@@ -118,6 +129,7 @@ INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'noten
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'notlocked', 'Desbloqueado','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'process.errors', 'Han ocurrido errores en el proceso!','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'process.success', 'El proceso se ha completado exitosamente!','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'process.wait', 'Espere por favor...','0','0',0);
 INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'noResults', 'No hay registros!','0','0',0);
 
 /*Cambio contrasenia*/
@@ -219,3 +231,33 @@ INSERT INTO catMensaje (messageKey, catKey, catRoot, en, isCat, orden, catPasive
 INSERT INTO catMensaje (messageKey, catKey, catRoot, en, isCat, orden, catPasive, es) VALUES ('CAT_CATESC_A','A','CAT_CATESC',NULL,'0',1,'0','A');
 INSERT INTO catMensaje (messageKey, catKey, catRoot, en, isCat, orden, catPasive, es) VALUES ('CAT_CATESC_B','B','CAT_CATESC',NULL,'0',2,'0','B');
 INSERT INTO catMensaje (messageKey, catKey, catRoot, en, isCat, orden, catPasive, es) VALUES ('CAT_CATESC_C','C','CAT_CATESC',NULL,'0',2,'0','C');
+
+
+/*Formularios Relacionado a Traducción */
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'translations', 'Traducción de mensajes','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'messageKey', 'Código mensaje','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'spanish', 'Español','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'english', 'Inglés','0','0',0);
+
+/*Formularios Relacionado a Catalogos */
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'seccatalogsform', 'Gestión de respuestas','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'catKey', 'Valor de la respuesta','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'catRoot', 'Catálogo Padre','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'pasive', 'De baja','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'order', 'Ordenamiento','0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ( 'opcionesCatalogo', 'Respuestas en este catálogo','0','0',0);
+
+
+
+/*Formularios Relacionado a Personas */
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ('buscarPersona', 'Buscar persona', '0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ('ident', 'Identificador', '0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ('primerNombre', 'Primer Nombre', '0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ('segundoNombre', 'Segundo Nombre', '0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ('primerApellido', 'Primer Apellido', '0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ('segundoApellido', 'Segundo Apellido', '0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ('fechaNacimiento', 'Fecha de Nacimiento', '0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ('soloActivos', 'Buscar solo activos', '0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ('cualquierNombre', 'Buscar en todos los campos', '0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ('cualquierComunidad', 'Filtrar comunidades', '0','0',0);
+INSERT INTO catMensaje (messageKey, es, catPasive, isCat, orden) VALUES ('cualquierSexo', 'Filtrar sexo', '0','0',0);

@@ -78,9 +78,9 @@
 			                      </div>
 			                    </div>
 			                    <div class="form-group row">
-			                      <label class="col-md-3 col-form-label"><spring:message code="catalogs.dep" />:</label>
+			                      <label class="col-md-3 col-form-label"><spring:message code="class ni.org.fabretto.me.domain.catalogs.Comunidad" />:</label>
 			                      <div class="col-md-9">
-			                        <p class="form-control-static"><strong><c:out value="${centro.comunidad.nombreComunidad}" /></strong></p>
+			                        <p class="form-control-static"><strong><c:out value="${centro.comunidad.nombreComunidad}, ${centro.comunidad.municipio.nombreMunicipio}, ${centro.comunidad.municipio.departamento.nombreDepartamento}" /></strong></p>
 			                      </div>
 			                    </div>
 			                    <div class="form-group row">
@@ -177,11 +177,11 @@
   
   <!-- Lenguaje -->
   <c:choose>
-	<c:when test="${cookie.eSivinLang.value == null}">
+	<c:when test="${cookie.eFabrettoLang.value == null}">
 		<c:set var="lenguaje" value="es"/>
 	</c:when>
 	<c:otherwise>
-		<c:set var="lenguaje" value="${cookie.eSivinLang.value}"/>
+		<c:set var="lenguaje" value="${cookie.eFabrettoLang.value}"/>
 	</c:otherwise>
   </c:choose>
   

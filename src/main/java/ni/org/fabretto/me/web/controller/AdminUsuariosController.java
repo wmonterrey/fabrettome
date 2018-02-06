@@ -1,6 +1,5 @@
 package ni.org.fabretto.me.web.controller;
 
-import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -60,7 +59,7 @@ public class AdminUsuariosController {
      * @return una cadena con la vista a presentar
      */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-    public String obtenerUsuarios(Model model) throws ParseException { 	
+    public String obtenerUsuarios(Model model) { 	
     	logger.debug("Mostrando Usuarios en JSP");
     	List<Usuario> usuarios = usuarioService.getUsers();
     	model.addAttribute("usuarios", usuarios);
@@ -143,7 +142,7 @@ public class AdminUsuariosController {
      * @param correoElectronico Correo
      * @param roles Roles
      * @param centros Segmentos
-     * @return a ResponseEntity<String> con la entidad guardada
+     * @return a ResponseEntity con la entidad guardada
      */
     @RequestMapping( value="/guardarUsuario/", method=RequestMethod.POST)
 	public ResponseEntity<String> processUpdateUserForm( @RequestParam(value="nombreUsuario", required=true ) String nombreUsuario
@@ -207,7 +206,7 @@ public class AdminUsuariosController {
      * @param nombreUsuario nombre de usuario
      * @param nombreCompleto nombre completo de usuario
      * @param correoElectronico Correo
-     * @return a ResponseEntity<String> con la entidad guardada
+     * @return a ResponseEntity con la entidad guardada
      */
     @RequestMapping( value="/guardarUsuarioEditado/", method=RequestMethod.POST)
 	public ResponseEntity<String> processEditUserForm( @RequestParam(value="nombreUsuario", required=true ) String nombreUsuario
@@ -369,7 +368,7 @@ public class AdminUsuariosController {
      *
      * @param nombreUsuario Id del usuario
      * @param contrasena El nuevo password
-     * @return a ResponseEntity<String> con la entidad guardada
+     * @return a ResponseEntity con la entidad guardada
      */
     @RequestMapping( value="/chgPass/", method=RequestMethod.POST)
 	public ResponseEntity<String> processChangePassForm( @RequestParam(value="nombreUsuario", required=true ) String nombreUsuario

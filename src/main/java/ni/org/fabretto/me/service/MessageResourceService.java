@@ -47,7 +47,18 @@ public class MessageResourceService {
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		// Create a Hibernate query (HQL)
-		Query query = session.createQuery("FROM MessageResource mr where mr.messageKey like :parametro or mr.spanish like :parametro or mr.english like :parametro");
+		Query query = session.createQuery("FROM MessageResource mr where ((mr.messageKey like :parametro or mr.spanish like :parametro or mr.english like :parametro) and mr.isCat ='0' and mr.catKey is null)");
+		query.setParameter("parametro", '%'+parametro+'%');
+		// Retrieve all
+		return  query.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<MessageResource> loadCatalogos(String parametro) {
+		// Retrieve session from Hibernate
+		Session session = sessionFactory.getCurrentSession();
+		// Create a Hibernate query (HQL)
+		Query query = session.createQuery("FROM MessageResource mr where ((mr.messageKey like :parametro or mr.spanish like :parametro or mr.english like :parametro) and mr.isCat ='1')");
 		query.setParameter("parametro", '%'+parametro+'%');
 		// Retrieve all
 		return  query.list();
@@ -59,7 +70,19 @@ public class MessageResourceService {
 		Session session = sessionFactory.getCurrentSession();
 		// Create a Hibernate query (HQL)
 		Query query = session.createQuery("FROM MessageResource mens where mens.isCat ='0'" +
-				" and mens.catRoot =:catalogo and mens.catKey is not null and mens.pasive = '0' order by mens.order");
+				" and mens.catRoot =:catalogo and mens.catKey is not null and mens.pasive ='0' order by mens.order");
+		query.setParameter("catalogo", catalogo);
+		// Retrieve all
+		return  query.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<MessageResource> getCatalogoTodos(String catalogo) {
+		// Retrieve session from Hibernate
+		Session session = sessionFactory.getCurrentSession();
+		// Create a Hibernate query (HQL)
+		Query query = session.createQuery("FROM MessageResource mens where mens.isCat ='0'" +
+				" and mens.catRoot =:catalogo and mens.catKey is not null order by mens.order");
 		query.setParameter("catalogo", catalogo);
 		// Retrieve all
 		return  query.list();

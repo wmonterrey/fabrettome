@@ -28,10 +28,8 @@ import com.google.gson.Gson;
 import ni.org.fabretto.me.domain.audit.AuditTrail;
 import ni.org.fabretto.me.domain.catalogs.Escuela;
 import ni.org.fabretto.me.language.MessageResource;
-import ni.org.fabretto.me.domain.catalogs.Centro;
 import ni.org.fabretto.me.domain.catalogs.Comunidad;
 import ni.org.fabretto.me.service.AuditTrailService;
-import ni.org.fabretto.me.service.CentrosService;
 import ni.org.fabretto.me.service.EscuelasService;
 import ni.org.fabretto.me.service.MessageResourceService;
 import ni.org.fabretto.me.service.ComunidadesService;
@@ -52,8 +50,6 @@ public class AdminEscuelasController {
 	private EscuelasService escuelasService;
 	@Resource(name="comunidadesService")
 	private ComunidadesService comunidadesService;
-	@Resource(name="centrosService")
-	private CentrosService centrosService;
 	@Resource(name="messageResourceService")
 	private MessageResourceService messageResourceService;
 	
@@ -80,8 +76,6 @@ public class AdminEscuelasController {
 	public String initAddEscuelaForm(Model model) {
     	List<Comunidad> comunidades = this.comunidadesService.getComunidadesActivas();
     	model.addAttribute("comunidades", comunidades);
-    	List<Centro> centros = this.centrosService.getCentrosActivos();
-    	model.addAttribute("centros", centros);
     	List<MessageResource> tipos = messageResourceService.getCatalogo("CAT_TIPESC");
     	model.addAttribute("tipos",tipos);
     	List<MessageResource> categorias = messageResourceService.getCatalogo("CAT_CATESC");
@@ -125,8 +119,6 @@ public class AdminEscuelasController {
 			model.addAttribute("escuela",escuelaEditar);
 			List<Comunidad> comunidades = this.comunidadesService.getComunidadesActivas();
 	    	model.addAttribute("comunidades", comunidades);
-	    	List<Centro> centros = this.centrosService.getCentrosActivos();
-	    	model.addAttribute("centros", centros);
 	    	List<MessageResource> tipos = messageResourceService.getCatalogo("CAT_TIPESC");
 	    	model.addAttribute("tipos",tipos);
 	    	List<MessageResource> categorias = messageResourceService.getCatalogo("CAT_CATESC");
@@ -149,7 +141,6 @@ public class AdminEscuelasController {
      * @param tipoEscuela tipo de escuela
      * @param catEscuela categoria de escuela
      * @param comunidad comunidad de la escuela
-     * @param centro centro de la escuela
      * @return ResponseEntity con el escuela guardado
      */
     @RequestMapping( value="/guardarEscuela/", method=RequestMethod.POST)
@@ -160,7 +151,6 @@ public class AdminEscuelasController {
 	        , @RequestParam( value="catEscuela", required=true ) String catEscuela
 	        , @RequestParam( value="telefono", required=false, defaultValue="" ) String telefono
 	        , @RequestParam( value="comunidad", required=true ) String comunidad
-	        , @RequestParam( value="centro", required=true ) String centro
 	        )
 	{
     	try{
@@ -184,11 +174,11 @@ public class AdminEscuelasController {
 			escuela.setNombreEscuela(nombreEscuela);
 			escuela.setTipoEscuela(tipoEscuela);
 			escuela.setCatEscuela(catEscuela);
-			escuela.setCentro(this.centrosService.getCentro(centro));
 			escuela.setTelefono(telefono);
 			escuela.setComunidad(this.comunidadesService.getComunidad(comunidad));
 			//Actualiza el escuela
 			this.escuelasService.saveEscuela(escuela);
+			escuela.setComunidad(null);
 			return createJsonResponse(escuela);
     	}
 		catch (DataIntegrityViolationException e){
